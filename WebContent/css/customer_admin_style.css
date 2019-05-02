@@ -1,0 +1,46 @@
+@charset "UTF-8";
+
+.customer_admin_table{
+	border:1px solid black;
+}
+
+.userPrimeNum{
+	width:100px;
+	text-align:center;
+	
+	
+}
+
+.userName{
+	width:100px;
+	text-align:center;
+	
+}
+
+.userAddress{
+	width:400px;
+	text-align:center;
+}
+
+.userPhoneNum{
+	width:200px;
+	text-align:center;
+	
+}
+
+.userIntroRoute{
+	width:200px;
+	text-align:center;
+	
+}
+
+.userRoutine{
+	width:80px;
+	text-align:center;
+	
+}
+.userTerm{
+	width:80px;
+	text-align:center;
+	
+}

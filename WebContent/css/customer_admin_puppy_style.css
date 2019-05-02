@@ -1,0 +1,67 @@
+
+@charset "UTF-8";
+
+.puppyPrimeNum{
+	border:1px solid black;
+	width:50px;
+	
+}
+
+.puppyName{
+	width:100px;
+	text-align:center;
+	
+	
+}
+
+.puppySpecies{
+	width:100px;
+	text-align:center;
+	
+}
+
+.puppyAge{
+	width:50px;
+	text-align:center;
+}
+
+.puppyGender{
+	width:100px;
+	text-align:center;
+	
+}
+
+.puppyNeutralization{
+	width:50px;
+	text-align:center;
+	
+}
+
+.puppyWeight{
+	width:80px;
+	text-align:center;
+	
+}
+.puppyActivity{
+	width:150px;
+	text-align:center;
+	
+}
+.puppyRecommendQuantity{
+	width:80px;
+	text-align:center;
+}
+.puppyETC{
+	width:400px;
+	height:auto;
+	text-align:center;
+	
+}
+.puppyRestrict{
+	width:400px;
+	height:auto;
+	text-align:center;
+	
+}
+
+			

@@ -1,0 +1,40 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    <%@ page import = "round.Round" %>
+    <%@ page import = "round.RoundDAO" %>
+    
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=" text/html; UTF-8" http-equiv="Content-type">
+<title>Insert title here</title>
+</head>
+<body>
+	<button onclick="location.href='main.jsp'">메인</button>
+
+	<p>도거박스 주문 추가</p>
+	<%
+		RoundDAO roundDAO = new RoundDAO();
+		
+		
+	%>
+	
+		<form action="roundInsertAction.jsp" method="post">
+		
+			<div>
+				<p>차수 제목</p>
+				<input type="text" class="form-control" placeholder="차수 제목" name="roundTitle" maxlength="100"></input>
+			</div>
+			<div>
+				<p>배송 날짜</p>
+				<input type="text" class="form-control" placeholder="배송 날짜" name="roundDeliveryDate" maxlength="20"></input>
+			</div>
+			<input type ="submit" type="button" value ="등록">
+			
+		</form>
+	
+		<script src ="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+</body>
+
+
+</html>

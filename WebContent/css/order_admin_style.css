@@ -1,0 +1,90 @@
+@charset "UTF-8";
+
+.userPrimeNum{
+	width:80px;
+	text-align:center;
+}
+.userName{
+	width:100px;
+	text-align:center;
+}
+.puppyName{
+	width:100px;
+	text-align:center;
+}
+.OrderProductPuppyGram{
+	width:100px;
+	text-align:center;	
+}
+.OrderProductPuppyNum{
+	width:100px;
+	text-align:center;	
+}
+.OrderProductOriginalGram{
+	width:100px;
+	text-align:center;	
+}
+.OrderProductOriginalNum{
+	width:100px;
+	text-align:center;	
+}
+.OrderProductSeniorGram{
+	width:100px;
+	text-align:center;	
+}
+
+.OrderProductSeniorNum{
+	width:100px;
+	text-align:center;	
+}
+
+.OrderProductFishGram{
+	width:100px;
+	text-align:center;	
+}
+.OrderProductFishNum{
+	width:100px;
+	text-align:center;	
+}
+.OrderProductPorkGram{
+	width:100px;
+	text-align:center;	
+}
+.OrderProductPorkNum{
+	width:100px;
+	text-align:center;	
+}
+.OrderProductKangarooGram{
+	width:100px;
+	text-align:center;	
+}
+.OrderProductKangarooNum{
+	width:100px;
+	text-align:center;	
+}
+.OrderProductHorseGram{
+	width:100px;
+	text-align:center;	
+}
+.OrderProductHorseNum{
+	width:100px;
+	text-align:center;	
+}
+.OrderTotalQuantity{
+	width:100px;
+	text-align:center;	
+}
+.OrderTotalPrice{
+	width:100px;
+	text-align:center;	
+}
+.OrderETC{
+	width:400px;
+	text-align:center;	
+}
+.OrderPack{
+	width:100px;
+	text-align:center;	
+}
+
+				
