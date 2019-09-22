@@ -20,12 +20,29 @@ public class Order {
 	int orderProductKangarooNum  ;
 	int orderProductHorseGram ;
 	int orderProductHorseNum  ;
-	int orderProductIndividualGram ;
-	int orderProductIndividualNum  ;
+	int orderProductPuppyAvailable;
+	int orderProductOriginalAvailable;
+	int orderProductSeniorAvailable;
+	int orderProductFishAvailable;
+	int orderProductPorkAvailable;
+	int orderProductKangarooAvailable;
+	int orderProductHorseAvailable;
+	 // 삭제 하고 order available 값 넣기
+	int orderProductPuppyRecipePrimeNum;
+	int orderProductOriginalRecipePrimeNum;
+	int orderProductSeniorRecipePrimeNum;
+	int orderProductFishRecipePrimeNum;
+	int orderProductPorkRecipePrimeNum;
+	int orderProductKangarooRecipePrimeNum;
+	int orderProductHorseRecipePrimeNum;
 	int orderTotalQuantity       ;
 	int orderTotalPrice         ;
 	String orderETC              ;  
 	int orderPack;
+	String dueDate;
+	
+	String roundTitle;
+	int dueDateAvailable;
 	public int getRoundPrimeNum() {
 		return roundPrimeNum;
 	}
@@ -143,18 +160,92 @@ public class Order {
 		this.orderProductHorseNum = orderProductHorseNum;
 	}
 	
+
+	public int getOrderProductPuppyAvailable() {
+		return orderProductPuppyAvailable;
+	}
+	public void setOrderProductPuppyAvailable(int orderProductPuppyAvailable) {
+		this.orderProductPuppyAvailable = orderProductPuppyAvailable;
+	}
+	public int getOrderProductOriginalAvailable() {
+		return orderProductOriginalAvailable;
+	}
+	public void setOrderProductOriginalAvailable(int orderProductOriginalAvailable) {
+		this.orderProductOriginalAvailable = orderProductOriginalAvailable;
+	}
+	public int getOrderProductSeniorAvailable() {
+		return orderProductSeniorAvailable;
+	}
+	public void setOrderProductSeniorAvailable(int orderProductSeniorAvailable) {
+		this.orderProductSeniorAvailable = orderProductSeniorAvailable;
+	}
+	public int getOrderProductFishAvailable() {
+		return orderProductFishAvailable;
+	}
+	public void setOrderProductFishAvailable(int orderProductFishAvailable) {
+		this.orderProductFishAvailable = orderProductFishAvailable;
+	}
+	public int getOrderProductPorkAvailable() {
+		return orderProductPorkAvailable;
+	}
+	public void setOrderProductPorkAvailable(int orderProductPorkAvailable) {
+		this.orderProductPorkAvailable = orderProductPorkAvailable;
+	}
+	public int getOrderProductKangarooAvailable() {
+		return orderProductKangarooAvailable;
+	}
+	public void setOrderProductKangarooAvailable(int orderProductKangarooAvailable) {
+		this.orderProductKangarooAvailable = orderProductKangarooAvailable;
+	}
+	public int getOrderProductHorseAvailable() {
+		return orderProductHorseAvailable;
+	}
+	public void setOrderProductHorseAvailable(int orderProductHorseAvailable) {
+		this.orderProductHorseAvailable = orderProductHorseAvailable;
+	}
 	
-	public int getOrderProductIndividualGram() {
-		return orderProductIndividualGram;
+	
+	public int getOrderProductPuppyRecipePrimeNum() {
+		return orderProductPuppyRecipePrimeNum;
 	}
-	public void setOrderProductIndividualGram(int orderProductIndividualGram) {
-		this.orderProductIndividualGram = orderProductIndividualGram;
+	public void setOrderProductPuppyRecipePrimeNum(int orderProductPuppyRecipePrimeNum) {
+		this.orderProductPuppyRecipePrimeNum = orderProductPuppyRecipePrimeNum;
 	}
-	public int getOrderProductIndividualNum() {
-		return orderProductIndividualNum;
+	public int getOrderProductOriginalRecipePrimeNum() {
+		return orderProductOriginalRecipePrimeNum;
 	}
-	public void setOrderProductIndividualNum(int orderProductIndividualNum) {
-		this.orderProductIndividualNum = orderProductIndividualNum;
+	public void setOrderProductOriginalRecipePrimeNum(int orderProductOriginalRecipePrimeNum) {
+		this.orderProductOriginalRecipePrimeNum = orderProductOriginalRecipePrimeNum;
+	}
+	public int getOrderProductSeniorRecipePrimeNum() {
+		return orderProductSeniorRecipePrimeNum;
+	}
+	public void setOrderProductSeniorRecipePrimeNum(int orderProductSeniorRecipePrimeNum) {
+		this.orderProductSeniorRecipePrimeNum = orderProductSeniorRecipePrimeNum;
+	}
+	public int getOrderProductFishRecipePrimeNum() {
+		return orderProductFishRecipePrimeNum;
+	}
+	public void setOrderProductFishRecipePrimeNum(int orderProductFishRecipePrimeNum) {
+		this.orderProductFishRecipePrimeNum = orderProductFishRecipePrimeNum;
+	}
+	public int getOrderProductPorkRecipePrimeNum() {
+		return orderProductPorkRecipePrimeNum;
+	}
+	public void setOrderProductPorkRecipePrimeNum(int orderProductPorkRecipePrimeNum) {
+		this.orderProductPorkRecipePrimeNum = orderProductPorkRecipePrimeNum;
+	}
+	public int getOrderProductKangarooRecipePrimeNum() {
+		return orderProductKangarooRecipePrimeNum;
+	}
+	public void setOrderProductKangarooRecipePrimeNum(int orderProductKangarooRecipePrimeNum) {
+		this.orderProductKangarooRecipePrimeNum = orderProductKangarooRecipePrimeNum;
+	}
+	public int getOrderProductHorseRecipePrimeNum() {
+		return orderProductHorseRecipePrimeNum;
+	}
+	public void setOrderProductHorseRecipePrimeNum(int orderProductHorseRecipePrimeNum) {
+		this.orderProductHorseRecipePrimeNum = orderProductHorseRecipePrimeNum;
 	}
 	public int getOrderTotalQuantity() {
 		return orderTotalQuantity;
@@ -179,6 +270,25 @@ public class Order {
 	}
 	public void setOrderPack(int orderPack) {
 		this.orderPack = orderPack;
+	}
+	public String getRoundTitle() {
+		return roundTitle;
+	}
+	
+	public String getDueDate() {
+		return dueDate;
+	}
+	public void setDueDate(String dueDate) {
+		this.dueDate = dueDate;
+	}
+	public void setRoundTitle(String roundTitle) {
+		this.roundTitle = roundTitle;
+	}
+	public int getDueDateAvailable() {
+		return dueDateAvailable;
+	}
+	public void setDueDateAvailable(int dueDateAvailable) {
+		this.dueDateAvailable = dueDateAvailable;
 	}
 	
 	

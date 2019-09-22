@@ -1,0 +1,22 @@
+<Context path ="/doggerbox1" docBase = "www">
+<Resource
+	name="jdbc/doggerbox1"
+	auth="Container"
+	type="javax.sql.DataSource"
+	driverClassName="com.mysql.jdbc.Driver"
+	loginTimeout="10"
+	validationQuery ="select 1 from dual"
+	maxwait="5000"
+	username="doggerbox1"
+	password="a1870523!!"
+	testOnBorrow="true"
+	url="jdbc:mysql://localhost:3306/doggerbox1"/>
+	
+
+<ResourceLink
+	type="javax.sql.DataSource"
+	name="jdbc/doggerbox"
+	global="jdbc/doggerbox"
+	/>
+	
+</Context>

@@ -6,14 +6,16 @@ public class Puppy {
 	String puppyName;
 	String puppySpecies;
 	int puppyAge;
+	int puppyAgeMonth;
 	int puppyGender;
 	int puppyNeutralization;
 	int puppyWeight;
 	int puppyActivity;
 	String puppyETC;
 	String puppyRestrict;
-	int recommendQuantity;
-	
+	int recommendedQuantity;
+	String paymentDate;
+	int paymentAvailable;
 	public int getUserPrimeNum() {
 		return userPrimeNum;
 	}
@@ -80,11 +82,30 @@ public class Puppy {
 	public void setPuppyRestrict(String puppyRestrict) {
 		this.puppyRestrict = puppyRestrict;
 	}
-	public int getRecommendQuantity() {
-		return recommendQuantity;
+
+	public int getRecommendedQuantity() {
+		return recommendedQuantity;
 	}
-	public void setRecommendQuantity(int recommendQuantity) {
-		this.recommendQuantity = recommendQuantity;
+	public void setRecommendedQuantity(int recommendedQuantity) {
+		this.recommendedQuantity = recommendedQuantity;
+	}
+	public String getPaymentDate() {
+		return paymentDate;
+	}
+	public void setPaymentDate(String paymentDate) {
+		this.paymentDate = paymentDate;
+	}
+	public int getPaymentAvailable() {
+		return paymentAvailable;
+	}
+	public void setPaymentAvailable(int paymentAvailable) {
+		this.paymentAvailable = paymentAvailable;
+	}
+	public int getPuppyAgeMonth() {
+		return puppyAgeMonth;
+	}
+	public void setPuppyAgeMonth(int puppyAgeMonth) {
+		this.puppyAgeMonth = puppyAgeMonth;
 	}
 	
 	

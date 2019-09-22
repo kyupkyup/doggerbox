@@ -15,8 +15,8 @@ public class IngredientDAO {
 	
 	public IngredientDAO() {
 		try {
-			String dbURL = "jdbc:mysql://localhost/luppyworld?serverTimezone=UTC";	//서버 선언
-			String dbID = "luppyworld";
+			String dbURL = "jdbc:mysql://localhost/doggerbox1?serverTimezone=UTC";	//서버 선언
+			String dbID = "doggerbox1";
 			String dbPassword = "a1870523!!";
 			
 			Class.forName("com.mysql.cj.jdbc.Driver");
@@ -30,7 +30,7 @@ public class IngredientDAO {
 	}
 	
 	public int getNext() {
-		String SQL = "SELECT ingredientPrimeNum FROM doggerboxIngredient ORDER BY ingredientPrimeNum DESC";
+		String SQL = "SELECT ingredientPrimeNum FROM doggerboxingredient ORDER BY ingredientPrimeNum DESC";
 		
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
@@ -51,7 +51,7 @@ public class IngredientDAO {
 	}
 	
 	public ArrayList<Ingredient> getList(){
-		String SQL = "SELECT * FROM doggerboxIngredient";
+		String SQL = "SELECT * FROM doggerboxingredient";
 		
 		ArrayList<Ingredient> list = new ArrayList<Ingredient>();
 		
@@ -81,14 +81,46 @@ public class IngredientDAO {
 		return list; //데이터 반환
 		
 	}
+	public Ingredient getIngredient(int ingredientPrimeNum){
+		String SQL = "SELECT * FROM doggerboxingredient where ingredientPrimeNum=?";
+		
+		
+		
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setInt(1,  ingredientPrimeNum);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+			
+				Ingredient ingredient = new Ingredient();
+				ingredient.setIngredientPrimeNum(rs.getInt(1));
+				ingredient.setRawIngredient(rs.getString(2));
+				ingredient.setLossRate(rs.getDouble(3));
+				ingredient.setIngredientPrice(rs.getDouble(4));
+				ingredient.setSum(0);
+								 
+			return ingredient;
+			}
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+	
+		return null; //데이터 반환
+		
+	}
+	
 	public int ingredientAdd(String rawIngredient, double lossRate, double ingredientPrice) {
-	String SQL = "INSERT INTO doggerboxIngredient VALUES(?,?,?,?)";
+	String SQL = "INSERT INTO doggerboxingredient VALUES(?,?,?,?,?)";
 	try {
 		pstmt = conn.prepareStatement(SQL);
 		pstmt.setInt(1, getNext());
 		pstmt.setString(2, rawIngredient);
 		pstmt.setDouble(3, lossRate);
 		pstmt.setDouble(4, ingredientPrice);
+		pstmt.setDouble(5, 0);
+
 
 
 		return pstmt.executeUpdate();
@@ -101,7 +133,7 @@ public class IngredientDAO {
 }
 	
 	public String getRawIngredient(int ingredientPrimeNum){
-		String SQL = "SELECT rawIngredient FROM doggerboxIngredient WHERE ingredientPrimeNum = ? ";
+		String SQL = "SELECT rawIngredient FROM doggerboxingredient WHERE ingredientPrimeNum = ? ";
 		
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
@@ -126,7 +158,7 @@ public class IngredientDAO {
 	}
 	
 	public double getIngredientLossRate(int ingredientPrimeNum){
-		String SQL = "SELECT lossRate FROM doggerboxIngredient WHERE ingredientPrimeNum = ? ";
+		String SQL = "SELECT lossRate FROM doggerboxingredient WHERE ingredientPrimeNum = ? ";
 		
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
@@ -150,7 +182,7 @@ public class IngredientDAO {
 		
 	}
 	public double getIngredientPrice(int ingredientPrimeNum){
-		String SQL = "SELECT ingredientPrice FROM doggerboxIngredient WHERE ingredientPrimeNum = ? ";
+		String SQL = "SELECT ingredientPrice FROM doggerboxingredient WHERE ingredientPrimeNum = ? ";
 		
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
@@ -175,7 +207,7 @@ public class IngredientDAO {
 	}
 	
 	public int ingredientUpdate( String rawIngredient, double lossRate, double ingredientPrice, int ingredientPrimeNum) {
-	String SQL = "update doggerboxIngredient set rawIngredient=?, lossRate=?, ingredientPrice=? where ingredientPrimeNum=?";
+	String SQL = "update doggerboxingredient set rawIngredient=?, lossRate=?, ingredientPrice=? where ingredientPrimeNum=?";
 	try {
 		pstmt = conn.prepareStatement(SQL);
 		pstmt.setString(1, rawIngredient);
@@ -198,7 +230,7 @@ public class IngredientDAO {
 	
 	public int ingredientDelete(int ingredientPrimeNum) {
 		
-		String SQL = "delete from doggerboxIngredient WHERE ingredientPrimeNum = ?";
+		String SQL = "delete from doggerboxingredient WHERE ingredientPrimeNum = ?";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
 			pstmt.setInt(1, ingredientPrimeNum);

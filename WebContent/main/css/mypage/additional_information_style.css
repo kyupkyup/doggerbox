@@ -1,0 +1,73 @@
+@charset "UTF-8";
+
+.main-container1{
+	width:510px;
+	max-width:1200px;
+	display:inline-block;
+	margin:0 auto;
+	text-align:center;
+}
+
+.userName{
+	width:500px;
+	height:50px;
+	border:0;
+	border-bottom:1px solid black;
+	margin-top:30px;
+}
+.address-button{
+	width:100px;
+	height:40px;
+	color:#CE118C;
+	background-color:white;
+	border:1px solid #CE118C;
+	cursor:pointer;
+	display:inline-block;
+	float:left;
+	margin-top:40px;
+	
+}
+.address-num-holder{
+	
+}
+.address-full-holder{
+	width:360px;
+	height:50px;
+	border:0;
+	border-bottom:1px solid black;
+	display:inline-block;
+	margin-top:30px;
+	margin-left:40px;
+	float:left;
+}
+
+.userPhoneNum{
+	width:500px;
+	height:50px;
+	border:0;
+	border-bottom:1px solid black;	
+	display:block;
+	margin:0 auto;
+	margin-top:30px;
+	
+}
+.userEmail{
+	width:500px;
+	height:50px;
+	border:0;
+	border-bottom:1px solid black;	
+		margin-top:30px;
+	
+}
+
+.submit-button{
+		width:150px;
+	height:50px;
+	color:white;
+	background-color:#CE118C;
+	cursor:pointer;
+	border:0;
+	display:inline-block;
+	float:right;
+	margin-top:30px;
+}

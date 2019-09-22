@@ -15,8 +15,8 @@ import puppy.Puppy;
 		
 		public OrderDAO() {
 			try {
-				String dbURL = "jdbc:mysql://localhost/luppyworld?serverTimezone=UTC";	//서버 선언
-				String dbID = "luppyworld";
+				String dbURL = "jdbc:mysql://localhost/doggerbox1?serverTimezone=UTC";	//서버 선언
+				String dbID = "doggerbox1";
 				String dbPassword = "a1870523!!";
 				
 				Class.forName("com.mysql.cj.jdbc.Driver");
@@ -29,7 +29,7 @@ import puppy.Puppy;
 			}
 		}
 		public int getNext() {
-			String SQL = "SELECT puppyPrimeNum FROM doggerboxOrder ORDER BY puppyPrimeNum DESC";
+			String SQL = "SELECT orderPrimeNum FROM order1 ORDER BY orderPrimeNum DESC";
 			
 			try {
 				PreparedStatement pstmt = conn.prepareStatement(SQL);
@@ -55,10 +55,18 @@ import puppy.Puppy;
 				int orderProductFishNum,
 				int orderProductPorkGram, int orderProductPorkNum, int orderProductKangarooGram, 
 				int orderProductKangarooNum, int orderProductHorseGram, int orderProductHorseNum, 
-				int orderProductIndividualGram, int orderProductIndividualNum, 
+				int orderProductPuppyAvailable,int orderProductOriginalAvailable, int orderProductSeniorAvailable, int orderProductFishAvailable, int orderProductPorkAvailable, int orderProductKangarooAvailable, 
+				int orderProductHorseAvailable, 
+				int orderProductPuppyRecipePrimeNum,
+				int orderProductOriginalRecipePrimeNum,
+				int orderProductSeniorRecipePrimeNum ,
+				int orderProductFishRecipePrimeNum ,
+				int orderProductPorkRecipePrimeNum,
+				int orderProductKangarooRecipePrimeNum,
+				int orderProductHorseRecipePrimeNum ,
 				 int orderTotalQuantity,int orderTotalPrice, 
 				String orderETC, int orderPack) {
-		String SQL = "INSERT INTO doggerboxOrder VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		String SQL = "INSERT INTO order1 VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		try {
 			pstmt = conn.prepareStatement(SQL);
 			pstmt.setInt(1, roundPrimeNum);
@@ -80,12 +88,25 @@ import puppy.Puppy;
 			pstmt.setInt(17,orderProductKangarooNum);
 			pstmt.setInt(18, orderProductHorseGram);
 			pstmt.setInt(19,orderProductHorseNum);
-			pstmt.setInt(20, orderProductIndividualGram);
-			pstmt.setInt(21,orderProductIndividualNum);
-			pstmt.setInt(22,orderTotalQuantity);
-			pstmt.setInt(23,orderTotalPrice);
-			pstmt.setString(24,orderETC);
-			pstmt.setInt(25,orderPack);
+			pstmt.setInt(20, orderProductPuppyAvailable);
+			pstmt.setInt(21,orderProductOriginalAvailable);
+			pstmt.setInt(22,orderProductSeniorAvailable);
+			pstmt.setInt(23,orderProductFishAvailable);
+			pstmt.setInt(24,orderProductPorkAvailable);
+			pstmt.setInt(25,orderProductKangarooAvailable);
+			pstmt.setInt(26,orderProductHorseAvailable);
+			pstmt.setInt(27, orderProductPuppyRecipePrimeNum);
+			pstmt.setInt(28,orderProductOriginalRecipePrimeNum);
+			pstmt.setInt(29,orderProductSeniorRecipePrimeNum);
+			pstmt.setInt(30,orderProductFishRecipePrimeNum);
+			pstmt.setInt(31,orderProductPorkRecipePrimeNum);
+			pstmt.setInt(32,orderProductKangarooRecipePrimeNum);
+			pstmt.setInt(33,orderProductHorseRecipePrimeNum);
+			pstmt.setInt(34,orderTotalQuantity);
+			pstmt.setInt(35,orderTotalPrice);
+			pstmt.setString(36,orderETC);
+			pstmt.setInt(37,orderPack);
+			pstmt.setInt(38,1);
 
 			
 
@@ -99,7 +120,7 @@ import puppy.Puppy;
 		return -1;  //데이터베이스 오류
 	}
 		public ArrayList<Order> getList(int roundPrimeNum){
-			String SQL = "SELECT * FROM doggerboxOrder where roundPrimeNum =? ";
+			String SQL = "SELECT * FROM order1 where roundPrimeNum =?";
 			
 			ArrayList<Order> list = new ArrayList<Order>();
 			
@@ -131,12 +152,24 @@ import puppy.Puppy;
 					order.setOrderProductKangarooNum(rs.getInt(17));
 					order.setOrderProductHorseGram(rs.getInt(18));
 					order.setOrderProductHorseNum(rs.getInt(19));
-					order.setOrderProductIndividualGram(rs.getInt(20));
-					order.setOrderProductIndividualNum(rs.getInt(21));
-					order.setOrderTotalQuantity(rs.getInt(22));
-					order.setOrderTotalPrice(rs.getInt(23));
-					order.setOrderETC(rs.getString(24));
-					order.setOrderPack(rs.getInt(25));
+					order.setOrderProductPuppyAvailable(rs.getInt(20));
+					order.setOrderProductOriginalAvailable(rs.getInt(21));
+					order.setOrderProductSeniorAvailable(rs.getInt(22));
+					order.setOrderProductFishAvailable(rs.getInt(23));
+					order.setOrderProductPorkAvailable(rs.getInt(24));
+					order.setOrderProductKangarooAvailable(rs.getInt(25));
+					order.setOrderProductHorseAvailable(rs.getInt(26));
+					order.setOrderProductPuppyRecipePrimeNum(rs.getInt(27));
+					order.setOrderProductOriginalRecipePrimeNum(rs.getInt(28));
+					order.setOrderProductSeniorRecipePrimeNum(rs.getInt(29));
+					order.setOrderProductFishRecipePrimeNum(rs.getInt(30));
+					order.setOrderProductPorkRecipePrimeNum(rs.getInt(31));
+					order.setOrderProductKangarooRecipePrimeNum(rs.getInt(32));
+					order.setOrderProductHorseRecipePrimeNum(rs.getInt(33));
+					order.setOrderTotalQuantity(rs.getInt(34));
+					order.setOrderTotalPrice(rs.getInt(35));
+					order.setOrderETC(rs.getString(36));
+					order.setOrderPack(rs.getInt(37));
 					list.add(order);
 									 
 				}
@@ -151,7 +184,7 @@ import puppy.Puppy;
 			
 		}	
 		public ArrayList<Order> getListByPuppy(int puppyPrimeNum){
-			String SQL = "SELECT * FROM doggerboxOrder where puppyPrimeNum =? ";
+			String SQL = "SELECT * FROM order1 where puppyPrimeNum =? and orderAvailable = 1 ";
 			
 			ArrayList<Order> list = new ArrayList<Order>();
 			
@@ -183,12 +216,24 @@ import puppy.Puppy;
 					order.setOrderProductKangarooNum(rs.getInt(17));
 					order.setOrderProductHorseGram(rs.getInt(18));
 					order.setOrderProductHorseNum(rs.getInt(19));
-					order.setOrderProductIndividualGram(rs.getInt(20));
-					order.setOrderProductIndividualNum(rs.getInt(21));
-					order.setOrderTotalQuantity(rs.getInt(22));
-					order.setOrderTotalPrice(rs.getInt(23));
-					order.setOrderETC(rs.getString(24));
-					order.setOrderPack(rs.getInt(25));
+					order.setOrderProductPuppyAvailable(rs.getInt(20));
+					order.setOrderProductOriginalAvailable(rs.getInt(21));
+					order.setOrderProductSeniorAvailable(rs.getInt(22));
+					order.setOrderProductFishAvailable(rs.getInt(23));
+					order.setOrderProductPorkAvailable(rs.getInt(24));
+					order.setOrderProductKangarooAvailable(rs.getInt(25));
+					order.setOrderProductHorseAvailable(rs.getInt(26));
+					order.setOrderProductPuppyRecipePrimeNum(rs.getInt(27));
+					order.setOrderProductOriginalRecipePrimeNum(rs.getInt(28));
+					order.setOrderProductSeniorRecipePrimeNum(rs.getInt(29));
+					order.setOrderProductFishRecipePrimeNum(rs.getInt(30));
+					order.setOrderProductPorkRecipePrimeNum(rs.getInt(31));
+					order.setOrderProductKangarooRecipePrimeNum(rs.getInt(32));
+					order.setOrderProductHorseRecipePrimeNum(rs.getInt(33));
+					order.setOrderTotalQuantity(rs.getInt(34));
+					order.setOrderTotalPrice(rs.getInt(35));
+					order.setOrderETC(rs.getString(36));
+					order.setOrderPack(rs.getInt(37));
 					list.add(order);
 									 
 				}
@@ -203,7 +248,7 @@ import puppy.Puppy;
 			
 		}	
 		public Order getOrder(int orderPrimeNum) {
-			String SQL = "SELECT * FROM doggerboxOrder WHERE orderPrimeNum = ? ";
+			String SQL = "SELECT * FROM order1 WHERE orderPrimeNum = ?";
 			
 			try {
 				PreparedStatement pstmt = conn.prepareStatement(SQL);
@@ -231,12 +276,24 @@ import puppy.Puppy;
 						order.setOrderProductKangarooNum(rs.getInt(17));
 						order.setOrderProductHorseGram(rs.getInt(18));
 						order.setOrderProductHorseNum(rs.getInt(19));
-						order.setOrderProductIndividualGram(rs.getInt(20));
-						order.setOrderProductIndividualNum(rs.getInt(21));
-						order.setOrderTotalQuantity(rs.getInt(22));
-						order.setOrderTotalPrice(rs.getInt(23));
-						order.setOrderETC(rs.getString(24));
-						order.setOrderPack(rs.getInt(25));
+						order.setOrderProductPuppyAvailable(rs.getInt(20));
+						order.setOrderProductOriginalAvailable(rs.getInt(21));
+						order.setOrderProductSeniorAvailable(rs.getInt(22));
+						order.setOrderProductFishAvailable(rs.getInt(23));
+						order.setOrderProductPorkAvailable(rs.getInt(24));
+						order.setOrderProductKangarooAvailable(rs.getInt(25));
+						order.setOrderProductHorseAvailable(rs.getInt(26));
+						order.setOrderProductPuppyRecipePrimeNum(rs.getInt(27));
+						order.setOrderProductOriginalRecipePrimeNum(rs.getInt(28));
+						order.setOrderProductSeniorRecipePrimeNum(rs.getInt(29));
+						order.setOrderProductFishRecipePrimeNum(rs.getInt(30));
+						order.setOrderProductPorkRecipePrimeNum(rs.getInt(31));
+						order.setOrderProductKangarooRecipePrimeNum(rs.getInt(32));
+						order.setOrderProductHorseRecipePrimeNum(rs.getInt(33));
+						order.setOrderTotalQuantity(rs.getInt(34));
+						order.setOrderTotalPrice(rs.getInt(35));
+						order.setOrderETC(rs.getString(36));
+						order.setOrderPack(rs.getInt(37));
 	 
 						return order;
 				}
@@ -255,15 +312,16 @@ import puppy.Puppy;
 				int orderProductFishNum,
 				int orderProductPorkGram, int orderProductPorkNum, int orderProductKangarooGram, 
 				int orderProductKangarooNum,  int orderProductHorseGram, 
-				int orderProductHorseNum,int orderProductIndividualGram, 
+				int orderProductPuppyAvailable,int orderProductOriginalAvailable, int orderProductSeniorAvailable, int orderProductFishAvailable, int orderProductPorkAvailable, int orderProductKangarooAvailable, 
+				int orderProductHorseAvailable, 
 				int orderProductIndividualNum,int orderTotalQuantity,int orderTotalPrice, 
 				String orderETC, int orderPack, int orderPrimeNum) {
-		String SQL = "update doggerboxOrder set userPrimeNum=?,orderBoxNum=?,orderProductPuppyGram=?,orderProductPuppyNum=?,"
+		String SQL = "update order1 set userPrimeNum=?,orderBoxNum=?,orderProductPuppyGram=?,orderProductPuppyNum=?,"
 				+ "orderProductOriginalGram=?,orderProductOriginalNum=?,orderProductSeniorGram=?,orderProductSeniorNum=?,orderProductFishGram=?,"
 				+ "orderProductFishNum=?,orderProductPorkGram=?,"
 				+ "orderProductPorkNum=?,orderProductKangarooGram=?,orderProductKangarooNum=?,"
-				+ "orderProductHorseGram=?, orderProductHorseNum=?,orderProductIndividualGram=?, orderProductIndividualNum=?,"
-				+ "orderTotalQuantity=?,orderTotalPrice=?,"
+				+ "orderProductHorseGram=?, orderProductHorseNum=?,orderProductPuppyAvailable=?,orderProductOriginalAvailable=?,orderProductSeniorAvailable=?,orderProductFishAvailable=?,"
+				+ "orderProductPorkAvailable=?,orderProductKangarooAvailable=?,orderProductHorseAvailable=?,orderTotalQuantity=?,orderTotalPrice=?,"
 				+ "orderETC=?,orderPack=? where orderPrimeNum=? ";
 		try {
 			pstmt = conn.prepareStatement(SQL);
@@ -283,15 +341,19 @@ import puppy.Puppy;
 			pstmt.setInt(13, orderProductKangarooGram);
 			pstmt.setInt(14,orderProductKangarooNum);
 			pstmt.setInt(15, orderProductHorseGram);
-			pstmt.setInt(16,orderProductHorseNum);
-			pstmt.setInt(17, orderProductIndividualGram);
-			pstmt.setInt(18,orderProductIndividualNum);
-			pstmt.setInt(19,orderTotalQuantity);
-			pstmt.setInt(20,orderTotalPrice);
-			pstmt.setString(21,orderETC);
-			pstmt.setInt(22,orderPack);
-			pstmt.setInt(23, orderPrimeNum);
-
+			pstmt.setInt(16,orderProductPuppyAvailable);
+			pstmt.setInt(17, orderProductOriginalAvailable);
+			pstmt.setInt(18,orderProductSeniorAvailable);
+			pstmt.setInt(19, orderProductFishAvailable);
+			pstmt.setInt(20,orderProductPorkAvailable);
+			pstmt.setInt(21, orderProductKangarooAvailable);
+			pstmt.setInt(22, orderProductHorseAvailable);
+			pstmt.setInt(23,orderProductIndividualNum);
+			pstmt.setInt(24,orderTotalQuantity);
+			pstmt.setInt(25,orderTotalPrice);
+			pstmt.setString(26,orderETC);
+			pstmt.setInt(27,orderPack);
+			pstmt.setInt(28, orderPrimeNum);
 			return pstmt.executeUpdate();
 			
 		}
@@ -302,7 +364,7 @@ import puppy.Puppy;
 	}
 		public int deleteOrder(int orderPrimeNum) {
 			
-			String SQL = "delete from doggerboxOrder WHERE orderPrimeNum = ?";
+			String SQL = "update order1 set orderAvailable = 0 WHERE orderPrimeNum = ?";
 			try {
 				PreparedStatement pstmt = conn.prepareStatement(SQL);
 				pstmt.setInt(1, orderPrimeNum);
@@ -317,52 +379,5 @@ import puppy.Puppy;
 			
 			
 		}
-		public int getIndividualGram(int orderPrimeNum){
-			String SQL = "SELECT orderProductIndividualGram FROM doggerboxOrder WHERE orderPrimeNum = ? ";
-			
-			try {
-				PreparedStatement pstmt = conn.prepareStatement(SQL);
-				pstmt.setInt(1,  orderPrimeNum);
-				rs = pstmt.executeQuery();
-				
-				if(rs.next()) {
-					return rs.getInt(1);
-									 
-				}
-				else 
-					{
-					return 0;
-					}
-				
-			}
-			catch(Exception e) {
-				e.printStackTrace();
-			}
-		return 0;
-			
-		}
-		public int getIndividualNum(int orderPrimeNum){
-			String SQL = "SELECT orderProductIndividualNum FROM doggerboxOrder WHERE orderPrimeNum = ? ";
-			
-			try {
-				PreparedStatement pstmt = conn.prepareStatement(SQL);
-				pstmt.setInt(1,  orderPrimeNum);
-				rs = pstmt.executeQuery();
-				
-				if(rs.next()) {
-					return rs.getInt(1);
-									 
-				}
-				else 
-					{
-					return 0;
-					}
-				
-			}
-			catch(Exception e) {
-				e.printStackTrace();
-			}
-		return 0;
-			
-		}
+
 	}

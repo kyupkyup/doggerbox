@@ -15,8 +15,8 @@ public class RoundDAO {
 	
 	public RoundDAO() {
 		try {
-			String dbURL = "jdbc:mysql://localhost/luppyworld?serverTimezone=UTC";	//서버 선언
-			String dbID = "luppyworld";
+			String dbURL = "jdbc:mysql://localhost/doggerbox1?serverTimezone=UTC";	//서버 선언
+			String dbID = "doggerbox1";
 			String dbPassword = "a1870523!!";
 			
 			Class.forName("com.mysql.cj.jdbc.Driver");
@@ -92,7 +92,7 @@ public class RoundDAO {
 		return null; // 불러오기 실패
 	}
 	public ArrayList<Round> getList(){
-		String SQL = "SELECT * FROM doggerboxRound";
+		String SQL = "SELECT * FROM round";
 		
 		ArrayList<Round> list = new ArrayList<Round>();
 		
@@ -128,6 +128,7 @@ public class RoundDAO {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
 			pstmt.setInt(1,  roundPrimeNum);
 			rs = pstmt.executeQuery();
+			
 			
 			if(rs.next()) {
 				return rs.getString(1);

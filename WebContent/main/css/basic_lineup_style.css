@@ -1,0 +1,15 @@
+@charset "UTF-8";
+
+@media all and (min-width:550px){
+	
+.main-container1{
+	width:100%;
+	max-width:1200px;
+	display:inline-block;
+	margin:0 auto;
+	}
+}
+
+@media all and (max-width:549px){
+	
+}

@@ -15,22 +15,22 @@ public class RecipeDAO {
 	
 	public RecipeDAO() {
 		try {
-			String dbURL = "jdbc:mysql://localhost/luppyworld?serverTimezone=UTC";	//서버 선언
-			String dbID = "luppyworld";
+			String dbURL = "jdbc:mysql://localhost/doggerbox1?serverTimezone=UTC";	//서버 선언
+			String dbID = "doggerbox1";
 			String dbPassword = "a1870523!!";
 			
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			conn = DriverManager.getConnection(dbURL, dbID, dbPassword);	//연결시켜서 conn에 저장
 			
 		}
-		
+		    
 		catch(Exception e) {
 			e.printStackTrace();
 		}
 	}
 	
 	public int getNext() {
-		String SQL = "SELECT productPrimeNum FROM doggerboxRecipe ORDER BY productPrimeNum DESC";
+		String SQL = "SELECT productPrimeNum FROM doggerboxrecipe ORDER BY productPrimeNum DESC";
 		
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
@@ -50,15 +50,37 @@ public class RecipeDAO {
 
 	}
 	
-	public int recipeAdd(int productPrimeNum, int ingredientPrimeNum, String recipeName, double mixRate, int puppyPrimeNum) {
-		String SQL = "INSERT INTO doggerboxRecipe VALUES(?,?,?,?,?)";
+	public int recipeAdd(int productPrimeNum, int ingredientPrimeNum, String rawIngredient ,int recipePrimeNum, double mixRate,  int puppyPrimeNum) {
+		String SQL = "INSERT INTO doggerboxrecipe VALUES(?,?,?,?,?,?)";
 		try {
 			pstmt = conn.prepareStatement(SQL);
 			pstmt.setInt(1, productPrimeNum);
 			pstmt.setInt(2, ingredientPrimeNum);
-			pstmt.setString(3, recipeName);
-			pstmt.setDouble(4, mixRate);
-			pstmt.setInt(5, puppyPrimeNum);
+			pstmt.setString(3, rawIngredient);
+			pstmt.setInt(4, recipePrimeNum);
+			pstmt.setDouble(5, mixRate);
+			pstmt.setInt(6, puppyPrimeNum);
+
+			
+			return pstmt.executeUpdate();
+			
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+		return -1;  //데이터베이스 오류
+	}
+	
+	public int customRecipeBaseAdd(int ingredientPrimeNum, String rawIngredient, int recipePrimeNum, double mixRate , int puppyPrimeNum ) {
+		String SQL = "INSERT INTO doggerboxrecipe VALUES(?,?,?,?,?,?)";
+		try {
+			pstmt = conn.prepareStatement(SQL);
+			pstmt.setInt(1, -1);
+			pstmt.setInt(2, ingredientPrimeNum);
+			pstmt.setString(3, rawIngredient);
+			pstmt.setInt(4, recipePrimeNum);
+			pstmt.setDouble(5, mixRate);
+			pstmt.setInt(6, puppyPrimeNum);
 
 			
 			return pstmt.executeUpdate();
@@ -82,8 +104,9 @@ public class RecipeDAO {
 					Recipe recipe = new Recipe();
 					recipe.setProductPrimeNum(rs.getInt(1));
 					recipe.setIngredientPrimeNum(rs.getInt(2));
-					recipe.setRecipeName(rs.getString(3));
+					recipe.setRecipePrimeNum(rs.getInt(3));
 					recipe.setMixRate(rs.getDouble(4));
+					recipe.setPuppyPrimeNum(rs.getInt(5));
 
 					return recipe;
 			}
@@ -96,7 +119,7 @@ public class RecipeDAO {
 	}
 	
 	public ArrayList<Recipe> getList(int productPrimeNum){
-		String SQL = "SELECT * FROM doggerboxRecipe where productPrimeNum =? ";
+		String SQL = "SELECT * FROM doggerboxrecipe where productPrimeNum =? ";
 		
 		ArrayList<Recipe> list = new ArrayList<Recipe>();
 		
@@ -111,8 +134,45 @@ public class RecipeDAO {
 				Recipe recipe = new Recipe();
 				recipe.setProductPrimeNum(rs.getInt(1));
 				recipe.setIngredientPrimeNum(rs.getInt(2));
-				recipe.setRecipeName(rs.getString(3));
-				recipe.setMixRate(rs.getDouble(4));
+				recipe.setRawIngredient(rs.getString(3));
+
+				recipe.setRecipePrimeNum(rs.getInt(4));
+				recipe.setMixRate(rs.getDouble(5));
+				recipe.setPuppyPrimeNum(rs.getInt(6));
+
+				list.add(recipe);
+								 
+			}
+			
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return list; //데이터 반환
+		
+	}
+	public ArrayList<Recipe> getListByRecipe(int recipePrimeNum){
+		String SQL = "SELECT * FROM doggerboxrecipe where recipePrimeNum =? ";
+		
+		ArrayList<Recipe> list = new ArrayList<Recipe>();
+		
+		
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setInt(1,  recipePrimeNum);
+
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				Recipe recipe = new Recipe();
+				recipe.setProductPrimeNum(rs.getInt(1));
+				recipe.setIngredientPrimeNum(rs.getInt(2));
+				recipe.setRawIngredient(rs.getString(3));
+
+				recipe.setRecipePrimeNum(rs.getInt(4));
+				recipe.setMixRate(rs.getDouble(5));
+				recipe.setPuppyPrimeNum(rs.getInt(6));
 				list.add(recipe);
 								 
 			}
@@ -126,7 +186,7 @@ public class RecipeDAO {
 		
 	}
 	public ArrayList<Recipe> getListByPuppy(int puppyPrimeNum){
-		String SQL = "SELECT * FROM doggerboxRecipe where puppyPrimeNum =? ";
+		String SQL = "SELECT * FROM doggerboxrecipe where puppyPrimeNum =? ";
 		
 		ArrayList<Recipe> list = new ArrayList<Recipe>();
 		
@@ -141,8 +201,42 @@ public class RecipeDAO {
 				Recipe recipe = new Recipe();
 				recipe.setProductPrimeNum(rs.getInt(1));
 				recipe.setIngredientPrimeNum(rs.getInt(2));
-				recipe.setRecipeName(rs.getString(3));
+				recipe.setRecipePrimeNum(rs.getInt(3));
 				recipe.setMixRate(rs.getDouble(4));
+				recipe.setPuppyPrimeNum(rs.getInt(5));
+				list.add(recipe);
+								 
+			}
+			
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return list; //데이터 반환
+		
+	}
+	
+	public ArrayList<Recipe> getListByProductNum(int productPrimeNum){
+		String SQL = "SELECT * FROM doggerboxrecipe where productPrimeNum =? ";
+		
+		ArrayList<Recipe> list = new ArrayList<Recipe>();
+		
+		
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setInt(1,  productPrimeNum);
+
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				Recipe recipe = new Recipe();
+				recipe.setProductPrimeNum(rs.getInt(1));
+				recipe.setIngredientPrimeNum(rs.getInt(2));
+				recipe.setRawIngredient(rs.getString(3));
+				recipe.setRecipePrimeNum(rs.getInt(4));
+				recipe.setMixRate(rs.getDouble(5));
+				recipe.setPuppyPrimeNum(rs.getInt(6));
 				list.add(recipe);
 								 
 			}
@@ -157,7 +251,7 @@ public class RecipeDAO {
 	}
 	
 	public int mixRateUpdate(int productPrimeNum, int ingredientPrimeNum, double mixRate) {
-	String SQL = "update doggerboxRecipe set mixRate=? where productPrimeNum=? and ingredientPrimeNum=?";
+	String SQL = "update doggerboxrecipe set mixRate=? where productPrimeNum=? and ingredientPrimeNum=?";
 	try {
 		pstmt = conn.prepareStatement(SQL);
 		pstmt.setDouble(1, mixRate);
@@ -173,7 +267,7 @@ public class RecipeDAO {
 	return -1;  //데이터베이스 오류
 }
 	public int mixRateUpdateByPuppy(int puppyPrimeNum, int ingredientPrimeNum, double mixRate) {
-	String SQL = "update doggerboxRecipe set mixRate=? where puppyPrimeNum=? and ingredientPrimeNum=?";
+	String SQL = "update doggerboxrecipe set mixRate=? where puppyPrimeNum=? and ingredientPrimeNum=?";
 	try {
 		pstmt = conn.prepareStatement(SQL);
 		pstmt.setDouble(1, mixRate);
@@ -188,9 +282,26 @@ public class RecipeDAO {
 	}
 	return -1;  //데이터베이스 오류
 }
+	
+	public int mixRateUpdateByRecipe(int recipePrimeNum, int ingredientPrimeNum, double mixRate) {
+	String SQL = "update doggerboxrecipe set mixRate=? where recipePrimeNum=? and ingredientPrimeNum=?";
+	try {
+		pstmt = conn.prepareStatement(SQL);
+		pstmt.setDouble(1, mixRate);
+		pstmt.setInt(2, recipePrimeNum);
+		pstmt.setInt(3, ingredientPrimeNum);
+
+		return pstmt.executeUpdate();
+		
+	}
+	catch(Exception e) {
+		e.printStackTrace();
+	}
+	return -1;  //데이터베이스 오류
+}
 	public int recipeDelete(int ingredientPrimeNum, int productPrimeNum) {
 		
-		String SQL = "delete from doggerboxRecipe WHERE ingredientPrimeNum = ? and productPrimeNum =?";
+		String SQL = "delete from doggerboxrecipe WHERE ingredientPrimeNum = ? and productPrimeNum=?";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
 			pstmt.setInt(1, ingredientPrimeNum);
@@ -208,7 +319,7 @@ public class RecipeDAO {
 	}
 	public int recipeDeleteByPuppy(int ingredientPrimeNum, int puppyPrimeNum) {
 		
-		String SQL = "delete from doggerboxRecipe WHERE ingredientPrimeNum = ? and puppyPrimeNum =?";
+		String SQL = "delete from doggerboxrecipe WHERE ingredientPrimeNum = ? and puppyPrimeNum =?";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
 			pstmt.setInt(1, ingredientPrimeNum);
@@ -224,9 +335,27 @@ public class RecipeDAO {
 		
 		
 	}
+	public int recipeDeleteByRecipe(int ingredientPrimeNum, int recipePrimeNum) {
+		
+		String SQL = "delete from doggerboxrecipe WHERE ingredientPrimeNum = ? and recipePrimeNum =?";
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setInt(1, ingredientPrimeNum);
+			pstmt.setInt(2, recipePrimeNum);
+
+			return pstmt.executeUpdate(); 
+			
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+		return -1; //데이터베이스 오류 
+		
+		
+	}
 	
 	public int getProductPrimeNum(int puppyPrimeNum){
-		String SQL = "SELECT productPrimeNum FROM doggerboxRecipe WHERE puppyPrimeNum = ? ";
+		String SQL = "SELECT productPrimeNum FROM doggerboxrecipe WHERE puppyPrimeNum = ? ";
 		
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);

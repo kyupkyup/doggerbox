@@ -15,8 +15,8 @@ public class PuppyDAO {
 	
 	public PuppyDAO() {
 		try {
-			String dbURL = "jdbc:mysql://localhost/luppyworld?serverTimezone=UTC";	//서버 선언
-			String dbID = "luppyworld";
+			String dbURL = "jdbc:mysql://localhost/doggerbox1?serverTimezone=UTC";	//서버 선언
+			String dbID = "doggerbox1";
 			String dbPassword = "a1870523!!";
 			
 			Class.forName("com.mysql.cj.jdbc.Driver");
@@ -49,12 +49,12 @@ public class PuppyDAO {
 
 	}
 	
-	public int puppyAdd(int userPrimeNum, String puppyName, String puppySpecies, int puppyAge, int puppyGender, int puppyNeutralization,
+	public int puppyAdd(int userID, String puppyName, String puppySpecies, int puppyAge, int puppyGender, int puppyNeutralization,
 				int puppyWeight, int puppyActivity,  int recommendQuantity,String  puppyETC, String puppyRestrict) {
-		String SQL = "INSERT INTO doggerboxPuppy VALUES(?,?,?,?,?,?,?,?,?,?,?,?)";
+		String SQL = "INSERT INTO doggerboxPuppy VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		try {
 			pstmt = conn.prepareStatement(SQL);
-			pstmt.setInt(1, userPrimeNum);
+			pstmt.setInt(1, userID);
 			pstmt.setInt(2, getNext());
 			pstmt.setString(3, puppyName);
 			pstmt.setString(4, puppySpecies);
@@ -66,6 +66,7 @@ public class PuppyDAO {
 			pstmt.setString(10,puppyETC);
 			pstmt.setString(11,puppyRestrict);
 			pstmt.setInt(12,recommendQuantity);
+			pstmt.setInt(13,1);
 
 
 			
@@ -79,7 +80,7 @@ public class PuppyDAO {
 	}
 	
 	public Puppy getPuppy(int puppyPrimeNum) {
-		String SQL = "SELECT * FROM doggerboxPuppy WHERE puppyPrimeNum = ? ";
+		String SQL = "SELECT * FROM doggerboxPuppy WHERE puppyPrimeNum = ? and puppyAvailable =1 ";
 		
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
@@ -112,7 +113,7 @@ public class PuppyDAO {
 	}
 	
 	public ArrayList<Puppy> getList(int userPrimeNum){
-		String SQL = "SELECT * FROM doggerboxPuppy where userPrimeNum =? ";
+		String SQL = "SELECT * FROM doggerboxPuppy where userPrimeNum =? and puppyAvailable =1 ";
 		
 		ArrayList<Puppy> list = new ArrayList<Puppy>();
 		
@@ -152,7 +153,7 @@ public class PuppyDAO {
 		
 	}
 	public String getPuppyName(int puppyPrimeNum){
-		String SQL = "SELECT puppyName FROM doggerboxPuppy WHERE puppyPrimeNum = ? ";
+		String SQL = "SELECT puppyName FROM puppy WHERE puppyPrimeNum = ? ";
 		
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
@@ -177,7 +178,7 @@ public class PuppyDAO {
 	}
 	
 	public String getPuppyRestrict(int puppyPrimeNum){
-		String SQL = "SELECT puppyRestrict FROM doggerboxPuppy WHERE puppyPrimeNum = ? ";
+		String SQL = "SELECT puppyRestrict FROM doggerboxPuppy WHERE puppyPrimeNum = ? and puppyAvailable =1 ";
 		
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
@@ -202,7 +203,7 @@ public class PuppyDAO {
 	}
 	
 	public String getRecommendQuantity(int puppyPrimeNum){
-		String SQL = "SELECT recommendQuantity FROM doggerboxPuppy WHERE puppyPrimeNum = ? ";
+		String SQL = "SELECT recommendQuantity FROM doggerboxPuppy WHERE puppyPrimeNum = ? and puppyAvailable =1 ";
 		
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
@@ -254,7 +255,7 @@ public class PuppyDAO {
 }
 	public int deletePuppy(int puppyPrimeNum) {
 		
-		String SQL = "delete from doggerboxPuppy WHERE puppyPrimeNum = ?";
+		String SQL = "update doggerboxPuppy set puppyAvailable = 0 WHERE puppyPrimeNum = ?";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
 			pstmt.setInt(1, puppyPrimeNum);
@@ -268,5 +269,26 @@ public class PuppyDAO {
 		return -1; //데이터베이스 오류 
 		
 		
+	}
+	
+	public int getLastPuppyPrimeNum() {
+		String SQL = "SELECT puppyPrimeNum FROM doggerboxPuppy ORDER BY puppyPrimeNum DESC where puppyPrimeNum = 1";
+		
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				return rs.getInt(1);
+				 
+			}
+			return 1; // 첫번째 게시글인 경우
+			
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+		return -1; //데이터베이스 오류
+
 	}
 }
