@@ -10,6 +10,7 @@ public class DoggerboxUser {
 	int userRoutine;
 	int userTerm;
 	String addDate;
+	String introduceWho;
 /*	String profile_image;
 	String thumbnail_image;
 	String userGender;
@@ -71,6 +72,12 @@ public class DoggerboxUser {
 	}
 	public void setAddDate(String addDate) {
 		this.addDate = addDate;
+	}
+	public String getIntroduceWho() {
+		return introduceWho;
+	}
+	public void setIntroduceWho(String introduceWho) {
+		this.introduceWho = introduceWho;
 	}
 	
 	

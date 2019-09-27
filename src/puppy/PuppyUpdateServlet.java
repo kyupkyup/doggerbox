@@ -23,15 +23,18 @@ public class PuppyUpdateServlet extends HttpServlet {
 		String puppySpecies = request.getParameter("puppySpecies");
 		int puppyAge = Integer.parseInt(request.getParameter("puppyAge"));
 		int puppyAgeMonth = Integer.parseInt(request.getParameter("puppyAgeMonth"));
+		String puppyAgeETC =request.getParameter("puppyAgeETC");
 		int puppyNeutralization = Integer.parseInt(request.getParameter("puppyNeutralization"));
 		int puppyGender = Integer.parseInt(request.getParameter("puppyGender"));
 		int puppyWeight = Integer.parseInt(request.getParameter("puppyWeight"));
+		String puppyWeightETC = request.getParameter("puppyWeightETC");
 		int recommendedQuantity = Integer.parseInt(request.getParameter("recommendedQuantity"));
 		int puppyActivity = Integer.parseInt(request.getParameter("puppyActivity"));
 		String puppyETC = request.getParameter("puppyETC");
 		String puppyRestrict = request.getParameter("puppyRestrict");
 		String paymentDate =  request.getParameter("paymentDate");
-		
+		int weightControl = Integer.parseInt(request.getParameter("weightControl"));
+
 		if(puppyName == null ||puppySpecies == null ||puppyETC == null ||
 				puppyRestrict == null 
 				||puppyName.equals("") ||puppySpecies.equals("")  ||puppyETC.equals("")  ||
@@ -44,8 +47,8 @@ public class PuppyUpdateServlet extends HttpServlet {
 			puppySpecies=URLDecoder.decode(puppySpecies, "UTF-8");
 			puppyETC=URLDecoder.decode(puppyETC, "UTF-8");
 			puppyRestrict=URLDecoder.decode(puppyRestrict, "UTF-8");
-			response.getWriter().write(new PuppyDAO2().puppyUpdate(puppyName,  puppySpecies,  puppyAge,  puppyAgeMonth,
-					 puppyGender, puppyNeutralization,  puppyWeight, recommendedQuantity,  puppyActivity,  puppyETC,  puppyRestrict, paymentDate, puppyPrimeNum)+"");
+			response.getWriter().write(new PuppyDAO2().puppyUpdate(puppyName,  puppySpecies,  puppyAge,  puppyAgeMonth, puppyAgeETC,
+					 puppyGender, puppyNeutralization,  puppyWeight, puppyWeightETC, recommendedQuantity,  puppyActivity,  puppyETC,  puppyRestrict, paymentDate, weightControl, puppyPrimeNum)+"");
 		}
 
 	}

@@ -23,6 +23,7 @@
 		var userIntroRoute = $('#userIntroRoute').val();
 		var userRoutine = $('#userRoutine').val();
 		var userTerm = $('#userTerm').val();
+		var introduceWho = $('#introduceWho').val();
 
 		$.ajax({
 			type:"POST",
@@ -33,16 +34,14 @@
 				userPhoneNum:encodeURIComponent(userPhoneNum),
 				userIntroRoute:encodeURIComponent(userIntroRoute),
 				userRoutine:encodeURIComponent(userRoutine),
-				userTerm:encodeURIComponent(userTerm)
+				userTerm:encodeURIComponent(userTerm),
+				introduceWho:encodeURIComponent(introduceWho)
+
 			},
 			
 			success: function(result){
 				if(result==1){
-					searchUser();
-/*
-					autoClosingAlert('#successUserMessage', 3000);
-*/
-					
+					alert("등록 완료");	
 				}
 				else if(result==0){
 					alert("빈칸이 있다.");
@@ -63,6 +62,8 @@
 		$('#userIntroRoute').val("");
 		$('#userRoutine').val(1);
 		$('#userTerm').val(1);
+		$('#introduceWho').val("");
+
 	}
 
 	function searchUser(){
@@ -84,7 +85,7 @@
 				var parsed = JSON.parse(data);
 				var result = parsed.result;
 				for(var i=0; i<result.length; i++){
-					addUser(result[i][0].value, result[i][1].value,result[i][2].value, result[i][3].value,result[i][4].value, result[i][5].value,result[i][6].value, result[i][7].value);
+					addUser(result[i][0].value, result[i][1].value,result[i][2].value, result[i][3].value,result[i][4].value, result[i][5].value,result[i][6].value, result[i][7].value, result[i][8].value);
 							
 				}
 			},
@@ -94,7 +95,7 @@
 		});
 	}
 	
-	function addUser(userPrimeNum, userName, userAddress, userPhoneNum, userIntroRoute, userRoutine, userTerm, addDate){
+	function addUser(userPrimeNum, userName, userAddress, userPhoneNum, userIntroRoute, userRoutine, userTerm, addDate, introduceWho){
 		$('#userList').append('<table class="table user-list">' +
 				'<tbody>' +
 					'<tr>'+
@@ -107,7 +108,7 @@
 						'</td>'+
 						'<td style="width:20%;">'+
 		                    '<a href="#" class="table-link">'+
-						        '<span class="fa-stack" onclick="updateUser('+userPrimeNum+',\''+userName+'\',\''+userAddress+'\',\''+userPhoneNum+'\',\''+userIntroRoute+'\','+userRoutine+','+userTerm+');">'+
+						        '<span class="fa-stack" onclick="updateUser('+userPrimeNum+',\''+userName+'\',\''+userAddress+'\',\''+userPhoneNum+'\',\''+userIntroRoute+'\','+userRoutine+','+userTerm+',\''+introduceWho+'\');">'+
 						            '<i class="fa fa-square fa-stack-2x"></i>'+
 						            '<i class="fa fa-pencil fa-stack-1x fa-inverse"></i>'+
 						       '</span>'+
@@ -124,13 +125,14 @@
 			'</table>'
 		);
 	}
-	function updateUser(userPrimeNum, userName, userAddress, userPhoneNum, userIntroRoute, userRoutine, userTerm){
+	function updateUser(userPrimeNum, userName, userAddress, userPhoneNum, userIntroRoute, userRoutine, userTerm, introduceWho){
 		$('#userName').val(userName);
 		$('#userAddress').val(userAddress);
 		$('#userPhoneNum').val(userPhoneNum);
 		$('#userIntroRoute').val(userIntroRoute);
 		$('#userRoutine').val(userRoutine);
 		$('#userTerm').val(userTerm);
+		$('#introduceWho').val(introduceWho);
 		$('#userUserPrimeNum').val(userPrimeNum);
 		$('#userUpdateButton').show();
 		$('#userRegisterButton').hide();
@@ -142,7 +144,9 @@
 		var userPhoneNum = $('#userPhoneNum').val();
 		var userIntroRoute = $('#userIntroRoute').val();
 		var userRoutine = $('#userRoutine').val();
+		var introduceWho  = $('#introduceWho').val();
 		var userTerm  = $('#userTerm').val();
+
 		var userPrimeNum = $('#userUserPrimeNum').val();
 		
 		$.ajax({
@@ -166,6 +170,8 @@
 					$('#userIntroRoute').val("");
 					$('#userRoutine').val(1);
 					$('#userTerm').val(1);
+					$('#introduceWho').val("");
+
 					$('#userUpdateButton').hide();
 					$('#userRegisterButton').show();
 					
@@ -213,18 +219,24 @@
 	function addPuppyFunction()
 	{			
 		var userPrimeNum = $('#puppyUserPrimeNum').val();
+		if(userPrimeNum == "" || userPrimeNum == null){
+			alert("유저를 선택해주세요.");
+		}
 		var puppyName = $('#puppyName').val();
 		var puppySpecies = $('#puppySpecies').val();
 		var puppyAge = $('#puppyAge').val();
+		var puppyAgeETC = $('#puppyAgeETC').val();
 		var puppyAgeMonth = $('#puppyAgeMonth').val();
 		var puppyGender = $('#puppyGender').val();
 		var puppyNeutralization = $('#puppyNeutralization').val();
 		var puppyWeight = $('#puppyWeight').val();
+		var puppyWeightETC = $('#puppyWeightETC').val();
 		var puppyActivity = $('#puppyActivity').val();
 		var puppyETC = $('#puppyETC').val();
 		var puppyRestrict = $('#puppyRestrict').val();
 		var recommendedQuantity = $('#recommendedQuantity').val();
 		var paymentDate = $('#testDatepicker2').val();
+		var weightControl = $('#weightControl').val();
 
 		$.ajax({
 			type:"POST",
@@ -235,14 +247,17 @@
 				puppyRestrict:encodeURIComponent(puppyRestrict),
 				userPrimeNum:userPrimeNum,
 				puppyAge:puppyAge,
-				puppyAgeMonth:puppyAgeMonth,
+				puppyAgeMonth:encodeURIComponent(puppyAgeMonth),
+				puppyAgeETC:puppyAgeETC,
 				puppyGender:puppyGender,
 				puppyNeutralization:puppyNeutralization,
 				puppyWeight:puppyWeight,
+				puppyWeightETC:encodeURIComponent(puppyWeightETC),
 				puppyActivity:puppyActivity,
 				puppyETC:encodeURIComponent(puppyETC),
 				recommendedQuantity:recommendedQuantity,
-				paymentDate:encodeURIComponent(paymentDate)
+				paymentDate:paymentDate,
+				weightControl:weightControl
 			},
 			
 			success: function(result){
@@ -270,14 +285,19 @@
 		$('#puppyAge').val("");
 		$('#puppyAgeMonth').val("");
 		$('#puppyWeight').val("");
+		$('#puppyWeightETC').val("");
 		$('#puppyActivity').val(1);
 		$('#puppyAge').val("");
 		$('#recommendedQuantity').val("");
 		$('#puppyAgeMonth').val("");
+		$('#puppyAgeETC').val("");
 		$('#puppyGender').val(1);
 		$('#puppyNeutralization').val(1);
+		$('#puppyETC').val("");
+		$('#puppyRestrict').val("");
 		$('#testDatepicker2').val("");
-	
+		$('#weightControl').val(1);
+
 	}
 	
 	function searchPuppy(userPrimeNum){
@@ -300,7 +320,7 @@
 				var parsed = JSON.parse(data);
 				var result = parsed.result;
 				for(var i=0; i<result.length; i++){
-					addPuppy(result[i][0].value, result[i][1].value,result[i][2].value, result[i][3].value,result[i][4].value, result[i][5].value,result[i][6].value, result[i][7].value, result[i][8].value,result[i][9].value, result[i][10].value, result[i][11].value, result[i][12].value, result[i][13].value);	
+					addPuppy(result[i][0].value, result[i][1].value,result[i][2].value, result[i][3].value,result[i][4].value, result[i][5].value,result[i][6].value, result[i][7].value, result[i][8].value,result[i][9].value, result[i][10].value, result[i][11].value, result[i][12].value, result[i][13].value, result[i][14].value, result[i][15].value, result[i][16]);	
 					
 					}
 				
@@ -314,7 +334,7 @@
 	function nullPuppy(){
 		$('#puppyList').append('<p>강아지 정보가 없습니다.</p>');
 	}
-	function addPuppy(userPrimeNum, puppyPrimeNum, puppyName, puppySpecies, puppyAge, puppyAgeMonth, puppyGender, puppyNeutralization, puppyWeight, puppyActivity,recommendedQuantity, puppyETC, puppyRestrict, paymentDate){
+	function addPuppy(userPrimeNum, puppyPrimeNum, puppyName, puppySpecies, puppyAge, puppyAgeMonth,puppyAgeETC, puppyGender, puppyNeutralization, puppyWeight, puppyWeightETC, puppyActivity,recommendedQuantity, puppyETC, puppyRestrict, paymentDate,weightControl){
 		$('#recipePuppyPrimeNum').val(puppyPrimeNum);
 		$('#puppyList').append('<table class="table user-list">' +
 				'<tbody>' +
@@ -332,7 +352,7 @@
 						'<td style="width:20%;">'+
 
 		                    '<a href="#" class="table-link">'+
-						        '<span class="fa-stack" onclick="updatePuppy('+puppyPrimeNum+',\''+puppyName+'\',\''+puppySpecies+'\','+puppyAge+','+puppyAgeMonth+','+puppyGender+','+puppyNeutralization+','+puppyWeight+','+puppyActivity+','+recommendedQuantity+',\''+puppyETC+'\',\''+puppyRestrict+'\',\''+paymentDate+'\');">'+
+						        '<span class="fa-stack" onclick="updatePuppy('+puppyPrimeNum+',\''+puppyName+'\',\''+puppySpecies+'\','+puppyAge+','+puppyAgeMonth+',\''+puppyAgeETC+'\','+puppyGender+','+puppyNeutralization+','+puppyWeight+',\''+puppyWeightETC+'\','+puppyActivity+','+recommendedQuantity+',\''+puppyETC+'\',\''+puppyRestrict+'\',\''+paymentDate+'\','+weightControl+');">'+
 						            '<i class="fa fa-square fa-stack-2x"></i>'+
 						            '<i class="fa fa-pencil fa-stack-1x fa-inverse"></i>'+
 						       '</span>'+
@@ -353,22 +373,27 @@
 
 	}
 	
-	function updatePuppy(puppyPrimeNum, puppyName, puppySpecies, puppyAge, puppyAgeMonth, puppyGender, puppyNeutralization, puppyWeight
-			, puppyActivity, recommendedQuantity, puppyETC, puppyRestrict, paymentDate){
+	function updatePuppy(puppyPrimeNum, puppyName, puppySpecies, puppyAge, puppyAgeMonth, puppyAgeETC, puppyGender, puppyNeutralization, puppyWeight, puppyWeightETC
+			, puppyActivity, recommendedQuantity, puppyETC, puppyRestrict, paymentDate,weightControl){
 		
 		$('#puppyPuppyPrimeNum').val(puppyPrimeNum);
 		$('#puppyName').val(puppyName);
 		$('#puppySpecies').val(puppySpecies);
 		$('#puppyAge').val(puppyAge);
 		$('#puppyAgeMonth').val(puppyAgeMonth);
+		$('#puppyAgeETC').val(puppyAgeETC);
+
 		$('#puppyGender').val(puppyGender);
 		$('#puppyNeutralization').val(puppyNeutralization);
 		$('#puppyWeight').val(puppyWeight);
+		$('#puppyWeightETC').val(puppyWeightETC);
+
 		$('#puppyActivity').val(puppyActivity);
 		$('#recommendedQuantity').val(recommendedQuantity);
 		$('#puppyETC').val(puppyETC);
 		$('#puppyRestrict').val(puppyRestrict);
 		$('#testDatepicker2').val(paymentDate);
+		$('#weightControl').val(weightControl);
 
 		
 		$('#puppyUpdateButton').show();
@@ -381,15 +406,18 @@
 		var puppySpecies = $('#puppySpecies').val();
 		var puppyAge = $('#puppyAge').val();
 		var puppyAgeMonth = $('#puppyAgeMonth').val();
+		var puppyAgeETC = $('#puppyAgeETC').val();
 		var puppyGender = $('#puppyGender').val();
 		var puppyNeutralization = $('#puppyNeutralization').val();
 		var puppyWeight = $('#puppyWeight').val();
+		var puppyWeightETC = $('#puppyWeightETC').val();
 		var puppyActivity = $('#puppyActivity').val();
 		var puppyETC = $('#puppyETC').val();
 		var puppyRestrict = $('#puppyRestrict').val();
 		var recommendedQuantity = $('#recommendedQuantity').val();
 		var paymentDate = $('#testDatepicker2').val();
-		
+		var weightControl = $('#weightControl').val();
+
 		$.ajax({
 			type:"POST",
 			url:"/PuppyUpdateServlet",
@@ -399,30 +427,38 @@
 				puppySpecies:encodeURIComponent(puppySpecies),
 				puppyAge:puppyAge,
 				puppyAgeMonth:puppyAgeMonth,
+				puppyAgeETC:encodeURIComponent(puppyAgeETC),
 				puppyGender:puppyGender,
 				puppyNeutralization:puppyNeutralization,
 				puppyWeight:puppyWeight,
+				puppyWeightETC:encodeURIComponent(puppyWeightETC),
+
 				puppyActivity:puppyActivity,
 				recommendedQuantity:recommendedQuantity,
 				puppyETC:encodeURIComponent(puppyETC),
 				puppyRestrict:encodeURIComponent(puppyRestrict),
-				paymentDate:encodeURIComponent(paymentDate)
+				paymentDate:paymentDate,
+				weightControl:weightControl
 			},
 			success: function(result){
 				if(result==1){
-					$('#puppyPuppyPrimeNum').val("");
 					$('#puppyName').val("");
 					$('#puppySpecies').val("");
 					$('#puppyAge').val("");
 					$('#puppyAgeMonth').val("");
+					$('#puppyWeight').val("");
+					$('#puppyWeightETC').val("");
+					$('#puppyActivity').val(1);
+					$('#puppyAge').val("");
+					$('#recommendedQuantity').val("");
+					$('#puppyAgeMonth').val("");
+					$('#puppyAgeETC').val("");
 					$('#puppyGender').val(1);
 					$('#puppyNeutralization').val(1);
-					$('#puppyWeight').val("");
-					$('#puppyActivity').val(1);
-					$('#recommendedQuantity').val("");
 					$('#puppyETC').val("");
 					$('#puppyRestrict').val("");
 					$('#testDatepicker2').val("");
+					$('#weightControl').val(1);
 
 					$('#puppyUpdateButton').hide();
 					$('#puppyRegisterButton').show();
@@ -1206,7 +1242,7 @@
 			var porkGramValue=0;
 		}
 		else{
-			puppyGramValue =puppyGram[0].value;
+		 	porkGramValue =porkGram[0].value;
 		}
 		if(porkNum[0].value==""){
 			var porkNumValue=0;
@@ -1303,12 +1339,12 @@
 				}
 				if(orderProductPorkAvailable==1){
 					totalPrice += (porkGramValue *porkNumValue) * 40000 / 1000;
-					console.log(totalPrice);
+					console.log(porkGramValue + ","+porkNumValue);
 
 				}
 				else if(orderProductPorkAvailable==0){
 					totalPrice += (porkGramValue *porkNumValue)  * 34000 / 1000;
-					console.log(totalPrice);
+					console.log(porkGramValue + ","+porkNumValue);
 
 				}
 				if(orderProductKangarooAvailable==1){
@@ -1400,7 +1436,7 @@
 					<div id="userList"class="" style="overflow-y: auto; height:310px; width:360px;  ">
 						
 					</div>
-					<div class="form-group" style="height:680px;">
+					<div class="form-group" style="height:650px;">
 						<div class="">
 							<div class="" style="display:inline-block;">
 								<input class="form-control" type="text" id="userName" style="height:40px; width:150px; display:inline-block;" placeholder="고객이름">
@@ -1418,7 +1454,7 @@
 							</div>
 						</div>
 						<div class="">
-							<div class="" style="display:inline-block;">
+							<div class="" style="display:inline-block; width:100px;">
 								<h4 style="display:inline-block;">배송 주기 :</h4>
 								<select  class="form-control" id="userRoutine" style="display:inline-block;">
 									<option value="1">정기</option>
@@ -1426,6 +1462,10 @@
 									<option value="3">샘플</option>
 								</select>								
 							</div> 
+							<div style="display:inline-block; width:100px;">
+								<h4 style="display:inline-block;">소개자 이름</h4>
+								<input class="form-control" type="text" value="없음" id="introduceWho" style="display:inline-block;">
+							</div>
 
 						</div>
 						<div class="">
@@ -1434,6 +1474,7 @@
 								<select class="form-control" style="display:inline-block;" id="userTerm">
 									<option value="1">2주</option>
 									<option value="2">한달</option>
+									<option value="3">해당사항 없음</option>
 								</select>							
 							</div> 
 							<div class="" style="padding-right:50px;">
@@ -1453,46 +1494,56 @@
 			<div class="col-xs-12">
 강아지	<div class="portlet portlet-default" style=" display:inline-block; border:1px solid black; "> -->
 				<div style="display:inline-block; width:360px; margin-left:30px; height:900px;">
-					<div class="" style="height:100px;">
+					<div class="" style="height:60px;">
 						<div class="" >
 							<h4 style="display:inline-block;"><i class="fa fa-circle text-green"></i>강아지 관리</h4>
 						</div>
 					</div>
-					<div id="puppyList"class="" style=" overflow-y: auto; height:250px; width:360px;">
+					<div id="puppyList"class="" style=" overflow-y: auto; height:220px; width:360px;">
 						
 					</div>
-					<div class="form-group" style=" margin-bottom:0px;  height:650px;">
+					<div class="form-group" style=" margin-bottom:0px;  height:620px;">
 						<div class="" id="puppyReg">
-							<input class="form-control" type="hidden" id="puppyUserPrimeNum" style="height:50px;width:150px; display:inline-block;" placeholder="유저 아이디" value="">
+							<input class="form-control" type="text" id="puppyUserPrimeNum" style="height:30px;width:50px; display:inline-block;" placeholder="유저 아이디" value="">
 						</div> 
 						<div class="" style="margin-bottom:10px;">
 							<div class="" style="display:inline-block;">
-								<input class="form-control" type="text" id="puppyName" style="height:30px; width:100px;; display:inline-block;" placeholder="강아지이름">
+								<input class="form-control" type="text" id="puppyName" style="height:30px; width:150px;; display:inline-block;" placeholder="강아지이름">
 							</div> 
 							<div class="" style="display:inline-block;">
-								<input class="form-control" type="text" id="puppySpecies" style="height:30px; width:100px; display:inline-block;" placeholder="품종">
+								<input class="form-control" type="text" id="puppySpecies" style="height:30px; width:150px; display:inline-block;" placeholder="품종">
 							</div>
 						</div>
 						<div class=""style="margin-bottom:10px;">
 							<div class="" style="display:inline-block;">
-								<input class="form-control" type="text" id="puppyAge" style="height:30px; width:80px; display:inline-block; font-size:10pt;" placeholder="나이(년)">
+								<input class="form-control" type="text" id="puppyAge" style="height:30px; width:110px; display:inline-block; font-size:10pt;" placeholder="나이(년)">
 							</div> 
 							<div class="" style="display:inline-block;">
-								<input class="form-control" type="text" id="puppyAgeMonth" style="height:30px; width:80px; display:inline-block;" placeholder="나이(개월)">
+								<input class="form-control" type="text" id="puppyAgeMonth" style="height:30px; width:110px; display:inline-block;" placeholder="나이(개월)">
 							</div>
 							<div class="" style="display:inline-block;">
-								<input class="form-control" type="text" id="puppyWeight" style="height:30px; width:60px; display:inline-block;" placeholder="체중">
+								<input class="form-control" type="text" id="puppyAgeETC" style="height:30px; width:110px; display:inline-block;" placeholder="나이 etc">
+							</div>
+						</div>
+						<div style="margin-bottom:10px;">
+							<div class="" style="display:inline-block;">
+								<input class="form-control" type="text" id="puppyWeight" style="height:30px; width:110px; display:inline-block;" placeholder="체중">
 							</div>
 							<div class="" style="display:inline-block;">
-								<input class="form-control" type="text" id="recommendedQuantity" style="height:30px; width:80px; display:inline-block;" placeholder="권장 급여량">
+								<input class="form-control" type="text" id="puppyWeightETC" style="height:30px; width:110px; display:inline-block;" placeholder="체중etc">
+							</div>
+							<div class="" style="display:inline-block;">
+								<input class="form-control" type="text" id="recommendedQuantity" style="height:30px; width:110px; display:inline-block;" placeholder="권장 급여량">
 							</div>
 						</div>
 						<div class=""style="margin-bottom:10px;">
 							<div class="" style="display:inline-block;">
-								<input class="form-control" type="text" id="puppyETC" style="height:30px; width:150px; display:inline-block;" placeholder="참고사항">
+								<input class="form-control" type="text" id="puppyETC" style="height:30px; width:330px; display:inline-block;" placeholder="참고사항">
 							</div>
+						</div>
+						<div>
 							<div class="" style="display:inline-block;">
-								<input class="form-control" type="text" id="puppyRestrict" style="height:30px; width:150px; display:inline-block;" placeholder="알러지 재료">
+								<input class="form-control" type="text" id="puppyRestrict" style="height:30px; width:330px; display:inline-block;" placeholder="알러지 재료">
 							</div>
 						</div>
 						<div class=""style="margin-bottom:10px;">
@@ -1504,26 +1555,38 @@
 								</select>								
 							</div> 
 							<div class="" style="display:inline-block; margin-bottom:10px;">
-								<h4 style="display:inline-block;">활동성 </h4>
-								<select  class="form-control" id="puppyActivity" style="display:inline-block;" style="width:60px;">
-									<option value="1">활발함</option>
-									<option value="2">조금 덜</option>
-									<option value="3">걸어다님</option>
-									<option value="4">누워만 있음</option>
-									
-								</select>								
-							</div> 
-						</div>
-						<div class="">
-							<div class="" style="display:inline-block;">
 								<h4 style="display:inline-block;">중성화 여부</h4>
 								<select class="form-control" style="display:inline-block;" id="puppyNeutralization" >
 									<option value="1">함 </option>
 									<option value="2">안 함</option>
-								</select>		
-								<input type="text"id="testDatepicker2" name="dueDate"style="display:inline-block; width:100px;">
-													
+								</select>								
 							</div> 
+						</div>
+						<div class="">
+							<div class="" style="display:inline-block; width:100px;">
+								<h4 style="display:inline-block;">활동성 </h4>
+								<select  class="form-control" id="puppyActivity" style="display:inline-block;" style="width:60px;">
+									<option value="1">매우 활발</option>
+									<option value="2">활발</option>
+									<option value="3">보통</option>
+									<option value="4">게으른편</option>
+									<option value="5">매우 게으른편</option>
+									
+								</select>
+							</div>
+							
+							<div style="display:inline-block; width:130px;">
+								<h5 style="display:inline-block;">체중 조절 필요 </h5>
+								<select  class="form-control" id="weightControl" style="display:inline-block;" style="width:60px;">
+									<option value="1">필요</option>
+									<option value="2">필요없음</option>
+
+									
+								</select>
+							</div> 
+								<input type="text"id="testDatepicker2" style="display:inline-block; width:100px;">
+													
+							
 							<div class="">
 								<button type="button" class="btn btn-default pull-right" onclick="addPuppyFunction();" id="puppyRegisterButton">강아지 등록</button>
 								<button type="button" class="btn btn-default pull-right" onclick="updatePuppyFunction();" id="puppyUpdateButton" style="display:none;">강아지 수정</button>
@@ -1691,7 +1754,7 @@
 						<input type="text" id="recipePuppyPrimeNum" value="">
 						<input type="text" id="recipeRecipePrimeNum" value="">
 						
-					<div style="overflow-y:auto;width:440px; height:350px;">				
+					<div style="overflow-y:auto;width:440px; height:400px;">				
 						<table class="table recipe-admin" id="recipeIngredientAdmin">
 						
 						</table>

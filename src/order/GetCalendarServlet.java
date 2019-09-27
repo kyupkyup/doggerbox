@@ -65,7 +65,7 @@ public class GetCalendarServlet extends HttpServlet {
 			int  puppyPrimeNum = puppyList.get(i).getPuppyPrimeNum();
 			result.append("[{\"value\":\""+puppyList.get(i).getPuppyPrimeNum()+"\"},");
 			result.append("{\"value\":\""+userDAO.getUserName(userPrimeNum)+"-"+puppyDAO.getPuppyName(puppyPrimeNum)+"\"},");
-			result.append("{\"value\":\""+ puppyList.get(i).getPaymentDate()+"\"},");
+			result.append("{\"value\":\""+ puppyList.get(i).getPaymentDate().substring(0,4)+"-"+puppyList.get(i).getPaymentDate().substring(4,6)+"-"+puppyList.get(i).getPaymentDate().substring(6,8)+"\"},");
 			result.append("{\"value\":\""+puppyList.get(i).getPaymentAvailable()+"\"}]");
 			if(i != puppyList.size()-1) result.append(",");
 		}

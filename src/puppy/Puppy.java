@@ -7,15 +7,18 @@ public class Puppy {
 	String puppySpecies;
 	int puppyAge;
 	int puppyAgeMonth;
+	String puppyAgeETC;
 	int puppyGender;
 	int puppyNeutralization;
 	int puppyWeight;
+	String puppyWeightETC;
 	int puppyActivity;
 	String puppyETC;
 	String puppyRestrict;
 	int recommendedQuantity;
 	String paymentDate;
 	int paymentAvailable;
+	int weightControl;
 	public int getUserPrimeNum() {
 		return userPrimeNum;
 	}
@@ -106,6 +109,24 @@ public class Puppy {
 	}
 	public void setPuppyAgeMonth(int puppyAgeMonth) {
 		this.puppyAgeMonth = puppyAgeMonth;
+	}
+	public String getPuppyAgeETC() {
+		return puppyAgeETC;
+	}
+	public void setPuppyAgeETC(String puppyAgeETC) {
+		this.puppyAgeETC = puppyAgeETC;
+	}
+	public String getPuppyWeightETC() {
+		return puppyWeightETC;
+	}
+	public void setPuppyWeightETC(String puppyWeightETC) {
+		this.puppyWeightETC = puppyWeightETC;
+	}
+	public int getWeightControl() {
+		return weightControl;
+	}
+	public void setWeightControl(int weightControl) {
+		this.weightControl = weightControl;
 	}
 	
 	

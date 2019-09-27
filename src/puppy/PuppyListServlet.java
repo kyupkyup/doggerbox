@@ -50,14 +50,18 @@ public class PuppyListServlet extends HttpServlet {
 			result.append("{\"value\":\""+ puppyList.get(i).getPuppySpecies()+"\"},");
 			result.append("{\"value\":\""+ puppyList.get(i).getPuppyAge()+"\"},");
 			result.append("{\"value\":\""+ puppyList.get(i).getPuppyAgeMonth()+"\"},");
+			result.append("{\"value\":\""+ puppyList.get(i).getPuppyAgeETC()+"\"},");
 			result.append("{\"value\":\""+ puppyList.get(i).getPuppyGender()+"\"},");
 			result.append("{\"value\":\""+ puppyList.get(i).getPuppyNeutralization()+"\"},");
 			result.append("{\"value\":\""+ puppyList.get(i).getPuppyWeight()+"\"},");
+			result.append("{\"value\":\""+ puppyList.get(i).getPuppyWeightETC()+"\"},");
 			result.append("{\"value\":\""+ puppyList.get(i).getPuppyActivity()+"\"},");
 			result.append("{\"value\":\""+ puppyList.get(i).getRecommendedQuantity()+"\"},");
 			result.append("{\"value\":\""+ puppyList.get(i).getPuppyETC()+"\"},");
 			result.append("{\"value\":\""+ puppyList.get(i).getPuppyRestrict()+"\"},");
-			result.append("{\"value\":\""+ puppyList.get(i).getPaymentDate()+"\"}]");
+			result.append("{\"value\":\""+ puppyList.get(i).getPaymentDate()+"\"},");
+
+			result.append("{\"value\":\""+ puppyList.get(i).getWeightControl()+"\"}]");
 			if(i != puppyList.size()-1) result.append(",");
 		}
 		result.append("]}");

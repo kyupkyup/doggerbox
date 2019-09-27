@@ -26,15 +26,15 @@ public class PuppyDAO2 {
 			e.printStackTrace();
 		}
 	}
-	public int puppyAdd(int userPrimeNum, String puppyName, String puppySpecies, int puppyAge, int puppyAgeMonth,
-			int puppyGender,int puppyNeutralization, int puppyWeight,int recommendedQuantity, int puppyActivity, String puppyETC, String puppyRestrict
-			, String paymentDate) {
+	public int puppyAdd(int userPrimeNum, String puppyName, String puppySpecies, int puppyAge, int puppyAgeMonth, String puppyAgeETC,
+			int puppyGender,int puppyNeutralization, int puppyWeight, String puppyWeightETC, int recommendedQuantity, int puppyActivity, String puppyETC, String puppyRestrict
+			, String paymentDate, int weightControl) {
 		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-	String SQL = "INSERT INTO puppy VALUES(?,NULL,?,?,?,?,?,?,?,?,?,?,?,?,3)";
+	String SQL = "INSERT INTO puppy VALUES(?,NULL,?,?,?,?,?,?,?,?,?,?,?,?,?,?,3,?)";
 	try {
 		conn =dataSource.getConnection();
 		pstmt = conn.prepareStatement(SQL);
@@ -43,14 +43,17 @@ public class PuppyDAO2 {
 		pstmt.setString(3,puppySpecies);
 		pstmt.setInt(4,puppyAge);
 		pstmt.setInt(5,puppyAgeMonth);
-		pstmt.setInt(6,puppyGender);
-		pstmt.setInt(7,puppyNeutralization);
-		pstmt.setInt(8,puppyWeight);
-		pstmt.setInt(9,puppyActivity);
-		pstmt.setInt(10,recommendedQuantity);
-		pstmt.setString(11,puppyETC);
-		pstmt.setString(12,puppyRestrict);
-		pstmt.setString(13,paymentDate);
+		pstmt.setString(6,puppyAgeETC);
+		pstmt.setInt(7,puppyGender);
+		pstmt.setInt(8,puppyNeutralization);
+		pstmt.setInt(9,puppyWeight);
+		pstmt.setString(10,puppyWeightETC);
+		pstmt.setInt(11,puppyActivity);
+		pstmt.setInt(12,recommendedQuantity);
+		pstmt.setString(13,puppyETC);
+		pstmt.setString(14,puppyRestrict);
+		pstmt.setString(15,paymentDate);
+		pstmt.setInt(16,weightControl);
 
 		int r = 0;
 		r = pstmt.executeUpdate();
@@ -103,15 +106,19 @@ public class PuppyDAO2 {
 				puppy.setPuppySpecies(rs.getString("puppySpecies").replaceAll(" ","&nbsp;").replaceAll("\n","<br>;").replaceAll("<","&lt;").replaceAll(">","&gt;"));
 				puppy.setPuppyAge(rs.getInt("puppyAge"));
 				puppy.setPuppyAgeMonth(rs.getInt("puppyAgeMonth"));
+				puppy.setPuppyAgeETC(rs.getString("puppyAgeETC").replaceAll(" ","&nbsp;").replaceAll("\n","<br>;").replaceAll("<","&lt;").replaceAll(">","&gt;"));
 				puppy.setPuppyGender(rs.getInt("puppyGender"));
 				puppy.setPuppyNeutralization(rs.getInt("puppyNeutralization"));
 				puppy.setPuppyWeight(rs.getInt("puppyWeight"));
+				puppy.setPuppyWeightETC(rs.getString("puppyWeightETC").replaceAll(" ","&nbsp;").replaceAll("\n","<br>;").replaceAll("<","&lt;").replaceAll(">","&gt;"));
 				puppy.setPuppyActivity(rs.getInt("puppyActivity"));
 				puppy.setRecommendedQuantity(rs.getInt("recommendedQuantity"));
 				puppy.setPuppyETC(rs.getString("puppyETC").replaceAll(" ","&nbsp;").replaceAll("\n","<br>;").replaceAll("<","&lt;").replaceAll(">","&gt;"));
 				puppy.setPuppyRestrict(rs.getString("puppyRestrict").replaceAll(" ","&nbsp;").replaceAll("\n","<br>;").replaceAll("<","&lt;").replaceAll(">","&gt;"));
 				puppy.setPaymentDate(rs.getString("paymentDate").replaceAll(" ","&nbsp;").replaceAll("\n","<br>;").replaceAll("<","&lt;").replaceAll(">","&gt;"));
 				puppy.setPaymentAvailable(rs.getInt("paymentAvailable"));
+				puppy.setWeightControl(rs.getInt("weightControl"));
+
 				puppyList.add(puppy);
 			}
 		}
@@ -150,18 +157,20 @@ public class PuppyDAO2 {
 				puppy.setPuppyName(rs.getString("puppyName").replaceAll(" ","&nbsp;").replaceAll("\n","<br>;").replaceAll("<","&lt;").replaceAll(">","&gt;"));
 				puppy.setPuppySpecies(rs.getString("puppySpecies").replaceAll(" ","&nbsp;").replaceAll("\n","<br>;").replaceAll("<","&lt;").replaceAll(">","&gt;"));
 				puppy.setPuppyAge(rs.getInt("puppyAge"));
-				puppy.setPuppyAge(rs.getInt("puppyAgeMonth"));
-
+				puppy.setPuppyAgeMonth(rs.getInt("puppyAgeMonth"));
+				puppy.setPuppyAgeETC(rs.getString("puppyAgeETC").replaceAll(" ","&nbsp;").replaceAll("\n","<br>;").replaceAll("<","&lt;").replaceAll(">","&gt;"));
 				puppy.setPuppyGender(rs.getInt("puppyGender"));
 				puppy.setPuppyNeutralization(rs.getInt("puppyNeutralization"));
 				puppy.setPuppyWeight(rs.getInt("puppyWeight"));
+				puppy.setPuppyWeightETC(rs.getString("puppyWeightETC").replaceAll(" ","&nbsp;").replaceAll("\n","<br>;").replaceAll("<","&lt;").replaceAll(">","&gt;"));
 				puppy.setPuppyActivity(rs.getInt("puppyActivity"));
-				puppy.setPuppyActivity(rs.getInt("recommendedQuantity"));
-
+				puppy.setRecommendedQuantity(rs.getInt("recommendedQuantity"));
 				puppy.setPuppyETC(rs.getString("puppyETC").replaceAll(" ","&nbsp;").replaceAll("\n","<br>;").replaceAll("<","&lt;").replaceAll(">","&gt;"));
 				puppy.setPuppyRestrict(rs.getString("puppyRestrict").replaceAll(" ","&nbsp;").replaceAll("\n","<br>;").replaceAll("<","&lt;").replaceAll(">","&gt;"));
 				puppy.setPaymentDate(rs.getString("paymentDate").replaceAll(" ","&nbsp;").replaceAll("\n","<br>;").replaceAll("<","&lt;").replaceAll(">","&gt;"));
 				puppy.setPaymentAvailable(rs.getInt("paymentAvailable"));
+				puppy.setWeightControl(rs.getInt("weightControl"));
+
 			}
 		}
 		catch(Exception e) {
@@ -203,19 +212,19 @@ public class PuppyDAO2 {
 				puppy.setPuppyName(rs.getString("puppyName").replaceAll(" ","&nbsp;").replaceAll("\n","<br>;").replaceAll("<","&lt;").replaceAll(">","&gt;"));
 				puppy.setPuppySpecies(rs.getString("puppySpecies").replaceAll(" ","&nbsp;").replaceAll("\n","<br>;").replaceAll("<","&lt;").replaceAll(">","&gt;"));
 				puppy.setPuppyAge(rs.getInt("puppyAge"));
-				puppy.setPuppyAge(rs.getInt("puppyAgeMonth"));
-
+				puppy.setPuppyAgeMonth(rs.getInt("puppyAgeMonth"));
+				puppy.setPuppyAgeETC(rs.getString("puppyAgeETC").replaceAll(" ","&nbsp;").replaceAll("\n","<br>;").replaceAll("<","&lt;").replaceAll(">","&gt;"));
 				puppy.setPuppyGender(rs.getInt("puppyGender"));
 				puppy.setPuppyNeutralization(rs.getInt("puppyNeutralization"));
 				puppy.setPuppyWeight(rs.getInt("puppyWeight"));
+				puppy.setPuppyWeightETC(rs.getString("puppyWeightETC").replaceAll(" ","&nbsp;").replaceAll("\n","<br>;").replaceAll("<","&lt;").replaceAll(">","&gt;"));
 				puppy.setPuppyActivity(rs.getInt("puppyActivity"));
-				puppy.setPuppyActivity(rs.getInt("recommendedQuantity"));
-
+				puppy.setRecommendedQuantity(rs.getInt("recommendedQuantity"));
 				puppy.setPuppyETC(rs.getString("puppyETC").replaceAll(" ","&nbsp;").replaceAll("\n","<br>;").replaceAll("<","&lt;").replaceAll(">","&gt;"));
 				puppy.setPuppyRestrict(rs.getString("puppyRestrict").replaceAll(" ","&nbsp;").replaceAll("\n","<br>;").replaceAll("<","&lt;").replaceAll(">","&gt;"));
-				
 				puppy.setPaymentDate(rs.getString("paymentDate").replaceAll(" ","&nbsp;").replaceAll("\n","<br>;").replaceAll("<","&lt;").replaceAll(">","&gt;"));
 				puppy.setPaymentAvailable(rs.getInt("paymentAvailable"));
+				puppy.setWeightControl(rs.getInt("weightControl"));
 
 				puppyList.add(puppy);
 		}
@@ -298,15 +307,15 @@ public class PuppyDAO2 {
 		}
 		return -1;
 	}
-	public int puppyUpdate( String puppyName, String puppySpecies, int puppyAge, int puppyAgeMonth,
-			int puppyGender,int puppyNeutralization, int puppyWeight,int recommendQuantity, int puppyActivity, String puppyETC, String puppyRestrict
-			, String paymentDate, int puppyPrimeNum) {
+	public int puppyUpdate( String puppyName, String puppySpecies, int puppyAge, int puppyAgeMonth, String puppyAgeETC,
+			int puppyGender,int puppyNeutralization, int puppyWeight,String puppyWeightETC, int recommendQuantity, int puppyActivity, String puppyETC, String puppyRestrict
+			, String paymentDate, int weightControl, int puppyPrimeNum) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-	String SQL = "update puppy set puppyName=?, puppySpecies=?, puppyAge=?, puppyAgeMonth=?, puppyGender=?"
-			+ "puppyNeutralization=?, puppyWeight=?  recommendedQuantity=?, puppyActivity=?, puppyETC=?, "
-			+ "puppyRestrict=?, paymentDate=?, where puppyPrimeNum=?";
+	String SQL = "update puppy set puppyName=?, puppySpecies=?, puppyAge=?, puppyAgeMonth=?, puppyAgeETC=?, puppyGender=?,"
+			+ "puppyNeutralization=?, puppyWeight=?,  puppyWeight=?, recommendedQuantity=?, puppyActivity=?, puppyETC=?, "
+			+ "puppyRestrict=?, paymentDate=?, weightControl=? where puppyPrimeNum=?";
 	try {
 		conn =dataSource.getConnection();
 		pstmt = conn.prepareStatement(SQL);
@@ -314,15 +323,18 @@ public class PuppyDAO2 {
 		pstmt.setString(2,puppySpecies);
 		pstmt.setInt(3,puppyAge);
 		pstmt.setInt(4,puppyAgeMonth);
-		pstmt.setInt(5,puppyGender);
-		pstmt.setInt(6,puppyNeutralization);
-		pstmt.setInt(7,puppyWeight);
-		pstmt.setInt(8,puppyActivity);
-		pstmt.setInt(9,recommendQuantity);
-		pstmt.setString(10,puppyETC);
-		pstmt.setString(11,puppyRestrict);
-		pstmt.setString(12,paymentDate);
-		pstmt.setInt(13,puppyPrimeNum);
+		pstmt.setString(5,puppyAgeETC);
+		pstmt.setInt(6,puppyGender);
+		pstmt.setInt(7,puppyNeutralization);
+		pstmt.setInt(8,puppyWeight);
+		pstmt.setString(9,puppyWeightETC);
+		pstmt.setInt(10,puppyActivity);
+		pstmt.setInt(11,recommendQuantity);
+		pstmt.setString(12,puppyETC);
+		pstmt.setString(13,puppyRestrict);
+		pstmt.setString(14,paymentDate);
+		pstmt.setInt(15,puppyPrimeNum);
+		pstmt.setInt(16,weightControl);
 
 		
 		return pstmt.executeUpdate();

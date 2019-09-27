@@ -28,13 +28,13 @@ public class UserDAO {
 	}
 
 	public int userAdd( String userName, String userAddress, String userPhoneNum,
-			String userIntroRoute, int userRoutine, int userTerm) {
+			String userIntroRoute, int userRoutine, int userTerm, String introduceWho) {
 		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-	String SQL = "INSERT INTO user VALUES(NULL,?,?,?,?,?,?,?,NOW())";
+	String SQL = "INSERT INTO user VALUES(NULL,?,?,?,?,?,?,?,NOW(),?)";
 	try {
 		conn =dataSource.getConnection();
 		pstmt = conn.prepareStatement(SQL);
@@ -45,6 +45,8 @@ public class UserDAO {
 		pstmt.setString(5,userIntroRoute);
 		pstmt.setInt(6,userRoutine);
 		pstmt.setInt(7,userTerm);
+		pstmt.setString(8,introduceWho);
+
 		int r = 0;
 		r = pstmt.executeUpdate();
 		
@@ -98,6 +100,8 @@ public class UserDAO {
 				user.setUserRoutine(rs.getInt("userRoutine"));
 				user.setUserTerm(rs.getInt("userTerm"));
 				user.setAddDate(rs.getString("addDate").substring(0,10));
+				user.setIntroduceWho(rs.getString("introduceWho").replaceAll(" ","&nbsp;").replaceAll("\n","<br>;").replaceAll("<","&lt;").replaceAll(">","&gt;"));
+
 				userList.add(user);
 			}
 		}
@@ -140,7 +144,8 @@ public class UserDAO {
 				user.setUserRoutine(rs.getInt("userRoutine"));
 				user.setUserTerm(rs.getInt("userTerm"));
 				user.setAddDate(rs.getString("addDate").substring(0,10));
-				
+				user.setUserIntroRoute(rs.getString("introduceWho").replaceAll(" ","&nbsp;").replaceAll("\n","<br>;").replaceAll("<","&lt;").replaceAll(">","&gt;"));
+
 			}
 		}
 		catch(Exception e) {
@@ -160,12 +165,12 @@ public class UserDAO {
 		return user;
 	}
 	public int userUpdate( String userName, String userAddress, String userPhoneNum,
-			String userIntroRoute, int userRoutine, int userTerm, int userPrimeNum) {
+			String userIntroRoute, int userRoutine, int userTerm, String introduceWho, int userPrimeNum) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 	String SQL = "update user set userName=?, userAddress=?, userPhoneNum=?, userIntroRoute=?,"
-			+ "userRoutine=?, userTerm=? where userPrimeNum=?";
+			+ "userRoutine=?, userTerm=?, introduceWho=? where userPrimeNum=?";
 	try {
 		conn =dataSource.getConnection();
 		pstmt = conn.prepareStatement(SQL);
@@ -176,6 +181,7 @@ public class UserDAO {
 		pstmt.setInt(5,userRoutine);
 		pstmt.setInt(6,userTerm);
 		pstmt.setInt(7,userPrimeNum);
+		pstmt.setString(8,introduceWho);
 
 
 		

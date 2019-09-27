@@ -24,7 +24,8 @@ public class UserRegisterServlet extends HttpServlet {
 		String userIntroRoute = request.getParameter("userIntroRoute");
 		int userRoutine = Integer.parseInt(request.getParameter("userRoutine"));
 		int userTerm = Integer.parseInt(request.getParameter("userTerm"));
-		
+		String introduceWho = request.getParameter("introduceWho");
+
 		
 		if(userName == null ||userAddress == null ||userPhoneNum == null ||
 				userIntroRoute == null 
@@ -36,9 +37,11 @@ public class UserRegisterServlet extends HttpServlet {
 		else {
 			userName = URLDecoder.decode(userName,"UTF-8");
 			userAddress=URLDecoder.decode(userAddress, "UTF-8");
-			userPhoneNum=URLDecoder.decode(userAddress, "UTF-8");
-			userIntroRoute=URLDecoder.decode(userAddress, "UTF-8");
-			response.getWriter().write(new UserDAO().userAdd(userName, userAddress, userPhoneNum, userIntroRoute, userRoutine, userTerm)+"");
+			userPhoneNum=URLDecoder.decode(userPhoneNum, "UTF-8");
+			userIntroRoute=URLDecoder.decode(userIntroRoute, "UTF-8");
+			introduceWho=URLDecoder.decode(introduceWho, "UTF-8");
+
+			response.getWriter().write(new UserDAO().userAdd(userName, userAddress, userPhoneNum, userIntroRoute, userRoutine, userTerm, introduceWho)+"");
 		}
 
 	}
