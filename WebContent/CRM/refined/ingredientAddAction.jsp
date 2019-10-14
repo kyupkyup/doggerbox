@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import= "recipe.Recipe" %>
-<%@ page import= "recipe.RecipeDAO" %>
+<%@ page import= "recipe.RecipeDAO2" %>
 <%@ page import= "java.io.PrintWriter" %>
 
 <%
@@ -44,7 +44,7 @@
 				puppyPrimeNum = Integer.parseInt(request.getParameter("puppyPrimeNum"));
 			}
 			
-			RecipeDAO recipeDAO = new RecipeDAO();
+			RecipeDAO2 recipeDAO = new RecipeDAO2();
 			int result = recipeDAO.recipeAdd( ingredientPrimeNum, rawIngredient, recipePrimeNum, puppyPrimeNum );
 			
 			if(result == -1 ){

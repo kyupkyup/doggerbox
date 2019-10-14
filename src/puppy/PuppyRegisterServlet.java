@@ -8,7 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+import util.CheckType;
 
 @WebServlet("/PuppyRegisterServlet")
 public class PuppyRegisterServlet extends HttpServlet {
@@ -35,6 +35,20 @@ public class PuppyRegisterServlet extends HttpServlet {
 		String paymentDate =  request.getParameter("paymentDate");
 		int weightControl = Integer.parseInt(request.getParameter("weightControl"));
 
+		if(CheckType.checkInt(request.getParameter("puppyAge")) == false) {
+			response.getWriter().write("-10");
+		}
+		if(CheckType.checkInt(request.getParameter("puppyAgeMonth")) == false) {
+			response.getWriter().write("-10");
+		}
+		if(CheckType.checkInt(request.getParameter("puppyWeight")) == false) {
+			response.getWriter().write("-10");
+		}
+		if(CheckType.checkInt(request.getParameter("recommendedQuantity")) == false) {
+			response.getWriter().write("-10");
+		}
+		
+		
 		if(puppyName == null ||puppySpecies == null ||puppyETC == null ||
 				puppyRestrict == null 
 				||puppyName.equals("") ||puppySpecies.equals("")  ||puppyETC.equals("")  ||

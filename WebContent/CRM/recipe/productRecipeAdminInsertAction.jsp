@@ -3,6 +3,7 @@
 <%@ page import= "recipe.Recipe" %>
 <%@ page import= "recipe.RecipeDAO" %>
 <%@ page import= "java.io.PrintWriter" %>
+<%@ page import= "util.CheckType" %>
 
 <%
 	request.setCharacterEncoding("UTF-8");
@@ -10,7 +11,6 @@
 <jsp:useBean id ="recipe" class="recipe.Recipe" scope="page"/>
 <jsp:setProperty name ="recipe" property="ingredientPrimeNum" />
 <jsp:setProperty name ="recipe" property="rawIngredient" />
-
 <jsp:setProperty name ="recipe" property="mixRate" />
 
 
@@ -39,6 +39,8 @@
 			if(request.getParameter("recipePrimeNum")!=null){
 				recipePrimeNum = Integer.parseInt(request.getParameter("recipePrimeNum"));
 			}
+			
+
 	
 			RecipeDAO recipeDAO = new RecipeDAO();
 			int result = recipeDAO.recipeAdd(productPrimeNum, recipe.getIngredientPrimeNum(), recipe.getRawIngredient(), recipePrimeNum, recipe.getMixRate(), -1);

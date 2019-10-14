@@ -39,11 +39,11 @@
 			</div>
 			<div>
 				<p>손실율(loss rate %제외한 100나눈 값으로 )</p>
-				<input type="text" class="form-control" placeholder="손실율" name="lossRate" maxlength="50"></input>
+				<input type="text" class="form-control" placeholder="손실율(소수 형식 ex. 0.2)" name="lossRate" maxlength="50"></input>
 			</div>
 			<div>
 				<p>원가(kg당)</p>
-				<input type="text" class="form-control" placeholder="원가" name="ingredientPrice" maxlength="50"></input>
+				<input type="text" class="form-control" placeholder="원가(숫자만)" name="ingredientPrice" maxlength="50"></input>
 			</div>
 
 			<input class="btn btn-default"type ="submit" type="button" value ="등록">

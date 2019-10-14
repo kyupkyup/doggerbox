@@ -24,7 +24,8 @@
 		var userRoutine = $('#userRoutine').val();
 		var userTerm = $('#userTerm').val();
 		var introduceWho = $('#introduceWho').val();
-
+		
+		
 		$.ajax({
 			type:"POST",
 			url:"/UserRegisterServlet",
@@ -267,7 +268,13 @@
 					/*autoClosingAlert('#successPuppyMessage', 3000);*/
 				}
 				else if(result==0){
-					alert("빈칸이 있다.");
+					alert("강아지 이름은 반드시 입력해야합니다.");
+				}
+				else if(result==-2){
+					alert("어떤 유저인지 클릭해주세요.");
+				}
+				else if(result==-10){
+					alert("숫자만 넣어야 하는 곳에 문자열이 입력되었습니다.");
 				}
 				else{
 					alert("데이터베이스 오류가 있다.");
@@ -320,7 +327,7 @@
 				var parsed = JSON.parse(data);
 				var result = parsed.result;
 				for(var i=0; i<result.length; i++){
-					addPuppy(result[i][0].value, result[i][1].value,result[i][2].value, result[i][3].value,result[i][4].value, result[i][5].value,result[i][6].value, result[i][7].value, result[i][8].value,result[i][9].value, result[i][10].value, result[i][11].value, result[i][12].value, result[i][13].value, result[i][14].value, result[i][15].value, result[i][16]);	
+					addPuppy(result[i][0].value, result[i][1].value,result[i][2].value, result[i][3].value,result[i][4].value, result[i][5].value,result[i][6].value, result[i][7].value, result[i][8].value,result[i][9].value, result[i][10].value, result[i][11].value, result[i][12].value, result[i][13].value, result[i][14].value, result[i][15].value, result[i][16].value);	
 					
 					}
 				
@@ -357,8 +364,8 @@
 						            '<i class="fa fa-pencil fa-stack-1x fa-inverse"></i>'+
 						       '</span>'+
 							'</a>'+
-		                    '<a href="#" class="table-link  danger" onclick="deletePuppy('+puppyPrimeNum+','+userPrimeNum+')">'+
-						        '<span class="fa-stack">'+
+		                    '<a href="#" class="table-link danger">'+
+						        '<span class="fa-stack" onclick="deletePuppy('+puppyPrimeNum+','+userPrimeNum+');">'+
 						            '<i class="fa fa-square fa-stack-2x"></i>'+
 						            '<i class="fa fa-trash-o  fa-stack-1x fa-inverse"></i>'+
 						       '</span>'+
@@ -382,14 +389,12 @@
 		$('#puppyAge').val(puppyAge);
 		$('#puppyAgeMonth').val(puppyAgeMonth);
 		$('#puppyAgeETC').val(puppyAgeETC);
-
 		$('#puppyGender').val(puppyGender);
 		$('#puppyNeutralization').val(puppyNeutralization);
 		$('#puppyWeight').val(puppyWeight);
 		$('#puppyWeightETC').val(puppyWeightETC);
-
 		$('#puppyActivity').val(puppyActivity);
-		$('#recommendedQuantity').val(recommendedQuantity);
+		$('#recommendedQuantity').val(recommendedQuantity); 
 		$('#puppyETC').val(puppyETC);
 		$('#puppyRestrict').val(puppyRestrict);
 		$('#testDatepicker2').val(paymentDate);
@@ -431,8 +436,6 @@
 				puppyGender:puppyGender,
 				puppyNeutralization:puppyNeutralization,
 				puppyWeight:puppyWeight,
-				puppyWeightETC:encodeURIComponent(puppyWeightETC),
-
 				puppyActivity:puppyActivity,
 				recommendedQuantity:recommendedQuantity,
 				puppyETC:encodeURIComponent(puppyETC),
@@ -466,6 +469,9 @@
 				}
 				else if(result==0){
 					alert("빈칸이 있다.");
+				}
+				else if(result==-10){
+					alert("숫자만 넣어야 하는 곳에 문자열이 입력되었습니다.");
 				}
 				else{
 					alert("데이터베이스 오류가 있다.");
@@ -542,7 +548,7 @@
 		$('#testDatepicker').val("");
 		$('#orderPack').val(1);
 		$('#orderRoundTitle').val("");
-		 
+		$('#orderTitle').val("");
 		 
 		$('#puppyRecipePrimeNum').next().remove();
 		$('#puppyRecipePrimeNum').after(
@@ -594,8 +600,8 @@
 								result[i][20].value,result[i][21].value,result[i][22].value,result[i][23].value,result[i][24].value,
 								result[i][25].value,result[i][26].value,result[i][27].value,result[i][28].value,result[i][29].value,
 								result[i][30].value,result[i][31].value,result[i][32].value,result[i][33].value,result[i][34].value,
-								result[i][35].value,result[i][36].value,result[i][37].value,result[i][38].value,result[i][39].value
-								);	
+								result[i][35].value,result[i][36].value,result[i][37].value,result[i][38].value,result[i][39].value,
+								result[i][40].value);	
 						
 					}
 				}
@@ -628,7 +634,7 @@
 			 kangarooRecipePrimeNum,
 			 horseRecipePrimeNum ,
 			 totalQuantity, totalPrice, 
-			 orderETC,  orderPack,dueDate, roundTitle, dueDateAvailable){
+			 orderETC,  orderPack,dueDate, roundTitle, dueDateAvailable, orderTitle){
 		$('#orderList').append('<table class="table order-list">' +
 				'<tbody>' +
 					'<tr>'+
@@ -644,7 +650,7 @@
 			 orderProductFishAvailable+','+  orderProductPorkAvailable+','+orderProductKangarooAvailable+','+
 			 orderProductHorseAvailable+','+ puppyRecipePrimeNum+','+originalRecipePrimeNum+','+seniorRecipePrimeNum+','+
 			 fishRecipePrimeNum+' ,'+porkRecipePrimeNum+','+kangarooRecipePrimeNum+','+horseRecipePrimeNum+','+
-			 totalQuantity+','+ totalPrice+',\''+orderETC+'\','+orderPack+',\''+dueDate+'\',\''+ roundTitle+'\','+dueDateAvailable+');">'+
+			 totalQuantity+','+ totalPrice+',\''+orderETC+'\','+orderPack+',\''+dueDate+'\',\''+ roundTitle+'\','+dueDateAvailable+',\''+orderTitle+'\');">'+
 						            '<i class="fa fa-square fa-stack-2x"></i>'+
 						            '<i class="fa fa-pencil fa-stack-1x fa-inverse"></i>'+
 						       '</span>'+
@@ -701,8 +707,9 @@
 		var orderETC = $('#orderETC').val();
 		var dueDate = $('#testDatepicker').val();
 		var orderPack = $('#orderPack').val();
-
+		
 		var roundTitle = $('#orderRoundTitle').val();
+		var ordertitle = $('#orderTitle').val();
 		$.ajax({
 			type:"POST",
 			url:"/OrderRegisterServlet",
@@ -743,7 +750,8 @@
 				orderETC:encodeURIComponent(orderETC),
 				orderPack:orderPack,
 				dueDate:dueDate,
-				roundTitle:encodeURIComponent(roundTitle)
+				roundTitle:encodeURIComponent(roundTitle),
+				orderTitle:encodeURIComponent(orderTitle)
 			},
 			
 			success: function(result){
@@ -754,6 +762,9 @@
 				}
 				else if(result==0){
 					alert("빈칸이 있다.");
+				}
+				else if(result==-10){
+					alert("숫자만 넣어야 하는 곳에 문자열이 입력되었습니다.");
 				}
 				else{
 					alert("데이터베이스 오류가 있다.");
@@ -784,7 +795,7 @@
 			 kangarooRecipePrimeNum,
 			 horseRecipePrimeNum ,
 			 totalQuantity, totalPrice, 
-			 orderETC,  orderPack,dueDate, roundTitle, dueDateAvailable){
+			 orderETC,  orderPack,dueDate, roundTitle, dueDateAvailable, orderTitle){
 		$('#orderOrderPrimeNum').val(orderPrimeNum);
 		$('#orderRoundPrimeNum').val(roundPrimeNum);
 		$('#puppyUserPrimeNum').val(userPrimeNum);
@@ -823,6 +834,7 @@
 		$('#testDatepicker').val(dueDate);
 		$('#orderPack').val(orderPack);
 		 $('#orderRoundTitle').val(roundTitle);
+		 $('#orderTitle').val(orderTitle);
 		 
 		$('#orderUpdateButton').show();
 		$('#orderRegisterButton').hide();
@@ -866,7 +878,7 @@
 		var dueDate = $('#testDatepicker').val();
 		var orderPack = $('#orderPack').val();
 		var orderRoundTitle = $('#orderRoundTitle').val();
-		
+		var orderTitle = $('#orderTitle').val();
 		$.ajax({
 			type:"POST",
 			url:"/OrderUpdateServlet",
@@ -908,7 +920,9 @@
 				orderETC:encodeURIComponent(orderETC),
 				orderPack:orderPack,
 				dueDate:encodeURIComponent(dueDate),
-				roundTitle:encodeURIComponent(orderRoundTitle)
+				roundTitle:encodeURIComponent(orderRoundTitle),
+				orderTitle:encodeURIComponent(orderTitle)
+
 			},
 			success: function(result){
 				if(result==1){
@@ -936,6 +950,7 @@
 					$('#testDatepicker').val("");
 					$('#orderPack').val(1);
 					 $('#orderRoundTitle').val("");
+					 $('#orderTitle').val("");
 					 
 					$('#orderUpdateButton').hide();
 					$('#orderRegisterButton').show();
@@ -943,6 +958,9 @@
 				}
 				else if(result==0){
 					alert("빈칸이 있다.");
+				}
+				else if(result==-10){
+					alert("숫자만 넣어야 하는 곳에 문자열이 입력되었습니다.");
 				}
 				else{
 					alert("데이터베이스 오류가 있다.");
@@ -1135,6 +1153,9 @@
 				else if(result==0){
 					alert("빈칸이 있다.");
 				}
+				else if(result==-10){
+					alert("숫자만 넣어야 하는 곳에 문자열이 입력되었습니다.");
+				}
 				else{
 					alert("데이터베이스 오류가 있다.");
 				}
@@ -1173,7 +1194,98 @@
 		   window.open("recipeSelect.jsp?puppyPrimeNum="+puppyPrimeNum+"&productNum="+productNum, "newWindow", "width=300, height=400, scrollbar=no");
 
 	}
-	
+	function calculateQuantity(){
+		var puppyAge = $('#puppyAge').val();
+		var puppyAgeMonth = $('#puppyAgeMonth').val();
+		var puppyGender = $('#puppyGender').val();
+		var puppyNeutralization = $('#puppyNeutralization').val();
+		var puppyWeight = $('#puppyWeight').val();
+		var puppyActivity = $('#puppyActivity').val();
+		var weightControl = $('#weightControl').val();
+		
+		puppyAge = Number(puppyAge);
+		puppyAgeMonth = Number(puppyAgeMonth);
+		puppyWeight = Number(puppyWeight);
+		
+		if(!Number.isInteger(puppyAge)){	
+			alert("강아지 나이에는 정수값을 넣어야 합니다.");
+		}
+		if(!Number.isInteger(puppyAgeMonth)){
+			alert("강아지 나이(개월)에는 정수값을 넣어야 합니다.");
+		}
+		if(!Number.isInteger(puppyWeight)){
+			alert("강아지 무게에는 정수값을 넣어야 합니다.");
+		}
+
+		
+		if(puppyAge == null || puppyAgeMonth == null || puppyGender == null || puppyNeutralization == null || puppyWeight == null||
+				puppyActivity == null || weightControl == null ||
+				puppyAge == "" || puppyAgeMonth == "" || puppyGender == "" || puppyNeutralization == "" || puppyWeight == ""||
+				puppyActivity == "" || weightControl == ""
+		){
+			alert("계산을 하는데 채워지지 않은 빈칸이 있습니다.");
+		}
+		else{
+			var RER = 70 * Math.pow(puppyWeight, 0.75);
+			var N = 0;
+			
+			if(puppyAge == 0 && (puppyAgeMonth>=1 && puppyAgeMonth<=3)){
+				N = 3;
+			}
+			else if(puppyAge == 0 && (puppyAgeMonth>=4 && puppyAgeMonth<=6)){
+				N = 2.5;
+			}
+			else if(puppyAge == 0 && (puppyAgeMonth>=6 && puppyAgeMonth<=12)){
+				N=2;
+			}
+			else if(puppyAge>=1 && puppyAge<8){
+				if(weightControl==1){
+					N = 1;
+				}
+				else{
+					if(puppyNeutralization == 1){
+						N = 1.8 * 0.9;
+						if(puppyActivity == 1){
+							N = N * 1.2;
+						}
+						else if(puppyActivity == 2){
+							N = N * 1.1;
+						}
+						else if(puppyActivity == 3){
+							N = N * 0.8;
+						}
+						else if(puppyActivity== 4 || puppyActivity == 5){
+							N = N * 0.7;
+						}
+					}
+					else{
+						N = 1.8;
+						if(puppyActivity == 1){
+							N = N * 1.2;
+						}
+						else if(puppyActivity == 2){
+							N = N * 1.1;
+						}
+						else if(puppyActivity == 3){
+							N = N * 0.8;
+						}
+						else if(puppyActivity== 4 || puppyActivity == 5){
+							N = N * 0.7;
+						}
+					}
+				}
+			}
+			else if(puppyAge>8){
+				N = 1.1;
+			}
+			
+			var recommendedQuantity = RER * N;
+			$('#recommendedQuantity').val(Math.floor(recommendedQuantity));
+		}
+		
+
+		
+	}
 	function calculateTotal(){
 		var puppyGram = document.getElementsByName("orderProductPuppyGram");
 		var puppyNum = document.getElementsByName("orderProductPuppyNum");
@@ -1409,7 +1521,7 @@
 	</div>
 	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 		<ul class="nav navbar-nav ">
-					<li class=""><a href="realMain.jsp">메인</a>
+			<li class=""><a href="realMain.jsp">메인</a>
 		
 		</ul>
 		<ul class="nav navbar-nav ">
@@ -1427,16 +1539,16 @@
 		<div class="" style="text-align:left;display:inline-block;">
 			<div class="">
 				<div class="" style="display:inline-block;  height:900px; 	">
-					<div class="" style="height:130px;">
+					<div class="" style="height:100px;">
 						
 							<h4 style="display:inline-block;"><i class="fa fa-circle text-green"></i>고객 관리</h4>
 							<input class="form-control" style="width:200px; display:inline-block;" placeholder="이름을 입력하세요" id="searchUserName"/>
 							<button class="btn btn-primary" type="button" style="display:inline-block;" onclick="searchUser();">검색	</button>
 						</div>
-					<div id="userList"class="" style="overflow-y: auto; height:310px; width:360px;  ">
+					<div id="userList"class="" style="overflow-y: auto; height:370px; width:350px;  ">
 						
 					</div>
-					<div class="form-group" style="height:650px;">
+					<div class="form-group" style="height:660px;">
 						<div class="">
 							<div class="" style="display:inline-block;">
 								<input class="form-control" type="text" id="userName" style="height:40px; width:150px; display:inline-block;" placeholder="고객이름">
@@ -1530,11 +1642,9 @@
 								<input class="form-control" type="text" id="puppyWeight" style="height:30px; width:110px; display:inline-block;" placeholder="체중">
 							</div>
 							<div class="" style="display:inline-block;">
-								<input class="form-control" type="text" id="puppyWeightETC" style="height:30px; width:110px; display:inline-block;" placeholder="체중etc">
+								<input class="form-control" type="text" id="puppyWeightETC" style="height:30px; width:160px; display:inline-block;" placeholder="체중etc">
 							</div>
-							<div class="" style="display:inline-block;">
-								<input class="form-control" type="text" id="recommendedQuantity" style="height:30px; width:110px; display:inline-block;" placeholder="권장 급여량">
-							</div>
+
 						</div>
 						<div class=""style="margin-bottom:10px;">
 							<div class="" style="display:inline-block;">
@@ -1588,6 +1698,12 @@
 													
 							
 							<div class="">
+								<div class="" style="display:inline-block;">
+									<input class="form-control" type="text" id="recommendedQuantity" style="height:30px; width:100px; display:inline-block;" placeholder="권장 급여량"><span>kcal</span>
+								</div>
+								<div class="" style="display:inline-block;">
+									<button class="btn btn-primary" onclick="calculateQuantity();" style="width:60px; height:30px; display:inline-block;">계산</button>
+								</div>
 								<button type="button" class="btn btn-default pull-right" onclick="addPuppyFunction();" id="puppyRegisterButton">강아지 등록</button>
 								<button type="button" class="btn btn-default pull-right" onclick="updatePuppyFunction();" id="puppyUpdateButton" style="display:none;">강아지 수정</button>
 								<input type="hidden" id="puppyPuppyPrimeNum">
@@ -1718,7 +1834,7 @@
 									<option value="2">하프팩</option>
 								</select>
 								<input type="text"id="testDatepicker" style="display:inline-block; width:100px;" placeholder="결제일자">
-								
+								<input type="text" id="orderTitle" style="display:inline-block; width:150px;" class="form-control" placeholder="주문제목ex.)1/2">
 							</div>
 							<div class="">
 								<button type="button" id="orderRegisterButton" class="btn btn-default pull-right" onclick="addOrderFunction();">주문 등록</button>

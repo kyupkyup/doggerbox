@@ -57,7 +57,7 @@
 
 			<div>
 				<p>배합비</p>
-				<input type="text" class="form-control" placeholder="배합비" name="mixRate" maxlength="50"></input>
+				<input type="text" class="form-control" placeholder="배합비(소수 형식 ex. 0.2)" name="mixRate" maxlength="50"></input>
 			</div>
 
 			<input class="btn btn-default"type ="submit" type="button" value ="등록">

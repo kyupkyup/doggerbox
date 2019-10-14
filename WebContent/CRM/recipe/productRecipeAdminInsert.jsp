@@ -69,7 +69,7 @@ function openNewWindow(){
 
 			<div>
 				<p>배합비</p>
-				<input type="text" class="form-control" placeholder="배합비(소수)" name="mixRate" maxlength="50"></input>
+				<input type="text" class="form-control" placeholder="배합비(소수 형식 ex. 0.2)" name="mixRate" maxlength="50"></input>
 			</div>
 
 			<input type ="submit" type="button"class="btn btn-primary" value ="등록">

@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import util.CheckType;
+
 
 @WebServlet("/RecipeUpdateServlet")
 public class RecipeUpdateServlet extends HttpServlet {
@@ -23,10 +25,16 @@ public class RecipeUpdateServlet extends HttpServlet {
 		String[] ingredientPrimeNumBase = request.getParameterValues("ingredientPrimeNum");
 		int recipePrimeNum = Integer.parseInt(request.getParameter("recipePrimeNum"));
 				
+		
+		
 		System.out.println(mixRateBase.length+","+rawIngredient.length+","+ingredientPrimeNumBase.length);
 		double[] mixRate = new double[mixRateBase.length] ;
 		int[] ingredientPrimeNum = new int[ingredientPrimeNumBase.length];
 		for(int i=0; i<rawIngredient.length; i++) {
+			if(CheckType.checkDouble(mixRateBase[i]) == false) {
+				response.getWriter().write("-10");
+				return;
+			}
 			mixRate[i] = Double.parseDouble(mixRateBase[i]);
 			ingredientPrimeNum[i] = Integer.parseInt(ingredientPrimeNumBase[i]);
 		}
