@@ -43,6 +43,8 @@ public class Order {
 	
 	String roundTitle;
 	int dueDateAvailable;
+	String orderTitle;
+	
 	public int getRoundPrimeNum() {
 		return roundPrimeNum;
 	}
@@ -289,6 +291,12 @@ public class Order {
 	}
 	public void setDueDateAvailable(int dueDateAvailable) {
 		this.dueDateAvailable = dueDateAvailable;
+	}
+	public String getOrderTitle() {
+		return orderTitle;
+	}
+	public void setOrderTitle(String orderTitle) {
+		this.orderTitle = orderTitle;
 	}
 	
 	

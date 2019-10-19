@@ -36,6 +36,7 @@ public class PuppyUpdateServlet extends HttpServlet {
 		String puppyRestrict = request.getParameter("puppyRestrict");
 		String paymentDate =  request.getParameter("paymentDate");
 		int weightControl = Integer.parseInt(request.getParameter("weightControl"));
+		int foodSpecies = Integer.parseInt(request.getParameter("foodSpecies"));
 
 		if(CheckType.checkInt(request.getParameter("puppyAge")) == false) {
 			response.getWriter().write("-10");
@@ -43,17 +44,14 @@ public class PuppyUpdateServlet extends HttpServlet {
 		if(CheckType.checkInt(request.getParameter("puppyAgeMonth")) == false) {
 			response.getWriter().write("-10");
 		}
-		if(CheckType.checkInt(request.getParameter("puppyWeight")) == false) {
+		if(CheckType.checkDouble(request.getParameter("puppyWeight")) == false) {
 			response.getWriter().write("-10");
 		}
 		if(CheckType.checkInt(request.getParameter("recommendedQuantity")) == false) {
 			response.getWriter().write("-10");
 		}
 		
-		if(puppyName == null ||puppySpecies == null ||puppyETC == null ||
-				puppyRestrict == null 
-				||puppyName.equals("") ||puppySpecies.equals("")  ||puppyETC.equals("")  ||
-				puppyRestrict.equals(""))
+		if(false)
 		{
 			response.getWriter().write("0");
 		}
@@ -62,8 +60,11 @@ public class PuppyUpdateServlet extends HttpServlet {
 			puppySpecies=URLDecoder.decode(puppySpecies, "UTF-8");
 			puppyETC=URLDecoder.decode(puppyETC, "UTF-8");
 			puppyRestrict=URLDecoder.decode(puppyRestrict, "UTF-8");
+			puppyAgeETC=URLDecoder.decode(puppyAgeETC, "UTF-8");
+			puppyWeightETC=URLDecoder.decode(puppyWeightETC, "UTF-8");
+			
 			response.getWriter().write(new PuppyDAO2().puppyUpdate(puppyName,  puppySpecies,  puppyAge,  puppyAgeMonth, puppyAgeETC,
-					 puppyGender, puppyNeutralization,  puppyWeight, puppyWeightETC, recommendedQuantity,  puppyActivity,  puppyETC,  puppyRestrict, paymentDate, weightControl, puppyPrimeNum)+"");
+					 puppyGender, puppyNeutralization,  puppyWeight, puppyWeightETC, recommendedQuantity,  puppyActivity,  puppyETC,  puppyRestrict, paymentDate, weightControl, foodSpecies,puppyPrimeNum)+"");
 		}
 
 	}

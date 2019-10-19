@@ -81,6 +81,8 @@ public class OrderDAO2 {
 				order.setOrderPack(rs.getInt(37));
 				order.setDueDate(rs.getString(38).replaceAll(" ","&nbsp;").replaceAll("\n","<br>;").replaceAll("<","&lt;").replaceAll(">","&gt;"));
 				order.setRoundTitle(rs.getString(39).replaceAll(" ","&nbsp;").replaceAll("\n","<br>;").replaceAll("<","&lt;").replaceAll(">","&gt;"));
+				order.setDueDateAvailable(rs.getInt(39));
+				order.setOrderTitle(rs.getString(39).replaceAll(" ","&nbsp;").replaceAll("\n","<br>;").replaceAll("<","&lt;").replaceAll(">","&gt;"));
 
 				orderList.add(order);
 			}
@@ -155,6 +157,7 @@ public class OrderDAO2 {
 				order.setOrderPack(rs.getInt(37));
 				order.setDueDate(rs.getString(38).replaceAll(" ","&nbsp;").replaceAll("\n","<br>;").replaceAll("<","&lt;").replaceAll(">","&gt;"));
 				order.setRoundTitle(rs.getString(39).replaceAll(" ","&nbsp;").replaceAll("\n","<br>;").replaceAll("<","&lt;").replaceAll(">","&gt;"));
+				order.setOrderTitle(rs.getString(40).replaceAll(" ","&nbsp;").replaceAll("\n","<br>;").replaceAll("<","&lt;").replaceAll(">","&gt;"));
 
 				orderList.add(order);
 			}
@@ -192,12 +195,12 @@ public class OrderDAO2 {
 			int orderProductKangarooRecipePrimeNum,
 			int orderProductHorseRecipePrimeNum ,
 			 int orderTotalQuantity,int orderTotalPrice, 
-			String orderETC, int orderPack, String dueDate, String roundTitle) {
+			String orderETC, int orderPack, String dueDate, String roundTitle, String orderTitle) {
 		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-	String SQL = "INSERT INTO order1 VALUES(?,NULL,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,1)";
+	String SQL = "INSERT INTO order1 VALUES(?,NULL,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,1,?)";
 	try {
 		conn =dataSource.getConnection();
 		pstmt = conn.prepareStatement(SQL);
@@ -240,11 +243,8 @@ public class OrderDAO2 {
 		pstmt.setInt(36,orderPack);
 		pstmt.setString(37,dueDate);
 		pstmt.setString(38,roundTitle);
-		
+		pstmt.setString(39,orderTitle);
 
-		
-
-		
 		return pstmt.executeUpdate();
 		
 	}
@@ -322,6 +322,8 @@ public class OrderDAO2 {
 				order.setDueDate(rs.getString(38).replaceAll(" ","&nbsp;").replaceAll("\n","<br>;").replaceAll("<","&lt;").replaceAll(">","&gt;"));
 				order.setRoundTitle(rs.getString(39).replaceAll(" ","&nbsp;").replaceAll("\n","<br>;").replaceAll("<","&lt;").replaceAll(">","&gt;"));
 				order.setDueDateAvailable(rs.getInt(40));
+				order.setOrderTitle(rs.getString(41));
+
 				orderList.add(order);
 		}
 			
@@ -421,7 +423,7 @@ public class OrderDAO2 {
 			int orderProductKangarooRecipePrimeNum,
 			int orderProductHorseRecipePrimeNum ,
 			 int orderTotalQuantity,int orderTotalPrice, 
-			String orderETC, int orderPack, String dueDate, String roundTitle, int orderPrimeNum) {
+			String orderETC, int orderPack, String dueDate, String roundTitle,String orderTitle, int orderPrimeNum) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -439,7 +441,7 @@ public class OrderDAO2 {
 				+"	orderProductKangarooRecipePrimeNum=?," 
 				+"	orderProductHorseRecipePrimeNum=? ,"
 				+ "orderTotalQuantity=?,orderTotalPrice=?,"
-				+ "orderETC=?,orderPack=?, dueDate=?, roundTitle=? where orderPrimeNum=? ";
+				+ "orderETC=?,orderPack=?, dueDate=?, roundTitle=?, orderTitle =?  where orderPrimeNum=? ";
 	try {
 		conn =dataSource.getConnection();
 		pstmt = conn.prepareStatement(SQL);
@@ -481,7 +483,8 @@ public class OrderDAO2 {
 		pstmt.setInt(36,orderPack);
 		pstmt.setString(37,dueDate);
 		pstmt.setString(38,roundTitle);
-		pstmt.setInt(39,orderPrimeNum);
+		pstmt.setString(39,orderTitle);
+		pstmt.setInt(40,orderPrimeNum);
 
 
 		

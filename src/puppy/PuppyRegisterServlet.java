@@ -26,7 +26,7 @@ public class PuppyRegisterServlet extends HttpServlet {
 		String puppyAgeETC =request.getParameter("puppyAgeETC");
 		int puppyNeutralization = Integer.parseInt(request.getParameter("puppyNeutralization"));
 		int puppyGender = Integer.parseInt(request.getParameter("puppyGender"));
-		int puppyWeight = Integer.parseInt(request.getParameter("puppyWeight"));
+		double puppyWeight = Double.parseDouble(request.getParameter("puppyWeight"));
 		String puppyWeightETC = request.getParameter("puppyWeightETC");
 		int recommendedQuantity = Integer.parseInt(request.getParameter("recommendedQuantity"));
 		int puppyActivity = Integer.parseInt(request.getParameter("puppyActivity"));
@@ -34,6 +34,7 @@ public class PuppyRegisterServlet extends HttpServlet {
 		String puppyRestrict = request.getParameter("puppyRestrict");
 		String paymentDate =  request.getParameter("paymentDate");
 		int weightControl = Integer.parseInt(request.getParameter("weightControl"));
+		int foodSpecies = Integer.parseInt(request.getParameter("foodSpecies"));
 
 		if(CheckType.checkInt(request.getParameter("puppyAge")) == false) {
 			response.getWriter().write("-10");
@@ -41,7 +42,7 @@ public class PuppyRegisterServlet extends HttpServlet {
 		if(CheckType.checkInt(request.getParameter("puppyAgeMonth")) == false) {
 			response.getWriter().write("-10");
 		}
-		if(CheckType.checkInt(request.getParameter("puppyWeight")) == false) {
+		if(CheckType.checkDouble(request.getParameter("puppyWeight")) == false) {
 			response.getWriter().write("-10");
 		}
 		if(CheckType.checkInt(request.getParameter("recommendedQuantity")) == false) {
@@ -49,10 +50,9 @@ public class PuppyRegisterServlet extends HttpServlet {
 		}
 		
 		
-		if(puppyName == null ||puppySpecies == null ||puppyETC == null ||
-				puppyRestrict == null 
-				||puppyName.equals("") ||puppySpecies.equals("")  ||puppyETC.equals("")  ||
-				puppyRestrict.equals(""))
+		if(false
+				
+				)
 		{
 			response.getWriter().write("0");
 		}
@@ -65,7 +65,7 @@ public class PuppyRegisterServlet extends HttpServlet {
 			puppyWeightETC=URLDecoder.decode(puppyWeightETC, "UTF-8");
 
 			response.getWriter().write(new PuppyDAO2().puppyAdd(userPrimeNum,  puppyName,  puppySpecies,  puppyAge,  puppyAgeMonth,
-					 puppyAgeETC, puppyGender, puppyNeutralization,  puppyWeight, puppyWeightETC, recommendedQuantity,  puppyActivity,  puppyETC,  puppyRestrict, paymentDate,weightControl)+"");
+					 puppyAgeETC, puppyGender, puppyNeutralization,  puppyWeight, puppyWeightETC, recommendedQuantity,  puppyActivity,  puppyETC,  puppyRestrict, paymentDate,weightControl, foodSpecies)+"");
 		}
 	}
 }

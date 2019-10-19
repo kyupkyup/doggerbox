@@ -90,7 +90,9 @@ public class OrderTotalListServlet extends HttpServlet {
 			result.append("{\"value\":\""+ orderList.get(i).getDueDate()+"\"},");
 			result.append("{\"value\":\""+ puppy.getPuppyName()+"\"},");
 			result.append("{\"value\":\""+ user.getUserName()+"\"},");
-			result.append("{\"value\":\""+ orderList.get(i).getRoundTitle()+"\"}]");
+			result.append("{\"value\":\""+ orderList.get(i).getRoundTitle()+"\"},");
+
+			result.append("{\"value\":\""+ orderList.get(i).getOrderTitle()+"\"}]");
 
 
 			if(i != orderList.size()-1) result.append(",");

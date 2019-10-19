@@ -238,6 +238,7 @@
 		var recommendedQuantity = $('#recommendedQuantity').val();
 		var paymentDate = $('#testDatepicker2').val();
 		var weightControl = $('#weightControl').val();
+		var foodSpecies = $('#foodSpecies').val();
 
 		$.ajax({
 			type:"POST",
@@ -258,7 +259,8 @@
 				puppyETC:encodeURIComponent(puppyETC),
 				recommendedQuantity:recommendedQuantity,
 				paymentDate:paymentDate,
-				weightControl:weightControl
+				weightControl:weightControl,
+				foodSpecies:foodSpecies
 			},
 			
 			success: function(result){
@@ -304,6 +306,8 @@
 		$('#puppyRestrict').val("");
 		$('#testDatepicker2').val("");
 		$('#weightControl').val(1);
+		$('#foodSpecies').val(1);
+
 
 	}
 	
@@ -327,7 +331,7 @@
 				var parsed = JSON.parse(data);
 				var result = parsed.result;
 				for(var i=0; i<result.length; i++){
-					addPuppy(result[i][0].value, result[i][1].value,result[i][2].value, result[i][3].value,result[i][4].value, result[i][5].value,result[i][6].value, result[i][7].value, result[i][8].value,result[i][9].value, result[i][10].value, result[i][11].value, result[i][12].value, result[i][13].value, result[i][14].value, result[i][15].value, result[i][16].value);	
+					addPuppy(result[i][0].value, result[i][1].value,result[i][2].value, result[i][3].value,result[i][4].value, result[i][5].value,result[i][6].value, result[i][7].value, result[i][8].value,result[i][9].value, result[i][10].value, result[i][11].value, result[i][12].value, result[i][13].value, result[i][14].value, result[i][15].value, result[i][16].value, result[i][17].value);	
 					
 					}
 				
@@ -341,7 +345,7 @@
 	function nullPuppy(){
 		$('#puppyList').append('<p>강아지 정보가 없습니다.</p>');
 	}
-	function addPuppy(userPrimeNum, puppyPrimeNum, puppyName, puppySpecies, puppyAge, puppyAgeMonth,puppyAgeETC, puppyGender, puppyNeutralization, puppyWeight, puppyWeightETC, puppyActivity,recommendedQuantity, puppyETC, puppyRestrict, paymentDate,weightControl){
+	function addPuppy(userPrimeNum, puppyPrimeNum, puppyName, puppySpecies, puppyAge, puppyAgeMonth,puppyAgeETC, puppyGender, puppyNeutralization, puppyWeight, puppyWeightETC, puppyActivity,recommendedQuantity, puppyETC, puppyRestrict, paymentDate,weightControl, foodSpecies){
 		$('#recipePuppyPrimeNum').val(puppyPrimeNum);
 		$('#puppyList').append('<table class="table user-list">' +
 				'<tbody>' +
@@ -359,7 +363,7 @@
 						'<td style="width:20%;">'+
 
 		                    '<a href="#" class="table-link">'+
-						        '<span class="fa-stack" onclick="updatePuppy('+puppyPrimeNum+',\''+puppyName+'\',\''+puppySpecies+'\','+puppyAge+','+puppyAgeMonth+',\''+puppyAgeETC+'\','+puppyGender+','+puppyNeutralization+','+puppyWeight+',\''+puppyWeightETC+'\','+puppyActivity+','+recommendedQuantity+',\''+puppyETC+'\',\''+puppyRestrict+'\',\''+paymentDate+'\','+weightControl+');">'+
+						        '<span class="fa-stack" onclick="updatePuppy('+puppyPrimeNum+',\''+puppyName+'\',\''+puppySpecies+'\','+puppyAge+','+puppyAgeMonth+',\''+puppyAgeETC+'\','+puppyGender+','+puppyNeutralization+','+puppyWeight+',\''+puppyWeightETC+'\','+puppyActivity+','+recommendedQuantity+',\''+puppyETC+'\',\''+puppyRestrict+'\',\''+paymentDate+'\','+weightControl+','+foodSpecies+');">'+
 						            '<i class="fa fa-square fa-stack-2x"></i>'+
 						            '<i class="fa fa-pencil fa-stack-1x fa-inverse"></i>'+
 						       '</span>'+
@@ -381,7 +385,7 @@
 	}
 	
 	function updatePuppy(puppyPrimeNum, puppyName, puppySpecies, puppyAge, puppyAgeMonth, puppyAgeETC, puppyGender, puppyNeutralization, puppyWeight, puppyWeightETC
-			, puppyActivity, recommendedQuantity, puppyETC, puppyRestrict, paymentDate,weightControl){
+			, puppyActivity, recommendedQuantity, puppyETC, puppyRestrict, paymentDate,weightControl, foodSpecies){
 		
 		$('#puppyPuppyPrimeNum').val(puppyPrimeNum);
 		$('#puppyName').val(puppyName);
@@ -399,6 +403,7 @@
 		$('#puppyRestrict').val(puppyRestrict);
 		$('#testDatepicker2').val(paymentDate);
 		$('#weightControl').val(weightControl);
+		$('#foodSpecies').val(foodSpecies);
 
 		
 		$('#puppyUpdateButton').show();
@@ -422,6 +427,7 @@
 		var recommendedQuantity = $('#recommendedQuantity').val();
 		var paymentDate = $('#testDatepicker2').val();
 		var weightControl = $('#weightControl').val();
+		var foodSpecies = $('#foodSpecies').val();
 
 		$.ajax({
 			type:"POST",
@@ -436,12 +442,14 @@
 				puppyGender:puppyGender,
 				puppyNeutralization:puppyNeutralization,
 				puppyWeight:puppyWeight,
+				puppyWeightETC:encodeURIComponent(puppyWeightETC),
 				puppyActivity:puppyActivity,
 				recommendedQuantity:recommendedQuantity,
 				puppyETC:encodeURIComponent(puppyETC),
 				puppyRestrict:encodeURIComponent(puppyRestrict),
 				paymentDate:paymentDate,
-				weightControl:weightControl
+				weightControl:weightControl,
+				foodSpecies:foodSpecies
 			},
 			success: function(result){
 				if(result==1){
@@ -462,6 +470,7 @@
 					$('#puppyRestrict').val("");
 					$('#testDatepicker2').val("");
 					$('#weightControl').val(1);
+					$('#foodSpecies').val(1);
 
 					$('#puppyUpdateButton').hide();
 					$('#puppyRegisterButton').show();
@@ -707,9 +716,9 @@
 		var orderETC = $('#orderETC').val();
 		var dueDate = $('#testDatepicker').val();
 		var orderPack = $('#orderPack').val();
-		
 		var roundTitle = $('#orderRoundTitle').val();
-		var ordertitle = $('#orderTitle').val();
+		var orderTitle = document.getElementById('orderTitle').value;
+		
 		$.ajax({
 			type:"POST",
 			url:"/OrderRegisterServlet",
@@ -757,8 +766,8 @@
 			success: function(result){
 
 				if(result==1){
-					alert("주문 추가 성공");
-
+					alert("주문 추가 성공"+result);
+					
 				}
 				else if(result==0){
 					alert("빈칸이 있다.");
@@ -767,7 +776,7 @@
 					alert("숫자만 넣어야 하는 곳에 문자열이 입력되었습니다.");
 				}
 				else{
-					alert("데이터베이스 오류가 있다.");
+					alert("데이터베이스 오류가 있다." + result);
 				}
 			},
 			error:function(request,status,error){
@@ -878,7 +887,7 @@
 		var dueDate = $('#testDatepicker').val();
 		var orderPack = $('#orderPack').val();
 		var orderRoundTitle = $('#orderRoundTitle').val();
-		var orderTitle = $('#orderTitle').val();
+		var orderTitle = document.getElementById('orderTitle').value;
 		$.ajax({
 			type:"POST",
 			url:"/OrderUpdateServlet",
@@ -1151,7 +1160,7 @@
 					alert("수정 성공");
  				}
 				else if(result==0){
-					alert("빈칸이 있다.");
+					alert("빈칸이 있다." + result);
 				}
 				else if(result==-10){
 					alert("숫자만 넣어야 하는 곳에 문자열이 입력되었습니다.");
@@ -1202,6 +1211,16 @@
 		var puppyWeight = $('#puppyWeight').val();
 		var puppyActivity = $('#puppyActivity').val();
 		var weightControl = $('#weightControl').val();
+		var foodSpecies = $('#foodSpecies').val();
+
+		if(puppyAge == null || puppyAgeMonth == null || puppyGender == null || puppyNeutralization == null || puppyWeight == null||
+				puppyActivity == null || weightControl == null ||
+				puppyAge == "" || puppyAgeMonth == "" || puppyGender == "" || puppyNeutralization == "" || puppyWeight == ""||
+				puppyActivity == "" || weightControl == ""
+		){
+			alert("계산을 하는데 채워지지 않은 빈칸이 있습니다.");
+			return;
+		}
 		
 		puppyAge = Number(puppyAge);
 		puppyAgeMonth = Number(puppyAgeMonth);
@@ -1213,30 +1232,108 @@
 		if(!Number.isInteger(puppyAgeMonth)){
 			alert("강아지 나이(개월)에는 정수값을 넣어야 합니다.");
 		}
-		if(!Number.isInteger(puppyWeight)){
-			alert("강아지 무게에는 정수값을 넣어야 합니다.");
-		}
 
 		
-		if(puppyAge == null || puppyAgeMonth == null || puppyGender == null || puppyNeutralization == null || puppyWeight == null||
-				puppyActivity == null || weightControl == null ||
-				puppyAge == "" || puppyAgeMonth == "" || puppyGender == "" || puppyNeutralization == "" || puppyWeight == ""||
-				puppyActivity == "" || weightControl == ""
-		){
-			alert("계산을 하는데 채워지지 않은 빈칸이 있습니다.");
-		}
+
 		else{
 			var RER = 70 * Math.pow(puppyWeight, 0.75);
 			var N = 0;
 			
 			if(puppyAge == 0 && (puppyAgeMonth>=1 && puppyAgeMonth<=3)){
 				N = 3;
+				if(puppyNeutralization == 1){
+					N = N * 0.9;
+					if(puppyActivity == 1){
+						N = N * 1.2;
+					}
+					else if(puppyActivity == 2){
+						N = N * 1.1;
+					}
+					else if(puppyActivity == 3){
+						N = N * 0.8;
+					}
+					else if(puppyActivity== 4 || puppyActivity == 5){
+						N = N * 0.7;
+					}
+				}
+				else{
+					if(puppyActivity == 1){
+						N = N * 1.2;
+					}
+					else if(puppyActivity == 2){
+						N = N * 1.1;
+					}
+					else if(puppyActivity == 3){
+						N = N * 0.8;
+					}
+					else if(puppyActivity== 4 || puppyActivity == 5){
+						N = N * 0.7;
+					}
+				}
 			}
 			else if(puppyAge == 0 && (puppyAgeMonth>=4 && puppyAgeMonth<=6)){
 				N = 2.5;
+				if(puppyNeutralization == 1){
+					N = N * 0.9;
+					if(puppyActivity == 1){
+						N = N * 1.2;
+					}
+					else if(puppyActivity == 2){
+						N = N * 1.1;
+					}
+					else if(puppyActivity == 3){
+						N = N * 0.8;
+					}
+					else if(puppyActivity== 4 || puppyActivity == 5){
+						N = N * 0.7;
+					}
+				}
+				else{
+					if(puppyActivity == 1){
+						N = N * 1.2;
+					}
+					else if(puppyActivity == 2){
+						N = N * 1.1;
+					}
+					else if(puppyActivity == 3){
+						N = N * 0.8;
+					}
+					else if(puppyActivity== 4 || puppyActivity == 5){
+						N = N * 0.7;
+					}
+				}
 			}
-			else if(puppyAge == 0 && (puppyAgeMonth>=6 && puppyAgeMonth<=12)){
+			else if(puppyAge == 0 && (puppyAgeMonth>6 && puppyAgeMonth<=12)){
 				N=2;
+				if(puppyNeutralization == 1){
+					N = N * 0.9;
+					if(puppyActivity == 1){
+						N = N * 1.2;
+					}
+					else if(puppyActivity == 2){
+						N = N * 1.1;
+					}
+					else if(puppyActivity == 3){
+						N = N * 0.8;
+					}
+					else if(puppyActivity== 4 || puppyActivity == 5){
+						N = N * 0.7;
+					}
+				}
+				else{
+					if(puppyActivity == 1){
+						N = N * 1.2;
+					}
+					else if(puppyActivity == 2){
+						N = N * 1.1;
+					}
+					else if(puppyActivity == 3){
+						N = N * 0.8;
+					}
+					else if(puppyActivity== 4 || puppyActivity == 5){
+						N = N * 0.7;
+					}
+				}
 			}
 			else if(puppyAge>=1 && puppyAge<8){
 				if(weightControl==1){
@@ -1278,8 +1375,38 @@
 			else if(puppyAge>8){
 				N = 1.1;
 			}
-			
+
 			var recommendedQuantity = RER * N;
+			
+			
+			if(foodSpecies == 1){
+				recommendedQuantity = recommendedQuantity / 129 * 100;
+			}
+			else if(foodSpecies == 2){
+				recommendedQuantity = recommendedQuantity / 124 * 100;
+
+			}
+			else if(foodSpecies == 3){
+				recommendedQuantity = recommendedQuantity / 126 * 100;
+
+			}
+			else if(foodSpecies == 4){
+				recommendedQuantity = recommendedQuantity / 112 * 100;
+
+			}
+			else if(foodSpecies == 5){
+				recommendedQuantity = recommendedQuantity / 136 * 100;
+
+			}
+			else if(foodSpecies == 6){
+				recommendedQuantity = recommendedQuantity / 120 * 100;
+
+			}
+			else if(foodSpecies == 7){
+				recommendedQuantity = recommendedQuantity / 110 * 100;
+
+			}
+			
 			$('#recommendedQuantity').val(Math.floor(recommendedQuantity));
 		}
 		
@@ -1686,7 +1813,7 @@
 							</div>
 							
 							<div style="display:inline-block; width:130px;">
-								<h5 style="display:inline-block;">체중 조절 필요 </h5>
+								<h4 style="display:inline-block;">체중 조절 필요 </h4>
 								<select  class="form-control" id="weightControl" style="display:inline-block;" style="width:60px;">
 									<option value="1">필요</option>
 									<option value="2">필요없음</option>
@@ -1698,8 +1825,19 @@
 													
 							
 							<div class="">
+								<div style="display:inline-block; width:100px;">
+									<select  class="form-control" id="foodSpecies" style="width:100px; display:inline-block;">
+										<option value="1">오리지날</option>
+										<option value="2">퍼피</option>
+										<option value="3">시니어</option>
+										<option value="4">피쉬</option>
+										<option value="5">포크</option>
+										<option value="6">캥거루</option>
+										<option value="7">홀스</option>
+									</select>
+								</div>
 								<div class="" style="display:inline-block;">
-									<input class="form-control" type="text" id="recommendedQuantity" style="height:30px; width:100px; display:inline-block;" placeholder="권장 급여량"><span>kcal</span>
+									<input class="form-control" type="text" id="recommendedQuantity" style="height:30px; width:100px; display:inline-block;" placeholder="권장 급여량"><span>g</span>
 								</div>
 								<div class="" style="display:inline-block;">
 									<button class="btn btn-primary" onclick="calculateQuantity();" style="width:60px; height:30px; display:inline-block;">계산</button>
@@ -1833,8 +1971,8 @@
 									<option value="1">풀팩</option>
 									<option value="2">하프팩</option>
 								</select>
-								<input type="text"id="testDatepicker" style="display:inline-block; width:100px;" placeholder="결제일자">
-								<input type="text" id="orderTitle" style="display:inline-block; width:150px;" class="form-control" placeholder="주문제목ex.)1/2">
+								<input type="text"id="testDatepicker" style="display:inline-block; width:100px;" placeholder="결제일자"></input>
+								<input type="text" id="orderTitle" style="display:inline-block; width:150px;" class="form-control" placeholder="주문제목ex.)1/2" value=""></input>
 							</div>
 							<div class="">
 								<button type="button" id="orderRegisterButton" class="btn btn-default pull-right" onclick="addOrderFunction();">주문 등록</button>

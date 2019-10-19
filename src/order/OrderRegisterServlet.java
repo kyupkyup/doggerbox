@@ -146,80 +146,58 @@ public class OrderRegisterServlet extends HttpServlet {
 		String dueDate = request.getParameter("dueDate");
 
 		String roundTitle = request.getParameter("roundTitle");
-
-		if(CheckType.checkInt(request.getParameter("roundPrimeNum")) == false) {
-			response.getWriter().write("-10");
-		}
-		if(CheckType.checkInt(request.getParameter("userPrimeNum")) == false) {
-			response.getWriter().write("-10");
-		}
-		if(CheckType.checkInt(request.getParameter("puppyPrimeNum")) == false) {
-			response.getWriter().write("-10");
-		}
-		if(CheckType.checkInt(request.getParameter("puppyRecipePrimeNum")) == false) {
-			response.getWriter().write("-10");
-		}
-		if(CheckType.checkInt(request.getParameter("originalRecipePrimeNum")) == false) {
-			response.getWriter().write("-10");
-		}
-		if(CheckType.checkInt(request.getParameter("seniorRecipePrimeNum")) == false) {
-			response.getWriter().write("-10");
-		}
-		if(CheckType.checkInt(request.getParameter("fishRecipePrimeNum")) == false) {
-			response.getWriter().write("-10");
-		}
-		if(CheckType.checkInt(request.getParameter("porkRecipePrimeNum")) == false) {
-			response.getWriter().write("-10");
-		}
-		if(CheckType.checkInt(request.getParameter("kangarooRecipePrimeNum")) == false) {
-			response.getWriter().write("-10");
-		}
-		if(CheckType.checkInt(request.getParameter("horseRecipePrimeNum")) == false) {
-			response.getWriter().write("-10");
-		}
-		if(CheckType.checkInt(request.getParameter("puppyGram")) == false) {
-			response.getWriter().write("-10");
-		}
-		if(CheckType.checkInt(request.getParameter("puppyNum")) == false) {
-			response.getWriter().write("-10");
-		}
-		if(CheckType.checkInt(request.getParameter("originalGram")) == false) {
-			response.getWriter().write("-10");
-		}
-		if(CheckType.checkInt(request.getParameter("originalNum")) == false) {
-			response.getWriter().write("-10");
-		}
-		if(CheckType.checkInt(request.getParameter("seniorGram")) == false) {
-			response.getWriter().write("-10");
-		}
-		if(CheckType.checkInt(request.getParameter("seniorNum")) == false) {
-			response.getWriter().write("-10");
-		}
-		if(CheckType.checkInt(request.getParameter("fishGram")) == false) {
-			response.getWriter().write("-10");
-		}
-		if(CheckType.checkInt(request.getParameter("fishNum")) == false) {
-			response.getWriter().write("-10");
-		}
-		if(CheckType.checkInt(request.getParameter("porkGram")) == false) {
-			response.getWriter().write("-10");
-		}
-		if(CheckType.checkInt(request.getParameter("porkNum")) == false) {
-			response.getWriter().write("-10");
-		}
-		if(CheckType.checkInt(request.getParameter("kangarooGram")) == false) {
-			response.getWriter().write("-10");
-		}
-		if(CheckType.checkInt(request.getParameter("kangarooNum")) == false) {
-			response.getWriter().write("-10");
-		}
-		if(CheckType.checkInt(request.getParameter("horseGram")) == false) {
-			response.getWriter().write("-10");
-		}
-		if(CheckType.checkInt(request.getParameter("horseNum")) == false) {
-			response.getWriter().write("-10");
-		}
+		String orderTitle = request.getParameter("orderTitle");
 		
+		/*
+		 * if(CheckType.checkInt(request.getParameter("roundPrimeNum")) == false) {
+		 * response.getWriter().write("-10"); }
+		 * if(CheckType.checkInt(request.getParameter("userPrimeNum")) == false) {
+		 * response.getWriter().write("-10"); }
+		 * if(CheckType.checkInt(request.getParameter("puppyPrimeNum")) == false) {
+		 * response.getWriter().write("-10"); }
+		 * if(CheckType.checkInt(request.getParameter("puppyRecipePrimeNum")) == false)
+		 * { response.getWriter().write("-10"); }
+		 * if(CheckType.checkInt(request.getParameter("originalRecipePrimeNum")) ==
+		 * false) { response.getWriter().write("-10"); }
+		 * if(CheckType.checkInt(request.getParameter("seniorRecipePrimeNum")) == false)
+		 * { response.getWriter().write("-10"); }
+		 * if(CheckType.checkInt(request.getParameter("fishRecipePrimeNum")) == false) {
+		 * response.getWriter().write("-10"); }
+		 * if(CheckType.checkInt(request.getParameter("porkRecipePrimeNum")) == false) {
+		 * response.getWriter().write("-10"); }
+		 * if(CheckType.checkInt(request.getParameter("kangarooRecipePrimeNum")) ==
+		 * false) { response.getWriter().write("-10"); }
+		 * if(CheckType.checkInt(request.getParameter("horseRecipePrimeNum")) == false)
+		 * { response.getWriter().write("-10"); }
+		 * if(CheckType.checkInt(request.getParameter("puppyGram")) == false) {
+		 * response.getWriter().write("-10"); }
+		 * if(CheckType.checkInt(request.getParameter("puppyNum")) == false) {
+		 * response.getWriter().write("-10"); }
+		 * if(CheckType.checkInt(request.getParameter("originalGram")) == false) {
+		 * response.getWriter().write("-10"); }
+		 * if(CheckType.checkInt(request.getParameter("originalNum")) == false) {
+		 * response.getWriter().write("-10"); }
+		 * if(CheckType.checkInt(request.getParameter("seniorGram")) == false) {
+		 * response.getWriter().write("-10"); }
+		 * if(CheckType.checkInt(request.getParameter("seniorNum")) == false) {
+		 * response.getWriter().write("-10"); }
+		 * if(CheckType.checkInt(request.getParameter("fishGram")) == false) {
+		 * response.getWriter().write("-10"); }
+		 * if(CheckType.checkInt(request.getParameter("fishNum")) == false) {
+		 * response.getWriter().write("-10"); }
+		 * if(CheckType.checkInt(request.getParameter("porkGram")) == false) {
+		 * response.getWriter().write("-10"); }
+		 * if(CheckType.checkInt(request.getParameter("porkNum")) == false) {
+		 * response.getWriter().write("-10"); }
+		 * if(CheckType.checkInt(request.getParameter("kangarooGram")) == false) {
+		 * response.getWriter().write("-10"); }
+		 * if(CheckType.checkInt(request.getParameter("kangarooNum")) == false) {
+		 * response.getWriter().write("-10"); }
+		 * if(CheckType.checkInt(request.getParameter("horseGram")) == false) {
+		 * response.getWriter().write("-10"); }
+		 * if(CheckType.checkInt(request.getParameter("horseNum")) == false) {
+		 * response.getWriter().write("-10"); }
+		 */
 		
 		if(false)
 		{
@@ -229,6 +207,7 @@ public class OrderRegisterServlet extends HttpServlet {
 			orderETC = URLDecoder.decode(orderETC,"UTF-8");
 			roundTitle = URLDecoder.decode(roundTitle,"UTF-8");
 			dueDate = URLDecoder.decode(dueDate,"UTF-8");
+			orderTitle = URLDecoder.decode(orderTitle,"UTF-8");
 
 			response.getWriter().write(new OrderDAO2().orderAdd(
 					 roundPrimeNum,  userPrimeNum,  puppyPrimeNum, 
@@ -249,7 +228,7 @@ public class OrderRegisterServlet extends HttpServlet {
 					 kangarooRecipePrimeNum,
 					 horseRecipePrimeNum ,
 					 totalQuantity, totalPrice, 
-					 orderETC,  orderPack,dueDate, roundTitle)+"");
+					 orderETC,  orderPack,dueDate, roundTitle, orderTitle)+"");
 		}
 
 	}

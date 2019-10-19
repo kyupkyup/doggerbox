@@ -41,7 +41,15 @@
 	<Button class="btn btn-default"onclick="location.href='productRecipeAdmin.jsp?productPrimeNum=7&recipePrimeNum=7'">홀스</Button>
 	<Button class="btn btn-default" onclick="location.href='productRecipeAdmin.jsp?productPrimeNum=8&recipePrimeNum=8'">한끼,치킨</Button>	
 	<Button class="btn btn-default"onclick="location.href='productRecipeAdmin.jsp?productPrimeNum=9&recipePrimeNum=9'">한끼,피쉬</Button>	
-	<Button class="btn btn-default"onclick="location.href='productRecipeAdmin.jsp?productPrimeNum=10&recipePrimeNum=10'">한끼,포크</Button>	
+	<Button class="btn btn-default"onclick="location.href='productRecipeAdmin.jsp?productPrimeNum=10&recipePrimeNum=10'">한끼,포크</Button>
+	<br>
+	<Button class="btn btn-default"onclick="location.href='productRecipeAdmin.jsp?productPrimeNum=10&recipePrimeNum=11'">저단백 기본</Button>	
+	<Button class="btn btn-default"onclick="location.href='productRecipeAdmin.jsp?productPrimeNum=10&recipePrimeNum=12'">저단백 피쉬</Button>	
+	<Button class="btn btn-default"onclick="location.href='productRecipeAdmin.jsp?productPrimeNum=10&recipePrimeNum=13'">저단백 포크</Button>	
+	<Button class="btn btn-default"onclick="location.href='productRecipeAdmin.jsp?productPrimeNum=10&recipePrimeNum=14'">저단백 홀스</Button>	
+	<Button class="btn btn-default"onclick="location.href='productRecipeAdmin.jsp?productPrimeNum=10&recipePrimeNum=15'">저단백 캥거루</Button>	
+	
+		
 		</div>
 	
 		<script src ="https://code.jquery.com/jquery-3.3.1.min.js"></script>

@@ -10,7 +10,7 @@ public class Puppy {
 	String puppyAgeETC;
 	int puppyGender;
 	int puppyNeutralization;
-	int puppyWeight;
+	double puppyWeight;
 	String puppyWeightETC;
 	int puppyActivity;
 	String puppyETC;
@@ -19,6 +19,9 @@ public class Puppy {
 	String paymentDate;
 	int paymentAvailable;
 	int weightControl;
+	int foodSpecies;
+	
+	
 	public int getUserPrimeNum() {
 		return userPrimeNum;
 	}
@@ -61,10 +64,10 @@ public class Puppy {
 	public void setPuppyNeutralization(int puppyNeutralization) {
 		this.puppyNeutralization = puppyNeutralization;
 	}
-	public int getPuppyWeight() {
+	public double getPuppyWeight() {
 		return puppyWeight;
 	}
-	public void setPuppyWeight(int puppyWeight) {
+	public void setPuppyWeight(double puppyWeight) {
 		this.puppyWeight = puppyWeight;
 	}
 	public int getPuppyActivity() {
@@ -127,6 +130,12 @@ public class Puppy {
 	}
 	public void setWeightControl(int weightControl) {
 		this.weightControl = weightControl;
+	}
+	public int getFoodSpecies() {
+		return foodSpecies;
+	}
+	public void setFoodSpecies(int foodSpecies) {
+		this.foodSpecies = foodSpecies;
 	}
 	
 	

@@ -43,7 +43,11 @@
 	<Button class="btn btn-default" onclick="location.href='puppyRecipeAdminBridgeAction.jsp?puppyPrimeNum=<%=puppyPrimeNum%>&productPrimeNum=9&recipePrimeNum=9'">한끼,피쉬</Button>	
 	<Button class="btn btn-default" onclick="location.href='puppyRecipeAdminBridgeAction.jsp?puppyPrimeNum=<%=puppyPrimeNum%>&productPrimeNum=10&recipePrimeNum=10'">한끼,포크</Button>	
 		
-	
+	<Button class="btn btn-default" onclick="location.href='puppyRecipeAdminBridgeAction.jsp?puppyPrimeNum=<%=puppyPrimeNum%>&productPrimeNum=11&recipePrimeNum=11'">저단백 기본</Button>	
+	<Button class="btn btn-default" onclick="location.href='puppyRecipeAdminBridgeAction.jsp?puppyPrimeNum=<%=puppyPrimeNum%>&productPrimeNum=12&recipePrimeNum=12'">저단백 피쉬</Button>	
+	<Button class="btn btn-default" onclick="location.href='puppyRecipeAdminBridgeAction.jsp?puppyPrimeNum=<%=puppyPrimeNum%>&productPrimeNum=13&recipePrimeNum=13'">저단백 포크</Button>	
+	<Button class="btn btn-default" onclick="location.href='puppyRecipeAdminBridgeAction.jsp?puppyPrimeNum=<%=puppyPrimeNum%>&productPrimeNum=14&recipePrimeNum=14'">저단백 홀스</Button>	
+	<Button class="btn btn-default" onclick="location.href='puppyRecipeAdminBridgeAction.jsp?puppyPrimeNum=<%=puppyPrimeNum%>&productPrimeNum=15&recipePrimeNum=15'">저단백 캥거루</Button>	
 	
 		<script src ="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 	

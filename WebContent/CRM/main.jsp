@@ -595,7 +595,7 @@
 								result[i][25].value,result[i][26].value,result[i][27].value,result[i][28].value,result[i][29].value,
 								result[i][30].value,result[i][31].value,result[i][32].value,result[i][33].value,result[i][34].value,
 								result[i][35].value,result[i][36].value,result[i][37].value,result[i][38].value,result[i][39].value,
-								result[i][40].value);	
+								result[i][40].value,result[i][41].value);	
 						
 					}
 				}
@@ -701,9 +701,9 @@
 		var orderETC = $('#orderETC').val();
 		var dueDate = $('#testDatepicker').val();
 		var orderPack = $('#orderPack').val();
-		
 		var roundTitle = $('#orderRoundTitle').val();
 		var ordertitle = $('#orderTitle').val();
+		
 		$.ajax({
 			type:"POST",
 			url:"/OrderRegisterServlet",
@@ -757,7 +757,7 @@
 				else if(result==0){
 					alert("빈칸이 있다.");
 				}
-				else{
+				else if(result==-1){
 					alert("데이터베이스 오류가 있다.");
 				}
 			},

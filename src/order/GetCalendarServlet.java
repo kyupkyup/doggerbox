@@ -49,12 +49,12 @@ public class GetCalendarServlet extends HttpServlet {
 		ArrayList<Order> orderList = orderDAO.getDate(start, end);
 		ArrayList<Puppy> puppyList = puppyDAO2.getPaymentDate(start, end);
 
-		if(orderList.size()==0) return "";
+		if(orderList.size()==0 && puppyList.size()==0) return "";
 		for(int i=0; i<orderList.size(); i++) {
 			int userPrimeNum = orderList.get(i).getUserPrimeNum();
 			int  puppyPrimeNum = orderList.get(i).getPuppyPrimeNum();
 			result.append("[{\"value\":\""+orderList.get(i).getOrderPrimeNum()+"\"},");
-			result.append("{\"value\":\""+userDAO.getUserName(userPrimeNum)+"-"+puppyDAO.getPuppyName(puppyPrimeNum)+"\"},");
+			result.append("{\"value\":\""+userDAO.getUserName(userPrimeNum)+"-"+puppyDAO.getPuppyName(puppyPrimeNum)+"-"+orderList.get(i).getOrderTitle()+"\"},");
 			result.append("{\"value\":\""+ orderList.get(i).getDueDate().substring(0,4)+"-"+orderList.get(i).getDueDate().substring(4,6)+"-"+orderList.get(i).getDueDate().substring(6,8)+"\"},");
 			result.append("{\"value\":\""+orderList.get(i).getDueDateAvailable()+"\"}]");
 			if(i != orderList.size()-1) result.append(",");

@@ -100,7 +100,8 @@
 							result[i][25].value,result[i][26].value, result[i][27].value,
 							result[i][28].value, result[i][29].value,result[i][30].value, result[i][31].value,result[i][32].value, 
 							result[i][33].value,result[i][34].value, result[i][35].value,
-							result[i][36].value,result[i][37].value, result[i][38].value,result[i][39].value,result[i][40].value);
+							result[i][36].value,result[i][37].value, result[i][38].value,result[i][39].value,result[i][40].value,
+							result[i][41].value);
 							
 				}
 			},
@@ -151,12 +152,13 @@
 	,puppyName
 	,userName
 	, roundTitle
+	, orderTitle
 	){
 		$('#roundPrimeNum').val(roundPrimeNum);
 		$('#orderList').append(
 					'<tr>'+
 						'<td class="text-center">'+
-							'<p class="user-link" onclick="" style="" >'+userName+'</p>'+
+							'<p class="user-link" onclick="" style="" >'+userName+orderTitle+'</p>'+
 						'</td>'+
 						'<td class="text-center">'+puppyName+'</td>'+
 						(orderProductPuppyAvailable == 1 ? 

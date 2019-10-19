@@ -78,7 +78,8 @@ public class OrderListServlet extends HttpServlet {
 			result.append("{\"value\":\""+ orderList.get(i).getOrderPack()+"\"},");
 			result.append("{\"value\":\""+ orderList.get(i).getDueDate()+"\"},");
 			result.append("{\"value\":\""+ orderList.get(i).getRoundTitle()+"\"},");
-			result.append("{\"value\":\""+ orderList.get(i).getDueDateAvailable()+"\"}]");
+			result.append("{\"value\":\""+ orderList.get(i).getDueDateAvailable()+"\"},");
+			result.append("{\"value\":\""+ orderList.get(i).getOrderTitle()+"\"}]");
 
 			if(i != orderList.size()-1) result.append(",");
 		}
