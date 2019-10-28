@@ -44,21 +44,39 @@
 
 	<%
 		RecipeListDAO recipeListDAO = new RecipeListDAO();
-		ArrayList<RecipeList> list = recipeListDAO.getList(puppyPrimeNum, productNum);
+		ArrayList<RecipeList> list = recipeListDAO.getList(puppyPrimeNum);
+		ArrayList<RecipeList> listRaw = recipeListDAO.getList();
 		for(int i = 0; i< list.size(); i++){
 	%>
 			<tbody>
+			
 			<tr>
+				<td>처방레시피 - </td>
 				<td><%=list.get(i).getRecipePrimeNum()%></td>
 				<td><%=list.get(i).getProductName()%></td>
 				<td><%=list.get(i).getRecipeDate()%></td>
 				<td><input type="button" onclick="sender1('<%=list.get(i).getRecipePrimeNum()%>','<%=productNum%>')" value="선택"></td>
+			</tr>
 			</tbody>
 		
 	
 	<%
-	
 		}
+		for(int i = 0; i < listRaw.size(); i++){
+			%>
+			<tbody>
+			
+			<tr>
+				<td>기본레시피 - </td>
+				<td><%=listRaw.get(i).getRecipePrimeNum()%></td>
+				<td><%=listRaw.get(i).getProductName()%></td>
+				<td><input type="button" onclick="sender1('<%=listRaw.get(i).getRecipePrimeNum()%>','<%=productNum%>')" value="선택"></td>
+			</tr>
+			</tbody>
+			<%
+		}
+
+		
 	%>
 	<!--  자바스크립트 배우기-->
 

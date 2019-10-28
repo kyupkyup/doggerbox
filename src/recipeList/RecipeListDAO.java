@@ -161,6 +161,42 @@ public class RecipeListDAO {
 		return list; //데이터 반환
 		
 	}	
+	
+	public ArrayList<RecipeList> getList(){
+		String SQL = "SELECT * FROM doggerboxrecipelist where recipeAvailable=0";
+		
+		ArrayList<RecipeList> list = new ArrayList<RecipeList>();
+		
+		
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+
+
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				RecipeList recipeList = new RecipeList();
+
+				recipeList.setRecipePrimeNum(rs.getInt(1));
+				recipeList.setPuppyPrimeNum(rs.getInt(2));
+				recipeList.setProductName(rs.getString(3));
+				recipeList.setRecipeAvailable(rs.getInt(4));
+				recipeList.setProductPrimeNum(rs.getInt(5));
+				recipeList.setRecipeDate(rs.getString(6));
+
+				list.add(recipeList);
+								 
+			}
+			
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+	
+		return list; //데이터 반환
+		
+	}	
 	public int getRecipePrimeNum(int productPrimeNum) {
 		String SQL = "SELECT recipePrimeNum FROM doggerboxrecipelist WHERE productPrimeNum=? and recipeAvailable=0";
 		try {

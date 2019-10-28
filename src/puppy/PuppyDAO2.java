@@ -365,7 +365,7 @@ public class PuppyDAO2 {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String SQL = "delete puppy WHERE puppyPrimeNum = ?";
+		String SQL = "delete from puppy WHERE puppyPrimeNum = ?";
 		try {
 			conn =dataSource.getConnection();
 

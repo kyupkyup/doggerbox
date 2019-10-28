@@ -208,7 +208,8 @@ public class UserDAO {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String SQL = "delete user WHERE userPrimeNum = ?";
+		
+		String SQL = "delete from user WHERE userPrimeNum = ?";
 		try {
 			conn =dataSource.getConnection();
 

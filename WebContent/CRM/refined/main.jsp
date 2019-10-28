@@ -101,9 +101,9 @@
 				'<tbody>' +
 					'<tr>'+
 						'<td>'+
-							'<p class="user-link" onclick="searchPuppy('+userPrimeNum+')" style="" >'+userName+'</p>'+
+							'<p onclick="searchPuppy('+userPrimeNum+')" style="" >'+userPrimeNum+'</p>'+
 						'</td>'+
-						'<td>'+addDate+'</td>'+
+						'<td><p class="user-link" onclick="searchPuppy('+userPrimeNum+')">'+userName+'</p></td>'+
 						'<td class="text-center">'+
 							'<p>'+userPhoneNum + '</p>'+
 						'</td>'+
@@ -565,15 +565,15 @@
 		);
 		$('#originalRecipePrimeNum').next().remove();
 		$('#originalRecipePrimeNum').after(
-				'<input type="button" class="btn btn-primary" value="레시피 선택" onclick="openRecipeSelect('+puppyPrimeNum+',4)">'
+				'<input type="button" class="btn btn-primary" value="레시피 선택" onclick="openRecipeSelect('+puppyPrimeNum+',2)">'
 		);
 		$('#seniorRecipePrimeNum').next().remove();
 		$('#seniorRecipePrimeNum').after(
-				'<input type="button" class="btn btn-primary"value="레시피 선택" onclick="openRecipeSelect('+puppyPrimeNum+',2)">'
+				'<input type="button" class="btn btn-primary"value="레시피 선택" onclick="openRecipeSelect('+puppyPrimeNum+',3)">'
 		);
 		$('#fishRecipePrimeNum').next().remove();
 		$('#fishRecipePrimeNum').after(
-				'<input type="button" class="btn btn-primary" value="레시피 선택" onclick="openRecipeSelect('+puppyPrimeNum+',3)">'
+				'<input type="button" class="btn btn-primary" value="레시피 선택" onclick="openRecipeSelect('+puppyPrimeNum+',4)">'
 		);
 
 		$('#porkRecipePrimeNum').next().remove();
@@ -1803,10 +1803,10 @@
 							<div class="" style="display:inline-block; width:100px;">
 								<h4 style="display:inline-block;">활동성 </h4>
 								<select  class="form-control" id="puppyActivity" style="display:inline-block;" style="width:60px;">
+									<option value="4">게으른편</option>
 									<option value="1">매우 활발</option>
 									<option value="2">활발</option>
 									<option value="3">보통</option>
-									<option value="4">게으른편</option>
 									<option value="5">매우 게으른편</option>
 									
 								</select>
@@ -1815,9 +1815,9 @@
 							<div style="display:inline-block; width:130px;">
 								<h4 style="display:inline-block;">체중 조절 필요 </h4>
 								<select  class="form-control" id="weightControl" style="display:inline-block;" style="width:60px;">
-									<option value="1">필요</option>
 									<option value="2">필요없음</option>
-
+									<option value="1">필요</option>
+									
 									
 								</select>
 							</div> 
