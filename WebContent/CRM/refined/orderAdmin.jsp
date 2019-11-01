@@ -158,64 +158,100 @@
 		$('#orderList').append(
 					'<tr>'+
 						'<td class="text-center">'+
-							'<p class="user-link" onclick="" style="" >'+userName+orderTitle+'</p>'+
+							'<p class="user-link" onclick="" style="" >'+userName+"-"+orderTitle+'</p>'+
 						'</td>'+
 						'<td class="text-center">'+puppyName+'</td>'+
-						(orderProductPuppyAvailable == 1 ? 
+						(orderProductPuppyAvailable != 1 ? 
+								(orderProductPuppyAvailable == 2 ? 
+										'<td class="text-center" style="background-color:green;">'+orderProductPuppyGram +'</td>'+
+										'<td class="text-center" style="background-color:green;">'+orderProductPuppyNum +'</td>'	
+										:							
+										'<td class="text-center">'+orderProductPuppyGram +'</td>'+
+										'<td class="text-center">'+orderProductPuppyNum +'</td>'
+								)
+							:
 							'<td class="text-center" style="background-color:pink;">'+orderProductPuppyGram +'</td>'+
 							'<td class="text-center" style="background-color:pink;">'+orderProductPuppyNum +'</td>'	
-							:
-							'<td class="text-center">'+orderProductPuppyGram +'</td>'+
-							'<td class="text-center">'+orderProductPuppyNum +'</td>'
 						)+
-						(orderProductOriginalAvailable == 1 ? 
-
+						(orderProductOriginalAvailable != 1 ? 
+								(orderProductOriginalAvailable == 2 ? 
+										'<td class="text-center" style="background-color:green;">'+orderProductOriginalGram +'</td>'+
+										'<td class="text-center" style="background-color:green;">'+orderProductOriginalNum +'</td>'	
+										:							
+										'<td class="text-center">'+orderProductOriginalGram +'</td>'+
+										'<td class="text-center">'+orderProductOriginalNum +'</td>'
+								)
+								:
 							'<td class="text-center" style="background-color:pink;">'+orderProductOriginalGram +'</td>'+
 							'<td class="text-center" style="background-color:pink;">'+orderProductOriginalNum +'</td>'
-						:
-						'<td class="text-center">'+orderProductOriginalGram +'</td>'+
-						'<td class="text-center">'+orderProductOriginalNum +'</td>'
-						)+
-						(orderProductSeniorAvailable == 1 ? 
+						
 
+						)+
+						(orderProductSeniorAvailable != 1 ? 
+								(orderProductSeniorAvailable == 2 ? 
+										'<td class="text-center" style="background-color:green;">'+orderProductSeniorGram +'</td>'+
+										'<td class="text-center" style="background-color:green;">'+orderProductSeniorNum +'</td>'	
+										:							
+										'<td class="text-center">'+orderProductSeniorGram +'</td>'+
+										'<td class="text-center">'+orderProductSeniorNum +'</td>'
+								)
+								:
 								'<td class="text-center" style="background-color:pink;">'+orderProductSeniorGram +'</td>'+
 								'<td class="text-center" style="background-color:pink;">'+orderProductSeniorNum +'</td>'
-							:
-							'<td class="text-center">'+orderProductSeniorGram +'</td>'+
-							'<td class="text-center">'+orderProductSeniorNum +'</td>'
+							
 							)+
 						
-						(orderProductFishAvailable == 1 ? 
-					
+						(orderProductFishAvailable != 1 ? 
+								(orderProductFishAvailable == 2 ? 
+										'<td class="text-center" style="background-color:green;">'+orderProductFishGram +'</td>'+
+										'<td class="text-center" style="background-color:green;">'+orderProductFishNum +'</td>'	
+										:							
+										'<td class="text-center">'+orderProductFishGram +'</td>'+
+										'<td class="text-center">'+orderProductFishNum +'</td>'
+								):
 								'<td class="text-center" style="background-color:pink;">'+orderProductFishGram +'</td>'+
 								'<td class="text-center" style="background-color:pink;">'+orderProductFishNum +'</td>'
-						:
-						'<td class="text-center">'+orderProductFishGram +'</td>'+
-						'<td class="text-center">'+orderProductFishNum +'</td>'
-						)+
-						(orderProductPorkAvailable == 1 ? 
+						
 
+						)+
+						(orderProductPorkAvailable != 1 ? 
+								(orderProductPorkAvailable == 2 ? 
+										'<td class="text-center" style="background-color:green;">'+orderProductPorkGram +'</td>'+
+										'<td class="text-center" style="background-color:green;">'+orderProductPorkNum +'</td>'	
+										:							
+										'<td class="text-center">'+orderProductPorkGram +'</td>'+
+										'<td class="text-center">'+orderProductPorkNum +'</td>'
+								):
 								'<td class="text-center" style="background-color:pink;">'+orderProductPorkGram +'</td>'+
 								'<td class="text-center" style="background-color:pink;">'+orderProductPorkNum +'</td>'
-						:
-							'<td class="text-center">'+orderProductPorkGram +'</td>'+
-							'<td class="text-center">'+orderProductPorkNum +'</td>'
-						)+
-						(orderProductKangarooAvailable == 1 ? 
 						
-								'<td class="text-center" style="background-color:pink;">'+orderProductKangarooGram +'</td>'+
-								'<td class="text-center" style="background-color:pink;">'+orderProductKangarooGram +'</td>'
-						:
-							'<td class="text-center">'+orderProductKangarooGram +'</td>'+
-							'<td class="text-center">'+orderProductKangarooNum +'</td>'	
-							)+
-						(orderProductHorseAvailable == 1 ? 
 
+						)+
+						(orderProductKangarooAvailable != 1 ? 
+								(orderProductKangarooAvailable == 2 ? 
+										'<td class="text-center" style="background-color:green;">'+orderProductKangarooGram +'</td>'+
+										'<td class="text-center" style="background-color:green;">'+orderProductKangarooNum +'</td>'	
+										:							
+										'<td class="text-center">'+orderProductKangarooGram +'</td>'+
+										'<td class="text-center">'+orderProductKangarooNum +'</td>'
+								)	:
+								'<td class="text-center" style="background-color:pink;">'+orderProductKangarooGram +'</td>'+
+								'<td class="text-center" style="background-color:pink;">'+orderProductKangarooNum +'</td>'
+					
+	
+							)+
+						(orderProductHorseAvailable != 1 ? 
+								(orderProductHorseAvailable == 2 ? 
+										'<td class="text-center" style="background-color:green;">'+orderProductHorseGram +'</td>'+
+										'<td class="text-center" style="background-color:green;">'+orderProductHorseNum +'</td>'	
+										:							
+										'<td class="text-center">'+orderProductHorseGram +'</td>'+
+										'<td class="text-center">'+orderProductHorseNum +'</td>'
+								)	:
 								'<td class="text-center" style="background-color:pink;">'+orderProductHorseGram +'</td>'+
 								'<td class="text-center" style="background-color:pink;">'+orderProductHorseNum +'</td>'
-						:
-							'<td class="text-center">'+orderProductHorseGram +'</td>'+
-							'<td class="text-center">'+orderProductHorseNum +'</td>'
+					
+
 						)+
 						'<td class="text-center">'+orderTotalQuantity+'</td>'+
 						'<td class="text-center">'+orderTotalPrice+'</td>'+
@@ -315,14 +351,41 @@
 	
 	function calculateTotal(){
 		var roundPrimeNum = $('#roundPrimeNum').val();
-		if(roundPrimeNum == null){
+		if(roundPrimeNum == null|| roundPrimeNum ==""){
 			alert("차수를 선택해주세요.");
 		}
-		location.href="../calculateTotal.jsp?roundPrimeNum="+roundPrimeNum;
+		else{
+			location.href="../calculateTotal.jsp?roundPrimeNum="+roundPrimeNum;
+
+		}
 	}
+	
+	function calculateIngredient(){
+		var roundPrimeNum = $('#roundPrimeNum').val();
+		if(roundPrimeNum == null || roundPrimeNum ==""){
+			alert("차수를 선택해주세요.");
+		}
+		else{
+			location.href="calculateIngredients.jsp?roundPrimeNum="+roundPrimeNum;
+
+		}
+		
+	}
+	
 	function calculateIndividual(orderPrimeNum){
 		location.href="../calculateIndividual.jsp?orderPrimeNum="+orderPrimeNum;
 
+	}
+	
+	function calculateLowProtein(){
+		var roundPrimeNum = $('#roundPrimeNum').val();
+		if(roundPrimeNum == null|| roundPrimeNum ==""){
+			alert("치수를 선택해주세요.");
+		}
+		else{
+			location.href="calculateLowProtein.jsp?roundPrimeNum="+roundPrimeNum;
+
+		}
 	}
 </script>
 <title>도거박스 관리자페이지</title>
@@ -433,7 +496,10 @@
 			
 		</table>
 		<input type="hidden" id="roundPrimeNum">
+		<button onclick="calculateIngredient();" type="button" class="btn btn-primary">재료량 보기</button>
 		<button onclick="calculateTotal();" type="button" class="btn btn-primary">전체 제조량 보기</button>
+		<button onclick="calculateLowProtein();" type="button" class="btn btn-primary">저단백 제조량 보기</button>
+		
 	</div>
 
 </div>

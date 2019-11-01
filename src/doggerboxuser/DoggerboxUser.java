@@ -11,6 +11,7 @@ public class DoggerboxUser {
 	int userTerm;
 	String addDate;
 	String introduceWho;
+	int paymentRoute;
 /*	String profile_image;
 	String thumbnail_image;
 	String userGender;
@@ -78,6 +79,12 @@ public class DoggerboxUser {
 	}
 	public void setIntroduceWho(String introduceWho) {
 		this.introduceWho = introduceWho;
+	}
+	public int getPaymentRoute() {
+		return paymentRoute;
+	}
+	public void setPaymentRoute(int paymentRoute) {
+		this.paymentRoute = paymentRoute;
 	}
 	
 	

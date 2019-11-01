@@ -81,8 +81,8 @@ public class OrderDAO2 {
 				order.setOrderPack(rs.getInt(37));
 				order.setDueDate(rs.getString(38).replaceAll(" ","&nbsp;").replaceAll("\n","<br>;").replaceAll("<","&lt;").replaceAll(">","&gt;"));
 				order.setRoundTitle(rs.getString(39).replaceAll(" ","&nbsp;").replaceAll("\n","<br>;").replaceAll("<","&lt;").replaceAll(">","&gt;"));
-				order.setDueDateAvailable(rs.getInt(39));
-				order.setOrderTitle(rs.getString(39).replaceAll(" ","&nbsp;").replaceAll("\n","<br>;").replaceAll("<","&lt;").replaceAll(">","&gt;"));
+				order.setDueDateAvailable(rs.getInt(40));
+				order.setOrderTitle(rs.getString(41).replaceAll(" ","&nbsp;").replaceAll("\n","<br>;").replaceAll("<","&lt;").replaceAll(">","&gt;"));
 
 				orderList.add(order);
 			}
@@ -157,7 +157,8 @@ public class OrderDAO2 {
 				order.setOrderPack(rs.getInt(37));
 				order.setDueDate(rs.getString(38).replaceAll(" ","&nbsp;").replaceAll("\n","<br>;").replaceAll("<","&lt;").replaceAll(">","&gt;"));
 				order.setRoundTitle(rs.getString(39).replaceAll(" ","&nbsp;").replaceAll("\n","<br>;").replaceAll("<","&lt;").replaceAll(">","&gt;"));
-				order.setOrderTitle(rs.getString(40).replaceAll(" ","&nbsp;").replaceAll("\n","<br>;").replaceAll("<","&lt;").replaceAll(">","&gt;"));
+				order.setDueDateAvailable(rs.getInt(40));
+				order.setOrderTitle(rs.getString(41).replaceAll(" ","&nbsp;").replaceAll("\n","<br>;").replaceAll("<","&lt;").replaceAll(">","&gt;"));
 
 				orderList.add(order);
 			}

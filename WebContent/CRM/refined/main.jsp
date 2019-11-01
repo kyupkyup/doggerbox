@@ -24,7 +24,8 @@
 		var userRoutine = $('#userRoutine').val();
 		var userTerm = $('#userTerm').val();
 		var introduceWho = $('#introduceWho').val();
-		
+		var paymentRoute = $('#paymentRoute').val();
+
 		
 		$.ajax({
 			type:"POST",
@@ -36,8 +37,8 @@
 				userIntroRoute:encodeURIComponent(userIntroRoute),
 				userRoutine:encodeURIComponent(userRoutine),
 				userTerm:encodeURIComponent(userTerm),
-				introduceWho:encodeURIComponent(introduceWho)
-
+				introduceWho:encodeURIComponent(introduceWho), 	
+				paymentRoute:paymentRoute
 			},
 			
 			success: function(result){
@@ -64,6 +65,7 @@
 		$('#userRoutine').val(1);
 		$('#userTerm').val(1);
 		$('#introduceWho').val("");
+		$('#paymentRoute').val("");
 
 	}
 
@@ -86,7 +88,7 @@
 				var parsed = JSON.parse(data);
 				var result = parsed.result;
 				for(var i=0; i<result.length; i++){
-					addUser(result[i][0].value, result[i][1].value,result[i][2].value, result[i][3].value,result[i][4].value, result[i][5].value,result[i][6].value, result[i][7].value, result[i][8].value);
+					addUser(result[i][0].value, result[i][1].value,result[i][2].value, result[i][3].value,result[i][4].value, result[i][5].value,result[i][6].value, result[i][7].value, result[i][8].value, result[i][9].value);
 							
 				}
 			},
@@ -96,7 +98,7 @@
 		});
 	}
 	
-	function addUser(userPrimeNum, userName, userAddress, userPhoneNum, userIntroRoute, userRoutine, userTerm, addDate, introduceWho){
+	function addUser(userPrimeNum, userName, userAddress, userPhoneNum, userIntroRoute, userRoutine, userTerm, addDate, introduceWho, paymentRoute){
 		$('#userList').append('<table class="table user-list">' +
 				'<tbody>' +
 					'<tr>'+
@@ -109,7 +111,7 @@
 						'</td>'+
 						'<td style="width:20%;">'+
 		                    '<a href="#" class="table-link">'+
-						        '<span class="fa-stack" onclick="updateUser('+userPrimeNum+',\''+userName+'\',\''+userAddress+'\',\''+userPhoneNum+'\',\''+userIntroRoute+'\','+userRoutine+','+userTerm+',\''+introduceWho+'\');">'+
+						        '<span class="fa-stack" onclick="updateUser('+userPrimeNum+',\''+userName+'\',\''+userAddress+'\',\''+userPhoneNum+'\',\''+userIntroRoute+'\','+userRoutine+','+userTerm+',\''+introduceWho+'\',\''+paymentRoute+'\');">'+
 						            '<i class="fa fa-square fa-stack-2x"></i>'+
 						            '<i class="fa fa-pencil fa-stack-1x fa-inverse"></i>'+
 						       '</span>'+
@@ -126,7 +128,7 @@
 			'</table>'
 		);
 	}
-	function updateUser(userPrimeNum, userName, userAddress, userPhoneNum, userIntroRoute, userRoutine, userTerm, introduceWho){
+	function updateUser(userPrimeNum, userName, userAddress, userPhoneNum, userIntroRoute, userRoutine, userTerm, introduceWho,paymentRoute){
 		$('#userName').val(userName);
 		$('#userAddress').val(userAddress);
 		$('#userPhoneNum').val(userPhoneNum);
@@ -134,6 +136,8 @@
 		$('#userRoutine').val(userRoutine);
 		$('#userTerm').val(userTerm);
 		$('#introduceWho').val(introduceWho);
+		$('#paymentRoute').val(paymentRoute);
+
 		$('#userUserPrimeNum').val(userPrimeNum);
 		$('#userUpdateButton').show();
 		$('#userRegisterButton').hide();
@@ -147,6 +151,7 @@
 		var userRoutine = $('#userRoutine').val();
 		var introduceWho  = $('#introduceWho').val();
 		var userTerm  = $('#userTerm').val();
+		var paymentRoute  = $('#paymentRoute').val();
 
 		var userPrimeNum = $('#userUserPrimeNum').val();
 		
@@ -160,7 +165,8 @@
 				userPhoneNum:encodeURIComponent(userPhoneNum),
 				userIntroRoute:encodeURIComponent(userIntroRoute),
 				userRoutine:encodeURIComponent(userRoutine),
-				userTerm:encodeURIComponent(userTerm)
+				userTerm:encodeURIComponent(userTerm),
+				paymentRoute:paymentRoute
 			},
 			success: function(result){
 				if(result==1){
@@ -172,6 +178,7 @@
 					$('#userRoutine').val(1);
 					$('#userTerm').val(1);
 					$('#introduceWho').val("");
+					$('#paymentRoute').val("");
 
 					$('#userUpdateButton').hide();
 					$('#userRegisterButton').show();
@@ -1537,7 +1544,7 @@
 			var orderProductHorseAvailable = $('input[name="orderProductHorseAvailable"]:checked').val();
 
 			console.log(orderProductPuppyAvailable);
-				if(orderProductPuppyAvailable==1){
+				if(orderProductPuppyAvailable>=1){
 					totalPrice += (puppyGramValue *puppyNumValue) * 40000 / 1000;
 					console.log(totalPrice);
 				}
@@ -1546,7 +1553,7 @@
 					console.log(totalPrice);
 
 				}
-				if(orderProductOriginalAvailable==1){
+				if(orderProductOriginalAvailable>=1){
 					totalPrice += (originalGramValue *originalNumValue) * 40000 / 1000;
 					console.log(totalPrice);
 
@@ -1556,7 +1563,7 @@
 					console.log(totalPrice);
 
 				}
-				if(orderProductSeniorAvailable==1){
+				if(orderProductSeniorAvailable>=1){
 					totalPrice += (seniorGramValue *seniorNumValue) * 40000 / 1000;
 					console.log(totalPrice);
 
@@ -1566,7 +1573,7 @@
 					console.log(totalPrice);
 
 				}
-				if(orderProductFishAvailable==1){
+				if(orderProductFishAvailable>=1){
 					totalPrice += (fishGramValue *fishNumValue)  * 40000 / 1000;
 					console.log(totalPrice);
 
@@ -1576,7 +1583,7 @@
 					console.log(totalPrice);
 
 				}
-				if(orderProductPorkAvailable==1){
+				if(orderProductPorkAvailable>=1){
 					totalPrice += (porkGramValue *porkNumValue) * 40000 / 1000;
 					console.log(porkGramValue + ","+porkNumValue);
 
@@ -1586,7 +1593,7 @@
 					console.log(porkGramValue + ","+porkNumValue);
 
 				}
-				if(orderProductKangarooAvailable==1){
+				if(orderProductKangarooAvailable>=1){
 					totalPrice += (kangarooGramValue *kangarooNumValue)  * 40000 / 1000;
 					console.log(totalPrice);
 
@@ -1596,7 +1603,7 @@
 					console.log(totalPrice);
 
 				}
-				if(orderProductHorseAvailable==1){
+				if(orderProductHorseAvailable>=1){
 					totalPrice +=(horseGramValue *horseNumValue)  * 40000 / 1000;
 					console.log(totalPrice);
 
@@ -1705,7 +1712,14 @@
 								<h4 style="display:inline-block;">소개자 이름</h4>
 								<input class="form-control" type="text" value="없음" id="introduceWho" style="display:inline-block;">
 							</div>
-
+							<div style="display:inline-block; width:100px;">
+								<h4 style="display:inline-block;">결제 경로</h4>
+								<select  class="form-control" id="paymentRoute" style="display:inline-block;">
+									<option value="1">카카오</option>
+									<option value="2">스마트 스토어</option>
+									<option value="3">기타</option>
+								</select>								
+							</div>
 						</div>
 						<div class="">
 							<div class="" style="display:inline-block;">
@@ -1884,18 +1898,18 @@
 						</div>
 						<div class="">
 							<div id="orderProductPuppyRecipe">
-								<input type="number" class="form-control" step="1" placeholder="퍼피(gram)" name="orderProductPuppyGram" maxlength="50" id="puGram" style="display:inline-block; width:100px;"></input>
-								<input type="number" class="form-control" step="1" placeholder="퍼피(개수)" name="orderProductPuppyNum" maxlength="50" id="puNum" style="display:inline-block; width:100px;"></input>
-								<input type="radio" name="orderProductPuppyAvailable" value=1 />처방<input type="radio" name="orderProductPuppyAvailable" value=0 Checked />비처방
+								<input type="number" class="form-control" step="1" placeholder="퍼피(gram)" name="orderProductPuppyGram" maxlength="50" id="puGram" style="display:inline-block; width:80px;"></input>
+								<input type="number" class="form-control" step="1" placeholder="퍼피(개수)" name="orderProductPuppyNum" maxlength="50" id="puNum" style="display:inline-block; width:80px;"></input>
+								<input type="radio" name="orderProductPuppyAvailable" value=1 />처방<input type="radio" name="orderProductPuppyAvailable" value=0 Checked />비처방<input type="radio" name="orderProductPuppyAvailable" value=2  />저단백
 								<input type="hidden" name="orderProductPuppyRecipePrimeNum" id="puppyRecipePrimeNum" value=0 />
 							</div>
 						</div>
 						<div class="" >
 					
 							<div id="orderProductOriginalRecipe">
-								<input type="number" class="form-control" step="1" placeholder="오리지널(gram)" name="orderProductOriginalGram" maxlength="50" id="oGram" style="display:inline-block; width:100px;"></input>
-								<input type="number" class="form-control" step="1" placeholder="오리지널(개수)" name="orderProductOriginalNum" maxlength="50" id="oNum"  style="display:inline-block; width:100px;"></input>
-								<input type="radio" name="orderProductOriginalAvailable" value=1 />처방<input type="radio" name="orderProductOriginalAvailable" value=0 Checked />비처방
+								<input type="number" class="form-control" step="1" placeholder="오리지널(gram)" name="orderProductOriginalGram" maxlength="50" id="oGram" style="display:inline-block; width:80px;"></input>
+								<input type="number" class="form-control" step="1" placeholder="오리지널(개수)" name="orderProductOriginalNum" maxlength="50" id="oNum"  style="display:inline-block; width:80px;"></input>
+								<input type="radio" name="orderProductOriginalAvailable" value=1 />처방<input type="radio" name="orderProductOriginalAvailable" value=0 Checked />비처방<input type="radio" name="orderProductOriginalAvailable" value=2  />저단백
 								<input type="hidden" name="orderProductOriginalRecipePrimeNum" id="originalRecipePrimeNum" value=0 />
 							
 							</div>
@@ -1903,9 +1917,9 @@
 						<div class="">
 						
 							<div id="orderProductSeniorRecipe">
-								<input type="number" class="form-control" step="1" placeholder="시니어(gram)" name="orderProductSeniorGram" maxlength="50" id="sGram"  style="display:inline-block; width:100px;"></input>
-								<input type="number"  class="form-control" step="1" placeholder="시니어(개수)" name="orderProductSeniorNum" maxlength="50" id="sNum"  style="display:inline-block; width:100px;"></input>
-								<input type="radio" name="orderProductSeniorAvailable" value=1 />처방<input type="radio" name="orderProductSeniorAvailable" value=0 Checked />비처방
+								<input type="number" class="form-control" step="1" placeholder="시니어(gram)" name="orderProductSeniorGram" maxlength="50" id="sGram"  style="display:inline-block; width:80px;"></input>
+								<input type="number"  class="form-control" step="1" placeholder="시니어(개수)" name="orderProductSeniorNum" maxlength="50" id="sNum"  style="display:inline-block; width:80px;"></input>
+								<input type="radio" name="orderProductSeniorAvailable" value=1 />처방<input type="radio" name="orderProductSeniorAvailable" value=0 Checked />비처방<input type="radio" name="orderProductSeniorAvailable" value=2  />저단백
 								<input type="hidden" name="orderProductSeniorRecipePrimeNum" id="seniorRecipePrimeNum" value=0 />
 							
 							</div>
@@ -1913,9 +1927,9 @@
 						<div class="">
 
 							<div id="orderProductFishRecipe">
-								<input type="number" class="form-control" step="1" placeholder="피쉬(gram)" name="orderProductFishGram" maxlength="50" id="fGram" style="display:inline-block; width:100px;"></input>
-								<input type="number" class="form-control" step="1" placeholder="피쉬(개수)" name="orderProductFishNum" maxlength="50" id="fNum"  style="display:inline-block; width:100px;"></input>
-								<input type="radio" name="orderProductFishAvailable" value=1 />처방<input type="radio" name="orderProductFishAvailable" value=0 Checked />비처방
+								<input type="number" class="form-control" step="1" placeholder="피쉬(gram)" name="orderProductFishGram" maxlength="50" id="fGram" style="display:inline-block; width:80px;"></input>
+								<input type="number" class="form-control" step="1" placeholder="피쉬(개수)" name="orderProductFishNum" maxlength="50" id="fNum"  style="display:inline-block; width:80px;"></input>
+								<input type="radio" name="orderProductFishAvailable" value=1 />처방<input type="radio" name="orderProductFishAvailable" value=0 Checked />비처방<input type="radio" name="orderProductFishAvailable" value=2  />저단백
 								<input type="hidden" name="orderProductFishRecipePrimeNum" id="fishRecipePrimeNum" value=0 />
 							
 							</div>
@@ -1923,9 +1937,9 @@
 						<div class="">
 
 							<div id="orderProductPorkRecipe">
-								<input type="number"  class="form-control" step="1"  placeholder="포크(gram)" name="orderProductPorkGram" maxlength="50" id="pGram" style="display:inline-block; width:100px;"></input>
-								<input type="number" class="form-control" step="1" placeholder="포크(개수)" name="orderProductPorkNum" maxlength="50" id="pNum"  style="display:inline-block; width:100px;"></input>
-								<input type="radio" name="orderProductPorkAvailable" value=1 />처방<input type="radio" name="orderProductPorkAvailable" value=0 Checked />비처방
+								<input type="number"  class="form-control" step="1"  placeholder="포크(gram)" name="orderProductPorkGram" maxlength="50" id="pGram" style="display:inline-block; width:80px;"></input>
+								<input type="number" class="form-control" step="1" placeholder="포크(개수)" name="orderProductPorkNum" maxlength="50" id="pNum"  style="display:inline-block; width:80px;"></input>
+								<input type="radio" name="orderProductPorkAvailable" value=1 />처방<input type="radio" name="orderProductPorkAvailable" value=0 Checked />비처방<input type="radio" name="orderProductPorkAvailable" value=2  />저단백
 								<input type="hidden" name="orderProductPorkRecipePrimeNum" id="porkRecipePrimeNum" value=0 />
 							
 							</div>
@@ -1933,9 +1947,9 @@
 						<div class="">
 
 							<div id="orderProductKangarooRecipe">
-								<input type="number" class="form-control"step="1"  placeholder="캥거루(gram)" name="orderProductKangarooGram" maxlength="50" id="kGram" style="display:inline-block; width:100px;"></input>
-								<input type="number"  class="form-control"step="1"  placeholder="캥거루(개수)" name="orderProductKangarooNum" maxlength="50" id="kNum" style="display:inline-block; width:100px;"></input>
-								<input type="radio" name="orderProductKangarooAvailable" value=1 />처방<input type="radio" name="orderProductKangarooAvailable" value=0 Checked />비처방
+								<input type="number" class="form-control"step="1"  placeholder="캥거루(gram)" name="orderProductKangarooGram" maxlength="50" id="kGram" style="display:inline-block; width:80px;"></input>
+								<input type="number"  class="form-control"step="1"  placeholder="캥거루(개수)" name="orderProductKangarooNum" maxlength="50" id="kNum" style="display:inline-block; width:80px;"></input>
+								<input type="radio" name="orderProductKangarooAvailable" value=1 />처방<input type="radio" name="orderProductKangarooAvailable" value=0 Checked />비처방<input type="radio" name="orderProductKangarooAvailable" value=2  />저단백
 								<input type="hidden" name="orderProductKangarooRecipePrimeNum" id="kangarooRecipePrimeNum" value=0 />
 							
 							</div>
@@ -1943,9 +1957,9 @@
 						<div class="">
 
 							<div id="orderProductHorseRecipe">
-								<input type="number"  class="form-control" step="1" placeholder="홀스(gram)" name="orderProductHorseGram" maxlength="50" id="hGram" style="display:inline-block; width:100px;"></input>
-								<input type="number"  class="form-control" step="1" placeholder="홀스(개수)" name="orderProductHorseNum" maxlength="50" id="hNum"  style="display:inline-block; width:100px;"></input>
-								<input type="radio" name="orderProductHorseAvailable" value=1 />처방<input type="radio" name="orderProductHorseAvailable" value=0 Checked />비처방
+								<input type="number"  class="form-control" step="1" placeholder="홀스(gram)" name="orderProductHorseGram" maxlength="50" id="hGram" style="display:inline-block; width:80px;"></input>
+								<input type="number"  class="form-control" step="1" placeholder="홀스(개수)" name="orderProductHorseNum" maxlength="50" id="hNum"  style="display:inline-block; width:80px;"></input>
+								<input type="radio" name="orderProductHorseAvailable" value=1 />처방<input type="radio" name="orderProductHorseAvailable" value=0 Checked />비처방<input type="radio" name="orderProductHorseAvailable" value=2  />저단백
 								<input type="hidden" name="orderProductHorseRecipePrimeNum" id="horseRecipePrimeNum" value=0 ></input>
 							
 							</div>

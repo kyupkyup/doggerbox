@@ -28,13 +28,13 @@ public class UserDAO {
 	}
 
 	public int userAdd( String userName, String userAddress, String userPhoneNum,
-			String userIntroRoute, int userRoutine, int userTerm, String introduceWho) {
+			String userIntroRoute, int userRoutine, int userTerm, String introduceWho, int paymentRoute) {
 		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-	String SQL = "INSERT INTO user VALUES(NULL,?,?,?,?,?,?,?,NOW(),?)";
+	String SQL = "INSERT INTO user VALUES(NULL,?,?,?,?,?,?,?,NOW(),?,?)";
 	try {
 		conn =dataSource.getConnection();
 		pstmt = conn.prepareStatement(SQL);
@@ -46,6 +46,7 @@ public class UserDAO {
 		pstmt.setInt(6,userRoutine);
 		pstmt.setInt(7,userTerm);
 		pstmt.setString(8,introduceWho);
+		pstmt.setInt(9,paymentRoute);
 
 		int r = 0;
 		r = pstmt.executeUpdate();
@@ -101,6 +102,7 @@ public class UserDAO {
 				user.setUserTerm(rs.getInt("userTerm"));
 				user.setAddDate(rs.getString("addDate").substring(0,10));
 				user.setIntroduceWho(rs.getString("introduceWho").replaceAll(" ","&nbsp;").replaceAll("\n","<br>;").replaceAll("<","&lt;").replaceAll(">","&gt;"));
+				user.setPaymentRoute(rs.getInt("paymentRoute"));
 
 				userList.add(user);
 			}
@@ -145,6 +147,7 @@ public class UserDAO {
 				user.setUserTerm(rs.getInt("userTerm"));
 				user.setAddDate(rs.getString("addDate").substring(0,10));
 				user.setUserIntroRoute(rs.getString("introduceWho").replaceAll(" ","&nbsp;").replaceAll("\n","<br>;").replaceAll("<","&lt;").replaceAll(">","&gt;"));
+				user.setPaymentRoute(rs.getInt("paymentRoute"));
 
 			}
 		}
@@ -165,12 +168,12 @@ public class UserDAO {
 		return user;
 	}
 	public int userUpdate( String userName, String userAddress, String userPhoneNum,
-			String userIntroRoute, int userRoutine, int userTerm, String introduceWho, int userPrimeNum) {
+			String userIntroRoute, int userRoutine, int userTerm, String introduceWho, int paymentRoute, int userPrimeNum) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 	String SQL = "update user set userName=?, userAddress=?, userPhoneNum=?, userIntroRoute=?,"
-			+ "userRoutine=?, userTerm=?, introduceWho=? where userPrimeNum=?";
+			+ "userRoutine=?, userTerm=?, introduceWho=?, paymentRoute=? where userPrimeNum=?";
 	try {
 		conn =dataSource.getConnection();
 		pstmt = conn.prepareStatement(SQL);
@@ -182,6 +185,7 @@ public class UserDAO {
 		pstmt.setInt(6,userTerm);
 		pstmt.setInt(7,userPrimeNum);
 		pstmt.setString(8,introduceWho);
+		pstmt.setInt(9,paymentRoute);
 
 
 		

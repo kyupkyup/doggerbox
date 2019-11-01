@@ -26,7 +26,8 @@ public class UserUpdateServlet extends HttpServlet {
 		int userRoutine = Integer.parseInt(request.getParameter("userRoutine"));
 		int userTerm = Integer.parseInt(request.getParameter("userTerm"));
 		String introduceWho = request.getParameter("introduceWho");
-	
+		int paymentRoute = Integer.parseInt(request.getParameter("paymentRoute"));
+
 		
 		if(userName == null ||userAddress == null ||userPhoneNum == null ||
 				userIntroRoute == null 
@@ -40,7 +41,7 @@ public class UserUpdateServlet extends HttpServlet {
 			userAddress=URLDecoder.decode(userAddress, "UTF-8");
 			userPhoneNum=URLDecoder.decode(userAddress, "UTF-8");
 			userIntroRoute=URLDecoder.decode(userAddress, "UTF-8");
-			response.getWriter().write(new UserDAO().userUpdate(userName, userAddress, userPhoneNum, userIntroRoute, userRoutine, userTerm, introduceWho, userPrimeNum)+"");
+			response.getWriter().write(new UserDAO().userUpdate(userName, userAddress, userPhoneNum, userIntroRoute, userRoutine, userTerm, introduceWho,paymentRoute, userPrimeNum)+"");
 		}
 
 	}

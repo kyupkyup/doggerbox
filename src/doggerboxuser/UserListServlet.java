@@ -52,7 +52,8 @@ public class UserListServlet extends HttpServlet {
 			result.append("{\"value\":\""+ userList.get(i).getUserRoutine()+"\"},");
 			result.append("{\"value\":\""+ userList.get(i).getUserTerm()+"\"},");
 			result.append("{\"value\":\""+ userList.get(i).getAddDate()+"\"},");
-			result.append("{\"value\":\""+ userList.get(i).getIntroduceWho()+"\"}]");
+			result.append("{\"value\":\""+ userList.get(i).getIntroduceWho()+"\"},");
+			result.append("{\"value\":\""+ userList.get(i).getPaymentRoute()+"\"}]");
 			if(i != userList.size()-1) result.append(",");
 		}
 		result.append("]}");
