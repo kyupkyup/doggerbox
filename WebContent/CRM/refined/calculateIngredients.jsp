@@ -215,6 +215,9 @@
 			for(int i=0; i<ingredientList.size(); i++){
 				sumPrice+=(ingredientList.get(i).getIngredientPrice() * ((ingredientList.get(i).getSum()/1000) / ingredientList.get(i).getLossRate()));
 				sum += ingredientList.get(i).getSum()/1000;
+				if(ingredientList.get(i) != null){
+					
+				
 				%>
 				<tr>
 					<td><%=ingredientList.get(i).getRawIngredient()%></td>
@@ -224,6 +227,7 @@
 					<td><%=Math.round((ingredientList.get(i).getIngredientPrice() * ((ingredientList.get(i).getSum()/1000.0) / ingredientList.get(i).getLossRate()))*100)/100.0%>원</td>
 				</tr>
 				<%
+				}
 			}
 			%>
 				<tr>

@@ -162,6 +162,8 @@
 					for(int j=0; j<Ilist.size(); j++){
 						int ingredientPrimeNum = Ilist.get(j).getIngredientPrimeNum();
 						Ingredient ingredient = ingredientDAO.getIngredient(ingredientPrimeNum);
+						if(ingredient!=null){
+							
 						%>
 						<tr>
 							<td><%=ingredient.getRawIngredient()%></td>
@@ -171,6 +173,7 @@
 							<td><%=Math.round((ingredient.getIngredientPrice() * ((sum*Ilist.get(j).getMixRate()/1000.0) / ingredient.getLossRate())*100)/100.0)%>원</td>
 						</tr>
 						<%
+						}
 					}
 			%>
 

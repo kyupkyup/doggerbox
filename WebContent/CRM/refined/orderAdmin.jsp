@@ -373,7 +373,7 @@
 	}
 	
 	function calculateIndividual(orderPrimeNum){
-		location.href="../calculateIndividual.jsp?orderPrimeNum="+orderPrimeNum;
+		location.href="calculateIndividual.jsp?orderPrimeNum="+orderPrimeNum;
 
 	}
 	

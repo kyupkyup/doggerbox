@@ -97,6 +97,9 @@
 			for(int i=0; i<Ilist.size(); i++){
 				int ingredientPrimeNum = Ilist.get(i).getIngredientPrimeNum();
 				Ingredient ingredient = ingredientDAO.getIngredient(ingredientPrimeNum);
+				if(ingredient!=null){
+					
+				
 				%>
 						<tr>
 							<td><%=ingredient.getRawIngredient()%></td>
@@ -106,6 +109,7 @@
 							<td><%=Math.round((ingredient.getIngredientPrice() * ((sum*Ilist.get(i).getMixRate()/1000.0) / ingredient.getLossRate())*100)/100.0)%>원</td>
 						</tr>
 						<%
+						}
 					}
 			%>
 
@@ -145,6 +149,8 @@
 					for(int i=0; i<Ilist.size(); i++){
 						int ingredientPrimeNum = Ilist.get(i).getIngredientPrimeNum();
 						Ingredient ingredient = ingredientDAO.getIngredient(ingredientPrimeNum);
+						if(ingredient!=null){
+							
 						%>
 						<tr>
 							<td><%=ingredient.getRawIngredient()%></td>
@@ -154,6 +160,7 @@
 							<td><%=Math.round((ingredient.getIngredientPrice() * ((sum*Ilist.get(i).getMixRate()/1000.0) / ingredient.getLossRate())*100)/100.0)%>원</td>
 						</tr>
 						<%
+						}
 					}
 			%>
 
@@ -197,6 +204,8 @@
 					for(int i=0; i<Ilist.size(); i++){
 						int ingredientPrimeNum = Ilist.get(i).getIngredientPrimeNum();
 						Ingredient ingredient = ingredientDAO.getIngredient(ingredientPrimeNum);
+						if(ingredient!=null){
+							
 						%>
 						<tr>
 							<td><%=ingredient.getRawIngredient()%></td>
@@ -206,6 +215,7 @@
 							<td><%=Math.round((ingredient.getIngredientPrice() * ((sum*Ilist.get(i).getMixRate()/1000.0) / ingredient.getLossRate())*100)/100.0)%>원</td>
 						</tr>
 						<%
+						}
 					}
 			%>
 
@@ -249,6 +259,8 @@
 					for(int i=0; i<Ilist.size(); i++){
 						int ingredientPrimeNum = Ilist.get(i).getIngredientPrimeNum();
 						Ingredient ingredient = ingredientDAO.getIngredient(ingredientPrimeNum);
+						if(ingredient!=null){
+							
 						%>
 						<tr>
 							<td><%=ingredient.getRawIngredient()%></td>
@@ -258,6 +270,7 @@
 							<td><%=Math.round((ingredient.getIngredientPrice() * ((sum*Ilist.get(i).getMixRate()/1000.0) / ingredient.getLossRate())*100)/100.0)%>원</td>
 						</tr>
 						<%
+						}
 					}
 			%>
 
@@ -301,6 +314,8 @@
 					for(int i=0; i<Ilist.size(); i++){
 						int ingredientPrimeNum = Ilist.get(i).getIngredientPrimeNum();
 						Ingredient ingredient = ingredientDAO.getIngredient(ingredientPrimeNum);
+						if(ingredient!=null){
+							
 						%>
 						<tr>
 							<td><%=ingredient.getRawIngredient()%></td>
@@ -310,6 +325,7 @@
 							<td><%=Math.round((ingredient.getIngredientPrice() * ((sum*Ilist.get(i).getMixRate()/1000.0) / ingredient.getLossRate())*100)/100.0)%>원</td>
 						</tr>
 						<%
+						}
 					}
 			%>
 
@@ -353,6 +369,8 @@
 					for(int i=0; i<Ilist.size(); i++){
 						int ingredientPrimeNum = Ilist.get(i).getIngredientPrimeNum();
 						Ingredient ingredient = ingredientDAO.getIngredient(ingredientPrimeNum);
+						if(ingredient!=null){
+							
 						%>
 						<tr>
 							<td><%=ingredient.getRawIngredient()%></td>
@@ -362,6 +380,7 @@
 							<td><%=Math.round((ingredient.getIngredientPrice() * ((sum*Ilist.get(i).getMixRate()/1000.0) / ingredient.getLossRate())*100)/100.0)%>원</td>
 						</tr>
 						<%
+						}
 					}
 			%>
 
@@ -405,6 +424,8 @@
 					for(int i=0; i<Ilist.size(); i++){
 						int ingredientPrimeNum = Ilist.get(i).getIngredientPrimeNum();
 						Ingredient ingredient = ingredientDAO.getIngredient(ingredientPrimeNum);
+						if(ingredient!=null){
+							
 						%>
 						<tr>
 							<td><%=ingredient.getRawIngredient()%></td>
@@ -414,6 +435,7 @@
 							<td><%=Math.round((ingredient.getIngredientPrice() * ((sum*Ilist.get(i).getMixRate()/1000.0) / ingredient.getLossRate())*100)/100.0)%>원</td>
 						</tr>
 						<%
+						}
 					}
 			%>
 

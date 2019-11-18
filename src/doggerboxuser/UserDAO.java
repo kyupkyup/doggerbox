@@ -28,13 +28,13 @@ public class UserDAO {
 	}
 
 	public int userAdd( String userName, String userAddress, String userPhoneNum,
-			String userIntroRoute, int userRoutine, int userTerm, String introduceWho, int paymentRoute) {
+			String userIntroRoute, int userRoutine, int userTerm, String introduceWho, int paymentRoute, String userPhoneNum2, String requests) {
 		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-	String SQL = "INSERT INTO user VALUES(NULL,?,?,?,?,?,?,?,NOW(),?,?)";
+	String SQL = "INSERT INTO user VALUES(NULL,?,?,?,?,?,?,?,NOW(),?,?,?,?)";
 	try {
 		conn =dataSource.getConnection();
 		pstmt = conn.prepareStatement(SQL);
@@ -47,6 +47,8 @@ public class UserDAO {
 		pstmt.setInt(7,userTerm);
 		pstmt.setString(8,introduceWho);
 		pstmt.setInt(9,paymentRoute);
+		pstmt.setString(10,userPhoneNum2);
+		pstmt.setString(11,requests);
 
 		int r = 0;
 		r = pstmt.executeUpdate();
@@ -103,6 +105,8 @@ public class UserDAO {
 				user.setAddDate(rs.getString("addDate").substring(0,10));
 				user.setIntroduceWho(rs.getString("introduceWho").replaceAll(" ","&nbsp;").replaceAll("\n","<br>;").replaceAll("<","&lt;").replaceAll(">","&gt;"));
 				user.setPaymentRoute(rs.getInt("paymentRoute"));
+				user.setUserPhoneNum2(rs.getString("userPhoneNum2").replaceAll(" ","&nbsp;").replaceAll("\n","<br>;").replaceAll("<","&lt;").replaceAll(">","&gt;"));
+				user.setRequests(rs.getString("requests").replaceAll(" ","&nbsp;").replaceAll("\n","<br>;").replaceAll("<","&lt;").replaceAll(">","&gt;"));
 
 				userList.add(user);
 			}
@@ -148,6 +152,8 @@ public class UserDAO {
 				user.setAddDate(rs.getString("addDate").substring(0,10));
 				user.setUserIntroRoute(rs.getString("introduceWho").replaceAll(" ","&nbsp;").replaceAll("\n","<br>;").replaceAll("<","&lt;").replaceAll(">","&gt;"));
 				user.setPaymentRoute(rs.getInt("paymentRoute"));
+				user.setUserPhoneNum2(rs.getString("userPhoneNum2").replaceAll(" ","&nbsp;").replaceAll("\n","<br>;").replaceAll("<","&lt;").replaceAll(">","&gt;"));
+				user.setRequests(rs.getString("requests").replaceAll(" ","&nbsp;").replaceAll("\n","<br>;").replaceAll("<","&lt;").replaceAll(">","&gt;"));
 
 			}
 		}
@@ -168,12 +174,12 @@ public class UserDAO {
 		return user;
 	}
 	public int userUpdate( String userName, String userAddress, String userPhoneNum,
-			String userIntroRoute, int userRoutine, int userTerm, String introduceWho, int paymentRoute, int userPrimeNum) {
+			String userIntroRoute, int userRoutine, int userTerm, String introduceWho, int paymentRoute, String userPhoneNum2, String requests, int userPrimeNum) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 	String SQL = "update user set userName=?, userAddress=?, userPhoneNum=?, userIntroRoute=?,"
-			+ "userRoutine=?, userTerm=?, introduceWho=?, paymentRoute=? where userPrimeNum=?";
+			+ "userRoutine=?, userTerm=?, introduceWho=?, paymentRoute=?, userPhoneNum2=? where userPrimeNum=?";
 	try {
 		conn =dataSource.getConnection();
 		pstmt = conn.prepareStatement(SQL);
@@ -183,9 +189,11 @@ public class UserDAO {
 		pstmt.setString(4, userIntroRoute);
 		pstmt.setInt(5,userRoutine);
 		pstmt.setInt(6,userTerm);
-		pstmt.setInt(7,userPrimeNum);
-		pstmt.setString(8,introduceWho);
-		pstmt.setInt(9,paymentRoute);
+		pstmt.setString(7,introduceWho);
+		pstmt.setInt(8,paymentRoute);
+		pstmt.setString(9,userPhoneNum2);
+		pstmt.setInt(10,userPrimeNum);
+		pstmt.setString(11,requests);
 
 
 		

@@ -20,11 +20,13 @@
 		var userName = $('#userName').val();
 		var userAddress = $('#userAddress').val();
 		var userPhoneNum = $('#userPhoneNum').val();
+		var userPhoneNum2 = $('#userPhoneNum2').val();
 		var userIntroRoute = $('#userIntroRoute').val();
 		var userRoutine = $('#userRoutine').val();
 		var userTerm = $('#userTerm').val();
 		var introduceWho = $('#introduceWho').val();
 		var paymentRoute = $('#paymentRoute').val();
+		var paymentRoute = $('#requests').val();
 
 		
 		$.ajax({
@@ -34,11 +36,13 @@
 				userName:encodeURIComponent(userName),
 				userAddress:encodeURIComponent(userAddress),
 				userPhoneNum:encodeURIComponent(userPhoneNum),
+				userPhoneNum2:encodeURIComponent(userPhoneNum2),
 				userIntroRoute:encodeURIComponent(userIntroRoute),
 				userRoutine:encodeURIComponent(userRoutine),
 				userTerm:encodeURIComponent(userTerm),
 				introduceWho:encodeURIComponent(introduceWho), 	
-				paymentRoute:paymentRoute
+				paymentRoute:paymentRoute,
+				requests:encodeURIComponent(requests)
 			},
 			
 			success: function(result){
@@ -61,11 +65,14 @@
 		$('#userName').val("");
 		$('#userAddress').val("");
 		$('#userPhoneNum').val("");
+		$('#userPhoneNum2').val("");
+
 		$('#userIntroRoute').val("");
 		$('#userRoutine').val(1);
 		$('#userTerm').val(1);
 		$('#introduceWho').val("");
 		$('#paymentRoute').val("");
+		$('#requests').val("");
 
 	}
 
@@ -88,7 +95,7 @@
 				var parsed = JSON.parse(data);
 				var result = parsed.result;
 				for(var i=0; i<result.length; i++){
-					addUser(result[i][0].value, result[i][1].value,result[i][2].value, result[i][3].value,result[i][4].value, result[i][5].value,result[i][6].value, result[i][7].value, result[i][8].value, result[i][9].value);
+					addUser(result[i][0].value, result[i][1].value,result[i][2].value, result[i][3].value,result[i][4].value, result[i][5].value,result[i][6].value, result[i][7].value, result[i][8].value, result[i][9].value, result[i][10].value, result[i][11].value);
 							
 				}
 			},
@@ -98,7 +105,7 @@
 		});
 	}
 	
-	function addUser(userPrimeNum, userName, userAddress, userPhoneNum, userIntroRoute, userRoutine, userTerm, addDate, introduceWho, paymentRoute){
+	function addUser(userPrimeNum, userName, userAddress, userPhoneNum, userIntroRoute, userRoutine, userTerm, addDate, introduceWho, paymentRoute, userPhoneNum2, requests){
 		$('#userList').append('<table class="table user-list">' +
 				'<tbody>' +
 					'<tr>'+
@@ -111,7 +118,7 @@
 						'</td>'+
 						'<td style="width:20%;">'+
 		                    '<a href="#" class="table-link">'+
-						        '<span class="fa-stack" onclick="updateUser('+userPrimeNum+',\''+userName+'\',\''+userAddress+'\',\''+userPhoneNum+'\',\''+userIntroRoute+'\','+userRoutine+','+userTerm+',\''+introduceWho+'\',\''+paymentRoute+'\');">'+
+						        '<span class="fa-stack" onclick="updateUser('+userPrimeNum+',\''+userName+'\',\''+userAddress+'\',\''+userPhoneNum+'\',\''+userIntroRoute+'\','+userRoutine+','+userTerm+',\''+introduceWho+'\',\''+paymentRoute+'\',\''+userPhoneNum2+'\',\''+requests+'\');">'+
 						            '<i class="fa fa-square fa-stack-2x"></i>'+
 						            '<i class="fa fa-pencil fa-stack-1x fa-inverse"></i>'+
 						       '</span>'+
@@ -128,15 +135,17 @@
 			'</table>'
 		);
 	}
-	function updateUser(userPrimeNum, userName, userAddress, userPhoneNum, userIntroRoute, userRoutine, userTerm, introduceWho,paymentRoute){
+	function updateUser(userPrimeNum, userName, userAddress, userPhoneNum, userIntroRoute, userRoutine, userTerm, introduceWho,paymentRoute, userPhoneNum2, requests){
 		$('#userName').val(userName);
 		$('#userAddress').val(userAddress);
 		$('#userPhoneNum').val(userPhoneNum);
+		$('#userPhoneNum2').val(userPhoneNum2);
 		$('#userIntroRoute').val(userIntroRoute);
 		$('#userRoutine').val(userRoutine);
 		$('#userTerm').val(userTerm);
 		$('#introduceWho').val(introduceWho);
 		$('#paymentRoute').val(paymentRoute);
+		$('#requests').val(requests);
 
 		$('#userUserPrimeNum').val(userPrimeNum);
 		$('#userUpdateButton').show();
@@ -147,11 +156,14 @@
 		var userName = $('#userName').val();
 		var userAddress =$('userAddress').val();
 		var userPhoneNum = $('#userPhoneNum').val();
+		var userPhoneNum2 = $('#userPhoneNum2').val();
+
 		var userIntroRoute = $('#userIntroRoute').val();
 		var userRoutine = $('#userRoutine').val();
 		var introduceWho  = $('#introduceWho').val();
 		var userTerm  = $('#userTerm').val();
 		var paymentRoute  = $('#paymentRoute').val();
+		var requests  = $('#requests').val();
 
 		var userPrimeNum = $('#userUserPrimeNum').val();
 		
@@ -163,9 +175,13 @@
 				userName:encodeURIComponent(userName),
 				userAddress:encodeURIComponent(userAddress),
 				userPhoneNum:encodeURIComponent(userPhoneNum),
+				userPhoneNum2:encodeURIComponent(userPhoneNum2),
+
 				userIntroRoute:encodeURIComponent(userIntroRoute),
 				userRoutine:encodeURIComponent(userRoutine),
 				userTerm:encodeURIComponent(userTerm),
+				requests:encodeURIComponent(requests),
+
 				paymentRoute:paymentRoute
 			},
 			success: function(result){
@@ -174,11 +190,14 @@
 					$('#userName').val("");
 					$('#userAddress').val("");
 					$('#userPhoneNum').val("");
+					$('#userPhoneNum2').val("");
+
 					$('#userIntroRoute').val("");
 					$('#userRoutine').val(1);
 					$('#userTerm').val(1);
 					$('#introduceWho').val("");
 					$('#paymentRoute').val("");
+					$('#requests').val("");
 
 					$('#userUpdateButton').hide();
 					$('#userRegisterButton').show();
@@ -268,7 +287,7 @@
 				paymentDate:paymentDate,
 				weightControl:weightControl,
 				foodSpecies:foodSpecies
-			},
+			},	
 			
 			success: function(result){
 				if(result==1){
@@ -1679,7 +1698,7 @@
 							<input class="form-control" style="width:200px; display:inline-block;" placeholder="이름을 입력하세요" id="searchUserName"/>
 							<button class="btn btn-primary" type="button" style="display:inline-block;" onclick="searchUser();">검색	</button>
 						</div>
-					<div id="userList"class="" style="overflow-y: auto; height:370px; width:350px;  ">
+					<div id="userList"class="" style="overflow-y: auto; height:345px; width:330px;  ">
 						
 					</div>
 					<div class="form-group" style="height:660px;">
@@ -1693,10 +1712,11 @@
 						</div>
 						<div class="">
 							<div class="" style="display:inline-block;">
-								<input class="form-control" type="text" id="userPhoneNum" style="height:40px; width:150px; display:inline-block;" placeholder="폰 번호">
+								<input class="form-control" type="text" id="userPhoneNum" style="height:40px; width:100px; display:inline-block;" placeholder="폰 번호">
+								<input class="form-control" type="text" id="userPhoneNum2" style="height:40px; width:100px; display:inline-block;" placeholder="폰 번호2">
 							</div> 
 							<div class="" style="display:inline-block;">
-								<input class="form-control" type="text" id="userIntroRoute" style="height:40px; width:150px; display:inline-block;" placeholder="유입경로">
+								<input class="form-control" type="text" id="userIntroRoute" style="height:40px; width:100px; display:inline-block;" placeholder="유입경로">
 							</div>
 						</div>
 						<div class="">
@@ -1715,11 +1735,15 @@
 							<div style="display:inline-block; width:100px;">
 								<h4 style="display:inline-block;">결제 경로</h4>
 								<select  class="form-control" id="paymentRoute" style="display:inline-block;">
-									<option value="1">카카오</option>
+									<option value="1">카카오 스토어</option>
 									<option value="2">스마트 스토어</option>
+									<option value="4">홈페이지</option>
 									<option value="3">기타</option>
 								</select>								
 							</div>
+						</div>
+						<div class="" style="display:inline-block;">
+							<input class="form-control" type="text" id="requests" style="height:40px; width:300px; display:inline-block;" placeholder="배송 시 요청사항">
 						</div>
 						<div class="">
 							<div class="" style="display:inline-block;">
@@ -1730,6 +1754,7 @@
 									<option value="3">해당사항 없음</option>
 								</select>							
 							</div> 
+							
 							<div class="" style="padding-right:50px;">
 								<button type="button" class="btn btn-primary pull-right" onclick="addUserFunction();" id="userRegisterButton">고객 등록</button>
 								<button type="button" class="btn btn-primary pull-right" onclick="updateUserFunction();" id="userUpdateButton" style="display:none;">고객 정보 수정</button>
@@ -1752,7 +1777,7 @@
 							<h4 style="display:inline-block;"><i class="fa fa-circle text-green"></i>강아지 관리</h4>
 						</div>
 					</div>
-					<div id="puppyList"class="" style=" overflow-y: auto; height:220px; width:360px;">
+					<div id="puppyList"class="" style=" overflow-y: auto; height:230px; width:360px;">
 						
 					</div>
 					<div class="form-group" style=" margin-bottom:0px;  height:620px;">

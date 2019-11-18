@@ -12,6 +12,9 @@ public class DoggerboxUser {
 	String addDate;
 	String introduceWho;
 	int paymentRoute;
+	String userPhoneNum2;
+	String requests;
+	
 /*	String profile_image;
 	String thumbnail_image;
 	String userGender;
@@ -86,6 +89,19 @@ public class DoggerboxUser {
 	public void setPaymentRoute(int paymentRoute) {
 		this.paymentRoute = paymentRoute;
 	}
+	public String getUserPhoneNum2() {
+		return userPhoneNum2;
+	}
+	public void setUserPhoneNum2(String userPhoneNum2) {
+		this.userPhoneNum2 = userPhoneNum2;
+	}
+	public String getRequests() {
+		return requests;
+	}
+	public void setRequests(String requests) {
+		this.requests = requests;
+	}
+
 	
 	
 /*	public String getProfile_image() {
